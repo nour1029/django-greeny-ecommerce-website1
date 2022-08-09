@@ -1,5 +1,3 @@
-from itertools import product
-from unicodedata import category
 from django.db import models
 from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
