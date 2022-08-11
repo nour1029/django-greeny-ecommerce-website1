@@ -46,8 +46,13 @@ DB Analysis :
 
         - Adress
             - user
-            - adress
-            - title
+            - type
+            - country
+            - city
+            - state
+            - region
+            - street
+            - notes
 
 
 
