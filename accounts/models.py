@@ -4,6 +4,8 @@ from settings.models import Country, City
 from django.utils.translation import gettext as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
+from utils.code_generator import generate_code
 # Create your models here.
 
 
@@ -12,6 +14,8 @@ class Profile(models.Model):
         "User"), related_name='Profile', on_delete=models.CASCADE)
     image = models.ImageField(
         _("Image"), upload_to='profile/', null=True, blank=True)
+    code = models.CharField(_("Code"), max_length=8, default=generate_code)
+    code_used = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

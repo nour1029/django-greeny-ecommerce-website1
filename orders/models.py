@@ -1,14 +1,9 @@
 from django.db import models
-import random
+from utils.code_generator import generate_code
 from django.utils.translation import gettext as _
 from django.utils import timezone
 from products.models import Product
 # Create your models here.
-
-
-def generate_code(length=8):
-    numbers = "0123456789"
-    return ''.join(random.choice(numbers) for _ in range(length))
 
 
 STATUS_CHOICES = (
