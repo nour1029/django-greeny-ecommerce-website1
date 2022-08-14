@@ -46,7 +46,7 @@ class UserPhoneNumber(models.Model):
 
 
 class UserAdress(models.Model):
-    user = models.OneToOneField(User, verbose_name=_(
+    user = models.ForeignKey(User, verbose_name=_(
         "User"), related_name='UserAdress', on_delete=models.CASCADE)
     type = models.CharField(_("Type"), max_length=10, choices=DATA_TYPE)
     country = models.ForeignKey(Country, verbose_name=_(

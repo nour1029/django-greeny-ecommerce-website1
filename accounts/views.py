@@ -1,7 +1,8 @@
 from multiprocessing import context
-from django.shortcuts import render
-from .forms import SignupForm
-from .models import Profile
+import re
+from django.shortcuts import render, redirect
+from .forms import SignupForm, UserActivateForm
+from .models import Profile, UserAdress, UserPhoneNumber
 from django.conf import settings
 from django.core.mail import send_mail
 # Create your views here.
@@ -26,6 +27,8 @@ def signup(request):
                 recipient_list=[email],
                 fail_silently=False,
             )
+
+            return redirect(f'/accounts/{username}/activate')
     else:
         form = SignupForm()
 
@@ -33,8 +36,30 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
+def user_activate(request, username):
+    profile = Profile.objects.get(user__username=username)
+    if request.method == 'POST':
+        form = UserActivateForm(request.POST)
+        if form.is_valid():
+            code = form.cleaned_data['code']
+            if profile.code == code:
+                profile.code_used = True
+                profile.save()
+                return redirect(f'/accounts/login')
+    else:
+        form = UserActivateForm()
+
+    context = {'form': form}
+    return render(request, 'registration/activate.html', context)
+
+
 def profile(request):
-    pass
+    profile = Profile.objects.get(user=request.user)
+    numbers = UserPhoneNumber.objects.filter(user=request.user)
+    user_adress = UserAdress.objects.filter(user=request.user)
+
+    context = {'profile': profile, 'numbers': numbers, 'user_adress': user_adress, }
+    return render(request, 'profile.html', context)
 
 
 def edit_profile(request):
