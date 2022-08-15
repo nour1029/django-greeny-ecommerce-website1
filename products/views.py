@@ -8,7 +8,7 @@ from django.db.models import Count
 
 class ProductList(ListView):
     model = Product
-    paginate_by = 1
+    paginate_by = 50
 
 
 class ProductDetail(DetailView):
@@ -41,4 +41,15 @@ class BrandList(ListView):
         context = super().get_context_data(**kwargs)
         context["brands"] = Brand.objects.annotate(
             product_count=Count('product_brand'))
+        return context
+
+
+class BrandDetail(DetailView):
+    model = Brand
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        brand = self.get_object()
+        #context["brands"] = Brand.objects.annotate(product_count=Count('product_brand'))
+        context["brand_products"] = Product.objects.filter(brand=brand)
         return context

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from telnetlib import AUTHENTICATION
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
 
     'taggit',
     'django_summernote',
+    "debug_toolbar",
 
 
     'products',
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -71,6 +74,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'settings.site_context_processor.get_site_info',
+                #'accounts.site_context_processor.user_info',
+                'products.products_context_processor.get_brands',
             ],
         },
     },
@@ -149,4 +156,12 @@ EMAIL_HOST_PASSWORD = 'logjlbhyyaakepvb'
 
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/'
+#LOGIN_REDIRECT_URL = '/'
+
+
+AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

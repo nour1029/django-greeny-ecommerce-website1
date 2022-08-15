@@ -25,6 +25,7 @@ class Product(models.Model):
     flag = models.CharField(_("Flag"), choices=FLAG_TYPE, max_length=15)
     category = models.ForeignKey("Category", verbose_name=_(
         "Category"), related_name='product_category', on_delete=models.SET_NULL, null=True)
+    image = models.ImageField(_("Image"), upload_to='products/')
     slug = models.SlugField(_("Slug"), null=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -48,6 +49,11 @@ class Brand(models.Model):
     name = models.CharField(_("Name"), max_length=50)
     image = models.ImageField(
         _("Image"), upload_to='brand/', null=True, blank=True)
+    slug = models.SlugField(_("Slug"), blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Brand, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
