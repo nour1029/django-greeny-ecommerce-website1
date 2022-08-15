@@ -86,7 +86,7 @@
                                         <i class="fas fa-heart"></i>
                                     </button>
                                     <a class="product-image" href="{% url 'products:product_detail' product.slug %}">
-                                        <img src="" alt="product">
+                                        <img src="{{product.image.url}}" alt="product">
                                     </a>
                                     <div class="product-widget">
                                         <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
