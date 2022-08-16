@@ -77,6 +77,7 @@ class Review(models.Model):
     rate = models.IntegerField(_("Rate"), validators=[
                                MaxValueValidator(5), MinValueValidator(0)])
     created_at = models.DateTimeField(_("Created at"), default=timezone.now)
+    
 
     def __str__(self):
         return f'{self.user.username} - {self.product.name}'

@@ -176,89 +176,34 @@
                         </table>
                     </div>
                     <div class="product-details-frame">
-                        <h3 class="frame-title">Reviews (2)</h3>
-                        <ul class="review-list">
-                            <li class="review-item">
-                                <div class="review-media">
-                                    <a class="review-avatar" href="#">
-                                        <img src="images/avatar/01.jpg" alt="review">
-                                    </a>
-                                    <h5 class="review-meta">
-                                        <a href="#">miron mahmud</a>
-                                        <span>June 02, 2020</span>
-                                    </h5>
-                                </div>
-                                <ul class="review-rating">
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rate-blank"></li>
-                                </ul>
-                                <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
-                                <form class="review-reply">
-                                    <input type="text" placeholder="reply your thoughts">
-                                    <button><i class="icofont-reply"></i>reply</button>
-                                </form>
-                                <ul class="review-reply-list">
-                                    <li class="review-reply-item">
-                                        <div class="review-media">
-                                            <a class="review-avatar" href="#">
-                                                <img src="images/avatar/02.jpg" alt="review">
-                                            </a>
-                                            <h5 class="review-meta">
-                                                <a href="#">labonno khan</a>
-                                                <span><b>author -</b> June 02, 2020</span>
-                                            </h5>
-                                        </div>
-                                        <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
-                                        <form class="review-reply">
-                                            <input type="text" placeholder="reply your thoughts">
-                                            <button><i class="icofont-reply"></i>reply</button>
-                                        </form>
-                                    </li>
-                                    <li class="review-reply-item">
-                                        <div class="review-media">
-                                            <a class="review-avatar" href="#">
-                                                <img src="images/avatar/03.jpg" alt="review">
-                                            </a>
-                                            <h5 class="review-meta">
-                                                <a href="#">tahmina bonny</a>
-                                                <span>June 02, 2020</span>
-                                            </h5>
-                                        </div>
-                                        <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
-                                        <form class="review-reply">
-                                            <input type="text" placeholder="reply your thoughts">
-                                            <button><i class="icofont-reply"></i>reply</button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="review-item">
-                                <div class="review-media">
-                                    <a class="review-avatar" href="#">
-                                        <img src="images/avatar/04.jpg" alt="review">
-                                    </a>
-                                    <h5 class="review-meta">
-                                        <a href="#">shipu shikdar</a>
-                                        <span>June 02, 2020</span>
-                                    </h5>
-                                </div>
-                                <ul class="review-rating">
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rating"></li>
-                                    <li class="icofont-ui-rate-blank"></li>
-                                </ul>
-                                <p class="review-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus hic amet qui velit, molestiae suscipit perferendis, autem doloremque blanditiis dolores nulla excepturi ea nobis!</p>
-                                <form class="review-reply">
-                                    <input type="text" placeholder="reply your thoughts">
-                                    <button><i class="icofont-reply"></i>reply</button>
-                                </form>
-                            </li>
-                        </ul>
+                        <h3 class="frame-title">Reviews ({{reviews|length}})</h3>
+                        {% for review in reviews %}
+                            <ul class="review-list">
+                                <li class="review-item">
+                                    <div class="review-media">
+                                        <a class="review-avatar" href="#">
+                                            {% if review.user.Profile.image %}
+                                                <img src="{{review.user.Profile.image.url}}" alt="review">
+                                            {% else %}
+                                                <img src="{% static 'images/user.png' %}" alt="review">
+                                            {% endif %}
+                                        </a>
+                                        <h5 class="review-meta">
+                                            <a href="#">{{review.user}}</a>
+                                            <span>{{review.created_at|date:"F d, Y"}}</span>
+                                        </h5>
+                                    </div>
+                                    <ul class="review-rating">
+                                        <li class="icofont-ui-rating"></li>
+                                        <li class="icofont-ui-rating"></li>
+                                        <li class="icofont-ui-rating"></li>
+                                        <li class="icofont-ui-rating"></li>
+                                        <li class="icofont-ui-rate-blank"></li>
+                                    </ul>
+                                    <p class="review-desc">{{review.review}}</p>
+                                </li>
+                            </ul>
+                        {% endfor %}
                     </div>
                     <div class="product-details-frame">
                         <h3 class="frame-title">add your review</h3>

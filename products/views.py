@@ -55,3 +55,11 @@ class BrandDetail(DetailView):
         #context["brands"] = Brand.objects.annotate(product_count=Count('product_brand'))
         context["brand_products"] = Product.objects.filter(brand=brand)
         return context
+
+
+def add_review():
+    pass
+
+
+def add_to_favorites():
+    pass
