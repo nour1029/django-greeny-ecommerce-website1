@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Brand, Category, Product, ProductImages, Review
 from django.db.models import Count
+from django.contrib.auth.decorators import login_required
 # Creat your views here.
 
 
@@ -57,9 +58,11 @@ class BrandDetail(DetailView):
         return context
 
 
+@login_required
 def add_review():
     pass
 
 
+@login_required
 def add_to_favorites():
     pass

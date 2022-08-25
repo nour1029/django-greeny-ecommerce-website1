@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'products',
     'orders',
     'settings',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -76,7 +77,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'settings.site_context_processor.get_site_info',
-                #'accounts.site_context_processor.user_info',
+                # 'accounts.site_context_processor.user_info',
                 'products.products_context_processor.get_brands',
             ],
         },

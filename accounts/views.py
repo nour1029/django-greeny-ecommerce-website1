@@ -5,6 +5,7 @@ from .forms import SignupForm, UserActivateForm
 from .models import Profile, UserAdress, UserPhoneNumber
 from django.conf import settings
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -53,14 +54,17 @@ def user_activate(request, username):
     return render(request, 'registration/activate.html', context)
 
 
+@login_required
 def profile(request):
     profile = Profile.objects.get(user=request.user)
     numbers = UserPhoneNumber.objects.filter(user=request.user)
     user_adress = UserAdress.objects.filter(user=request.user)
 
-    context = {'profile': profile, 'numbers': numbers, 'user_adress': user_adress, }
+    context = {'profile': profile, 'numbers': numbers,
+               'user_adress': user_adress, }
     return render(request, 'profile.html', context)
 
 
+@login_required
 def edit_profile(request):
     pass
