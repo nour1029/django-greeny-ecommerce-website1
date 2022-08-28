@@ -1,3 +1,4 @@
+from itertools import product
 from msilib.schema import ListView
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
@@ -64,5 +65,12 @@ def add_review():
 
 
 @login_required
-def add_to_favorites():
-    pass
+def add_to_favorites(request):
+    prodcut_id = request.POST['productid']
+    
+    product = Product.objects.get(id=prodcut_id)
+
+    if product in request.user.Profile.favorites.all():
+        request.user.Profile.favorites.remove(product)
+    else:
+        request.user.Profile.favorites.add(product)

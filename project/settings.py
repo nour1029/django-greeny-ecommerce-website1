@@ -79,6 +79,7 @@ TEMPLATES = [
                 'settings.site_context_processor.get_site_info',
                 # 'accounts.site_context_processor.user_info',
                 'products.products_context_processor.get_brands',
+                'orders.cart_context_processor.get_or_create_cart',
             ],
         },
     },

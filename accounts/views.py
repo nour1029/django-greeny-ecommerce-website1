@@ -60,11 +60,21 @@ def profile(request):
     numbers = UserPhoneNumber.objects.filter(user=request.user)
     user_adress = UserAdress.objects.filter(user=request.user)
 
-    context = {'profile': profile, 'numbers': numbers,
-               'user_adress': user_adress, }
+    context = {'profile': profile, 'numbers': numbers, 'user_adress': user_adress, }
     return render(request, 'profile.html', context)
 
 
 @login_required
 def edit_profile(request):
     pass
+
+
+
+def wishlist(request):
+    profile = Profile.objects.get(user=request.user)
+
+    context = {'profile':profile}
+    return render(request, 'wishlist.html', context)
+
+
+

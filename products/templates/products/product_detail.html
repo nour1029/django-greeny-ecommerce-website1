@@ -79,12 +79,12 @@
                             <p>BRAND:<a href="#">{{product.brand}}</a></p>
                         </div>
                         <div class="details-rating">
-                            <i class="active icofont-star"></i>
-                            <i class="active icofont-star"></i>
-                            <i class="active icofont-star"></i>
-                            <i class="active icofont-star"></i>
-                            <i class="icofont-star"></i>
-                            <a href="#">(3 reviews)</a>
+                            <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "1" %} active {% endif %} icofont-star"></i>
+                            <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "2" %} active {% endif %} icofont-star"></i>
+                            <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "3" %} active {% endif %} icofont-star"></i>
+                            <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "4" %} active {% endif %} icofont-star"></i>
+                            <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" == "5" %} active {% endif %}icofont-star"></i>
+                            <a href="#">({{product.product_review.all|length}} reviews)</a>
                         </div>
                         <h3 class="details-price">
                             <del>$38.00</del>
@@ -109,21 +109,22 @@
                             </ul>
                         </div>
                         <div class="details-add-group">
-                            <button class="product-add" title="Add to Cart">
-                                <i class="fas fa-shopping-basket"></i>
-                                <span>add to cart</span>
-                            </button>
-                            <div class="product-action">
-                                <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
-                                <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                            </div>
+                            <form method="post" action="{% url 'orders:add_to_cart' %}">
+                                {% csrf_token %}
+                                <input class="action-input myinput" title="Quantity Number" type="text" name="quantity" value="1">
+                                <input type="hidden" value="{{product.id}}" name="productid">
+                                <button class="product-add myinput" title="Add to Cart">
+                                    <i class="fas fa-shopping-basket"></i>
+                                    <span>add to cart</span>
+                                </button>
+                            </form>
                         </div>
                         <div class="details-action-group">
-                            <a class="details-wish wish" href="#" title="Add Your Wishlist">
-                                <i class="icofont-heart"></i>
-                                <span>add to wish</span>
-                            </a>
+                            <form action="{% url 'products:add_to_favorites' %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="details-wish wish" title="Add Your Wishlist" value="add to wish">
+                                <input type="hidden" value="{{product.id}}" name="productid">
+                            </form>
                             <a class="details-compare" href="compare.html" title="Compare This Item">
                                 <i class="fas fa-random"></i>
                                 <span>Compare This</span>

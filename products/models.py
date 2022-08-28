@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
+from django.db.models import Avg
 # Create your models here.
 
 
@@ -28,6 +29,11 @@ class Product(models.Model):
     image = models.ImageField(_("Image"), upload_to='products/')
     quantity = models.IntegerField(_("Quantiy"), default=0)
     slug = models.SlugField(_("Slug"), null=True, blank=True)
+
+
+    def get_avg_reviews(self):
+        avg = self.product_review.aggregate(myavg=Avg('rate'))
+        return avg
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

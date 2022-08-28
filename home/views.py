@@ -23,4 +23,5 @@ def home(request):
         'brands':brands,
         'reviews':reviews,
         }
+        
     return render(request, 'home/index.html', context)
