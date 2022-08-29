@@ -42,3 +42,14 @@ from django.db.models import CharField
 <!-- orders(statuschoices = in progress) -->
 
 -Auto calculate price-order detail
+----------------------------------------------------------------------------
+
+Translations:
+-------------
+
+django-admin makemessages -l ar
+
+
+
+
+

@@ -1,0 +1,196 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-29 12:49+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\accounts\models.py:15 .\accounts\models.py:42 .\accounts\models.py:52
+#: .\orders\models.py:26 .\orders\models.py:67 .\products\models.py:81
+msgid "User"
+msgstr ""
+
+#: .\accounts\models.py:17 .\home\models.py:9 .\products\models.py:29
+#: .\products\models.py:49 .\products\models.py:58 .\products\models.py:71
+msgid "Image"
+msgstr ""
+
+#: .\accounts\models.py:18 .\orders\models.py:27 .\orders\models.py:68
+msgid "Code"
+msgstr ""
+
+#: .\accounts\models.py:20
+msgid "Favorites"
+msgstr ""
+
+#: .\accounts\models.py:43 .\settings\models.py:39
+msgid "Phone Number"
+msgstr ""
+
+#: .\accounts\models.py:44 .\accounts\models.py:53
+msgid "Type"
+msgstr ""
+
+#: .\accounts\models.py:55 .\settings\models.py:10
+msgid "Country"
+msgstr ""
+
+#: .\accounts\models.py:57
+msgid "City"
+msgstr ""
+
+#: .\accounts\models.py:58
+msgid "State"
+msgstr ""
+
+#: .\accounts\models.py:59
+msgid "Region"
+msgstr ""
+
+#: .\accounts\models.py:60
+msgid "Street"
+msgstr ""
+
+#: .\accounts\models.py:61
+msgid "Notes"
+msgstr ""
+
+#: .\home\models.py:7
+msgid "Title"
+msgstr ""
+
+#: .\home\models.py:8
+msgid "Sub Title"
+msgstr ""
+
+#: .\home\models.py:10
+msgid "Active"
+msgstr ""
+
+#: .\orders\models.py:29 .\orders\models.py:70
+msgid "Order Status"
+msgstr ""
+
+#: .\orders\models.py:30 .\orders\models.py:71
+msgid "Order Time"
+msgstr ""
+
+#: .\orders\models.py:32 .\orders\models.py:73
+msgid "Delivery Time"
+msgstr ""
+
+#: .\orders\models.py:48 .\orders\models.py:81
+msgid "Order"
+msgstr ""
+
+#: .\orders\models.py:50 .\orders\models.py:83 .\products\models.py:48
+#: .\products\models.py:79
+msgid "Product"
+msgstr ""
+
+#: .\orders\models.py:51 .\orders\models.py:84
+msgid "Quantity"
+msgstr ""
+
+#: .\orders\models.py:52 .\orders\models.py:85 .\products\models.py:23
+msgid "Price"
+msgstr ""
+
+#: .\orders\models.py:53
+msgid "Total"
+msgstr ""
+
+#: .\products\models.py:19 .\products\models.py:56 .\products\models.py:70
+#: .\settings\models.py:8 .\settings\models.py:21 .\settings\models.py:32
+msgid "Name"
+msgstr ""
+
+#: .\products\models.py:20
+msgid "SKU"
+msgstr ""
+
+#: .\products\models.py:22
+msgid "Brand"
+msgstr ""
+
+#: .\products\models.py:24
+msgid "Description"
+msgstr ""
+
+#: .\products\models.py:26
+msgid "Flag"
+msgstr ""
+
+#: .\products\models.py:28
+msgid "Category"
+msgstr ""
+
+#: .\products\models.py:30
+msgid "Quantiy"
+msgstr ""
+
+#: .\products\models.py:31 .\products\models.py:59
+msgid "Slug"
+msgstr ""
+
+#: .\products\models.py:82
+msgid "Review"
+msgstr ""
+
+#: .\products\models.py:83
+msgid "Rate"
+msgstr ""
+
+#: .\products\models.py:85
+msgid "Created at"
+msgstr ""
+
+#: .\project\settings.py:130
+msgid "Arabic"
+msgstr ""
+
+#: .\project\settings.py:131
+msgid "English"
+msgstr ""
+
+#: .\settings\models.py:33
+msgid "Logo"
+msgstr ""
+
+#: .\settings\models.py:34
+msgid "About"
+msgstr ""
+
+#: .\settings\models.py:35
+msgid "Facebook Link"
+msgstr ""
+
+#: .\settings\models.py:36
+msgid "Twitter Link"
+msgstr ""
+
+#: .\settings\models.py:37
+msgid "Instagram Link"
+msgstr ""
+
+#: .\settings\models.py:38
+msgid "Email"
+msgstr ""
+
+#: .\settings\models.py:40
+msgid "Adress"
+msgstr ""
