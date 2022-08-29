@@ -30,8 +30,9 @@
         =======================================-->
 
     <!-- WEBPAGE TITLE -->
-    <title>Index Home - Greeny</title>
-
+    {% block title %}
+      <title>Index Home - Greeny</title>
+    {% endblock title %}
     <!--=====================================
                     CSS LINK PART START
         =======================================-->
@@ -192,7 +193,7 @@
             <button class="header-widget header-cart" title="Cartlist">
               <i class="fas fa-shopping-basket"></i>
               <sup>{% if cart_detail|length <= 9 %} {{cart_detail|length}} {% else %}9+{% endif %}</sup>
-              <span>total price<small>${{cart.get_total|floatformat:2}}</small></span>
+              <span>{% translate "total price" %}<small>${{cart.get_total|floatformat:2}}</small></span>
             </button>
           </div>
         </div>
@@ -214,12 +215,10 @@
                 <li class="navbar-item dropdown-megamenu">
                   <a
                     class="navbar-link"
-                    href="{% url 'products:product_list' %}"
-                    >Products</a
-                  >
+                    href="{% url 'products:product_list' %}">{% translate "Products" %} </a>
                 </li>
                 <li class="navbar-item dropdown-megamenu">
-                  <a class="navbar-link dropdown-arrow" href="#">category</a>
+                  <a class="navbar-link dropdown-arrow" href="#">{% translate "category" %}</a>
                   <div class="megamenu">
                     <div class="container megamenu-scroll">
                       <div class="row row-cols-5">
@@ -348,7 +347,7 @@
                   </div>
                 </li>
                 <li class="navbar-item dropdown">
-                  <a class="navbar-link dropdown-arrow" href="#">Brand</a>
+                  <a class="navbar-link dropdown-arrow" href="#">{% translate "Brand" %} </a>
                   <ul class="dropdown-position-list">
                     {% for brand in brand_info %}
                     <li>
@@ -361,7 +360,7 @@
                 </li>
                 <li class="navbar-item dropdown">
                   <a class="navbar-link" href="{% url 'orders:order_list' %}"
-                    >Orders</a
+                    >{% translate "Orders" %}</a
                   >
                 </li>
               </ul>
@@ -369,14 +368,14 @@
                 <div class="navbar-info">
                   <i class="icofont-ui-touch-phone"></i>
                   <p>
-                    <small>call us</small>
+                    <small>{% translate "call us" %}</small>
                     <span>{{site_info.phone_number}}</span>
                   </p>
                 </div>
                 <div class="navbar-info">
                   <i class="icofont-ui-email"></i>
                   <p>
-                    <small>email us</small>
+                    <small>{% translate "email us" %}</small>
                     <span>{{site_info.email}}</span>
                   </p>
                 </div>
@@ -550,7 +549,7 @@
       <div class="cart-header">
         <div class="cart-total">
           <i class="fas fa-shopping-basket"></i>
-          <span>total item ({{cart_detail|length}})</span>
+          <span>{% translate "total item" %} ({{cart_detail|length}})</span>
         </div>
         <button class="cart-close"><i class="icofont-close"></i></button>
       </div>
@@ -566,7 +565,7 @@
             <div class="cart-info-group">
               <div class="cart-info">
                 <h6><a href="product-single.html">{{item.product}}</a></h6>
-                <p>Unit Price - ${{item.price|floatformat:2}}</p>
+                <p>{% translate "Unit Price" %} - ${{item.price|floatformat:2}}</p>
               </div>
               <div class="cart-action-group">
                 <div class="product-action">
@@ -591,13 +590,13 @@
         {% endfor %}
       </ul>
       <div class="cart-footer">
-        <button class="coupon-btn">Do you have a coupon code?</button>
+        <button class="coupon-btn">{% translate "Do you have a coupon code?" %}</button>
         <form class="coupon-form">
           <input type="text" placeholder="Enter your coupon code" />
-          <button type="submit"><span>apply</span></button>
+          <button type="submit"><span>{% translate "apply" %}</span></button>
         </form>
         <a class="cart-checkout-btn" href="checkout.html">
-          <span class="checkout-label">Proceed to Checkout</span>
+          <span class="checkout-label">{% translate "Proceed to Checkout" %}</span>
           <span class="checkout-price">${{cart.get_total|floatformat:2}}</span>
         </a>
       </div>
@@ -618,7 +617,7 @@
         <div class="nav-btn">
           <a href="login.html" class="btn btn-inline">
             <i class="fa fa-unlock-alt"></i>
-            <span>join here</span>
+            <span>{% translate "join here" %}</span>
           </a>
         </div>
         <!-- This commentable code show when user login or register -->
@@ -1087,7 +1086,7 @@
           </div>
           <div class="col-sm-6 col-xl-3">
             <div class="footer-widget contact">
-              <h3 class="footer-title">contact us</h3>
+              <h3 class="footer-title">{% translate "contact us" %}</h3>
               <ul class="footer-contact">
                 <li>
                   <i class="icofont-ui-email"></i>

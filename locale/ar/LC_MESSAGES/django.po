@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-29 12:49+0200\n"
+"POT-Creation-Date: 2022-08-29 13:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,114 +22,114 @@ msgstr ""
 #: .\accounts\models.py:15 .\accounts\models.py:42 .\accounts\models.py:52
 #: .\orders\models.py:26 .\orders\models.py:67 .\products\models.py:81
 msgid "User"
-msgstr ""
+msgstr "المسخدم"
 
 #: .\accounts\models.py:17 .\home\models.py:9 .\products\models.py:29
 #: .\products\models.py:49 .\products\models.py:58 .\products\models.py:71
 msgid "Image"
-msgstr ""
+msgstr "الصورة"
 
 #: .\accounts\models.py:18 .\orders\models.py:27 .\orders\models.py:68
 msgid "Code"
-msgstr ""
+msgstr "الكود"
 
 #: .\accounts\models.py:20
 msgid "Favorites"
-msgstr ""
+msgstr "المفضل"
 
 #: .\accounts\models.py:43 .\settings\models.py:39
 msgid "Phone Number"
-msgstr ""
+msgstr "رقم التليفون"
 
 #: .\accounts\models.py:44 .\accounts\models.py:53
 msgid "Type"
-msgstr ""
+msgstr "نوع"
 
 #: .\accounts\models.py:55 .\settings\models.py:10
 msgid "Country"
-msgstr ""
+msgstr "البلد"
 
 #: .\accounts\models.py:57
 msgid "City"
-msgstr ""
+msgstr "المدينة"
 
 #: .\accounts\models.py:58
 msgid "State"
-msgstr ""
+msgstr "الولاية"
 
 #: .\accounts\models.py:59
 msgid "Region"
-msgstr ""
+msgstr "المنطقة"
 
 #: .\accounts\models.py:60
 msgid "Street"
-msgstr ""
+msgstr "الشارع"
 
 #: .\accounts\models.py:61
 msgid "Notes"
-msgstr ""
+msgstr "ملاحظات"
 
 #: .\home\models.py:7
 msgid "Title"
-msgstr ""
+msgstr "العنوان"
 
 #: .\home\models.py:8
 msgid "Sub Title"
-msgstr ""
+msgstr "العنوان الفرعي"
 
 #: .\home\models.py:10
 msgid "Active"
-msgstr ""
+msgstr "مفعل"
 
 #: .\orders\models.py:29 .\orders\models.py:70
 msgid "Order Status"
-msgstr ""
+msgstr "حالة الاوردر"
 
 #: .\orders\models.py:30 .\orders\models.py:71
 msgid "Order Time"
-msgstr ""
+msgstr "وقت الاوردر"
 
 #: .\orders\models.py:32 .\orders\models.py:73
 msgid "Delivery Time"
-msgstr ""
+msgstr "موعد التسليم"
 
 #: .\orders\models.py:48 .\orders\models.py:81
 msgid "Order"
-msgstr ""
+msgstr "اوردر"
 
 #: .\orders\models.py:50 .\orders\models.py:83 .\products\models.py:48
 #: .\products\models.py:79
 msgid "Product"
-msgstr ""
+msgstr "منتج"
 
 #: .\orders\models.py:51 .\orders\models.py:84
 msgid "Quantity"
-msgstr ""
+msgstr "الكمية"
 
 #: .\orders\models.py:52 .\orders\models.py:85 .\products\models.py:23
 msgid "Price"
-msgstr ""
+msgstr "السعر"
 
 #: .\orders\models.py:53
 msgid "Total"
-msgstr ""
+msgstr "الاجمالي"
 
 #: .\products\models.py:19 .\products\models.py:56 .\products\models.py:70
 #: .\settings\models.py:8 .\settings\models.py:21 .\settings\models.py:32
 msgid "Name"
-msgstr ""
+msgstr "الاسم"
 
 #: .\products\models.py:20
 msgid "SKU"
 msgstr ""
 
-#: .\products\models.py:22
+#: .\products\models.py:22 .\templates\base.html:349
 msgid "Brand"
-msgstr ""
+msgstr "العلامة التجارية"
 
 #: .\products\models.py:24
 msgid "Description"
-msgstr ""
+msgstr "وصف"
 
 #: .\products\models.py:26
 msgid "Flag"
@@ -137,11 +137,11 @@ msgstr ""
 
 #: .\products\models.py:28
 msgid "Category"
-msgstr ""
+msgstr "فئة"
 
 #: .\products\models.py:30
 msgid "Quantiy"
-msgstr ""
+msgstr "كمية"
 
 #: .\products\models.py:31 .\products\models.py:59
 msgid "Slug"
@@ -149,48 +149,110 @@ msgstr ""
 
 #: .\products\models.py:82
 msgid "Review"
-msgstr ""
+msgstr "مراجعة"
 
 #: .\products\models.py:83
 msgid "Rate"
-msgstr ""
+msgstr "التقييم"
 
 #: .\products\models.py:85
 msgid "Created at"
-msgstr ""
+msgstr "انشئ في"
 
 #: .\project\settings.py:130
 msgid "Arabic"
-msgstr ""
+msgstr "العربية"
 
 #: .\project\settings.py:131
 msgid "English"
-msgstr ""
+msgstr "الانجليزية"
 
 #: .\settings\models.py:33
 msgid "Logo"
-msgstr ""
+msgstr "شعار"
 
 #: .\settings\models.py:34
 msgid "About"
-msgstr ""
+msgstr "حول"
 
 #: .\settings\models.py:35
 msgid "Facebook Link"
-msgstr ""
+msgstr "رابط فيسبوك"
 
 #: .\settings\models.py:36
 msgid "Twitter Link"
-msgstr ""
+msgstr "رابط تويتر"
 
 #: .\settings\models.py:37
 msgid "Instagram Link"
-msgstr ""
+msgstr "رابط انستجرام"
 
 #: .\settings\models.py:38
 msgid "Email"
-msgstr ""
+msgstr "ايميل"
 
 #: .\settings\models.py:40
 msgid "Adress"
-msgstr ""
+msgstr "عنوان"
+
+#: .\templates\base.html:195
+#, fuzzy
+#| msgid "total item"
+msgid "total price"
+msgstr "اجمالي المنتجات"
+
+#: .\templates\base.html:217
+msgid "Products"
+msgstr "المنتجات"
+
+#: .\templates\base.html:220
+#, fuzzy
+#| msgid "Category"
+msgid "category"
+msgstr "فئة"
+
+#: .\templates\base.html:362
+#, fuzzy
+#| msgid "Order"
+msgid "Orders"
+msgstr "اوردر"
+
+#: .\templates\base.html:370
+msgid "call us"
+msgstr "اتصل بنا"
+
+#: .\templates\base.html:377
+#, fuzzy
+#| msgid "Email"
+msgid "email us"
+msgstr "ايميل"
+
+#: .\templates\base.html:551
+msgid "total item"
+msgstr "اجمالي المنتجات"
+
+#: .\templates\base.html:567
+#, fuzzy
+#| msgid "Price"
+msgid "Unit Price"
+msgstr "السعر"
+
+#: .\templates\base.html:592
+msgid "Do you have a coupon code?"
+msgstr "هل لديك كوبون خصم؟"
+
+#: .\templates\base.html:595
+msgid "apply"
+msgstr "تاكيد"
+
+#: .\templates\base.html:598
+msgid "Proceed to Checkout"
+msgstr "تابع الى الدفع"
+
+#: .\templates\base.html:619
+msgid "join here"
+msgstr "انضم هنا"
+
+#: .\templates\base.html:1088
+msgid "contact us"
+msgstr "اتصل بنا"
