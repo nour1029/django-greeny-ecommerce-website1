@@ -42,15 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'taggit',
-    'django_summernote',
-    "debug_toolbar",
-
-
     'products',
     'orders',
     'settings',
     'home',
+
+
+    'taggit',
+    'django_summernote',
+    "debug_toolbar",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
