@@ -42,16 +42,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'products',
-    'orders',
-    'settings',
-    'home',
-
 
     'taggit',
     'django_summernote',
     "debug_toolbar",
     'rest_framework',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+
+
+    'products',
+    'orders',
+    'settings',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -178,3 +181,7 @@ AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'jwt-auth'

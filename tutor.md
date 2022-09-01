@@ -49,6 +49,14 @@ Translations:
 
 django-admin makemessages -l ar
 
+--------------------------------------------------------
+
+
+- Restframework
+- Graphql
+
+- Microservice arcticture
+- Monolith arcticture
 
 
 
