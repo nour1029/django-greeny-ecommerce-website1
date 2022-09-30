@@ -23,5 +23,4 @@ urlpatterns = [
     path('api/category/<int:pk>', CategoryDetailAPI.as_view(), name='category_detail_api'),
     path('api/brand', BrandListAPI.as_view()),
     path('api/brand/<int:pk>', BrandDetailAPI.as_view()),
-
 ]
