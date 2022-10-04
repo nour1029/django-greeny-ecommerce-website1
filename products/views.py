@@ -1,7 +1,9 @@
 from itertools import product
 from msilib.schema import ListView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
+from django.urls import reverse
+from products.forms import ReviewForm
 from .models import Brand, Category, Product, ProductImages, Review
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
@@ -59,9 +61,22 @@ class BrandDetail(DetailView):
         return context
 
 
-@login_required
-def add_review():
-    pass
+
+def add_review(request,slug):
+    print('in review')
+    product = Product.objects.get(slug=slug)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data['rate'])
+            myform = form.save(commit=False)
+            myform.user = request.user 
+            myform.product = product 
+            myform.save()
+    
+            return redirect(reverse('products:product_detail', kwargs={'slug': slug}))
+    
+
 
 
 @login_required
