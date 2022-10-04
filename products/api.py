@@ -1,15 +1,20 @@
 from rest_framework.response import Response
 from rest_framework import generics
+import django_filters.rest_framework
 from rest_framework.decorators import api_view
 from .models import Brand, Category, Product
 from .serializers import BrandSerializer, CategorySerializer, ProductDetailSerializer, ProductSerializer
-
+from .pagination import ProductPagination
+from .filters import ProductFilter
 
 
 
 class ProductListAPI(generics.ListAPIView):
-    serializer_class = ProductSerializer
     queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    pagination_class = ProductPagination
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_class = ProductFilter
 
 
 class ProductDetailAPI(generics.RetrieveAPIView):
