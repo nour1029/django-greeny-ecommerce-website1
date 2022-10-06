@@ -30,24 +30,30 @@ class ProductDetail(DetailView):
 
 class CategoryList(ListView):
     model = Category
-    paginate_by = 1
+    paginate_by = 12
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["category_list"] = Category.objects.all().annotate(
+    def get_queryset(self):
+        queryset = Category.objects.all().annotate(
             product_count=Count('product_category'))
-        return context
+        return queryset
+    
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["category_list"] = Category.objects.all().annotate(
+    #         product_count=Count('product_category'))
+    #     return context
 
 
 class BrandList(ListView):
     model = Brand
-    paginate_by = 1
+    paginate_by = 12
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["brands"] = Brand.objects.annotate(
-            product_count=Count('product_brand'))
-        return context
+    def get_queryset(self):
+        queryset = Brand.objects.annotate(product_count=Count('product_brand'))
+        return queryset
+    
+
 
 
 class BrandDetail(DetailView):
