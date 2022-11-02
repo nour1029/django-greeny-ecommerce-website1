@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
     'dj_rest_auth',
 
 
@@ -56,6 +57,14 @@ INSTALLED_APPS = [
     'settings',
     'home',
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100 ,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,7 +95,7 @@ TEMPLATES = [
                 'settings.site_context_processor.get_site_info',
                 # 'accounts.site_context_processor.user_info',
                 'products.products_context_processor.get_brands',
-                'orders.cart_context_processor.get_or_create_cart',
+                # 'orders.cart_context_processor.get_or_create_cart',
             ],
         },
     },

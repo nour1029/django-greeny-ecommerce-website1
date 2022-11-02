@@ -1,10 +1,14 @@
 from itertools import product
 from msilib.schema import ListView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
+from django.urls import reverse
+from products.forms import ReviewForm
 from .models import Brand, Category, Product, ProductImages, Review
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 # Creat your views here.
 
 
@@ -28,24 +32,30 @@ class ProductDetail(DetailView):
 
 class CategoryList(ListView):
     model = Category
-    paginate_by = 1
+    paginate_by = 12
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["category_list"] = Category.objects.all().annotate(
+    def get_queryset(self):
+        queryset = Category.objects.all().annotate(
             product_count=Count('product_category'))
-        return context
+        return queryset
+    
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["category_list"] = Category.objects.all().annotate(
+    #         product_count=Count('product_category'))
+    #     return context
 
 
 class BrandList(ListView):
     model = Brand
-    paginate_by = 1
+    paginate_by = 12
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["brands"] = Brand.objects.annotate(
-            product_count=Count('product_brand'))
-        return context
+    def get_queryset(self):
+        queryset = Brand.objects.annotate(product_count=Count('product_brand'))
+        return queryset
+    
+
 
 
 class BrandDetail(DetailView):
@@ -59,9 +69,22 @@ class BrandDetail(DetailView):
         return context
 
 
-@login_required
-def add_review():
-    pass
+
+def add_review(request,slug):
+    product = Product.objects.get(slug=slug)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data['rate'])
+            myform = form.save(commit=False)
+            myform.user = request.user 
+            myform.product = product 
+            myform.save()
+
+            reviews = Review.objects.filter(product=product)
+    
+            html = render_to_string('products/include/reviews.html', {'reviews':reviews, request:request}) # Render context data on page and returns html text
+            return JsonResponse({'result' : html})
 
 
 @login_required
