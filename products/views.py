@@ -7,6 +7,8 @@ from products.forms import ReviewForm
 from .models import Brand, Category, Product, ProductImages, Review
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 # Creat your views here.
 
 
@@ -69,7 +71,6 @@ class BrandDetail(DetailView):
 
 
 def add_review(request,slug):
-    print('in review')
     product = Product.objects.get(slug=slug)
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -79,10 +80,11 @@ def add_review(request,slug):
             myform.user = request.user 
             myform.product = product 
             myform.save()
-    
-            return redirect(reverse('products:product_detail', kwargs={'slug': slug}))
-    
 
+            reviews = Review.objects.filter(product=product)
+    
+            html = render_to_string('products/include/reviews.html', {'reviews':reviews, request:request}) # Render context data on page and returns html text
+            return JsonResponse({'result' : html})
 
 
 @login_required
