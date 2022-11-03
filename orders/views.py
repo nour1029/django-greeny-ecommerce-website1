@@ -1,7 +1,12 @@
 from django.shortcuts import render
-from .models import CartOrder, CartOrderDetail, Order
+from .models import CartOrder, CartOrderDetail, Order, Coupon
 from django.contrib.auth.decorators import login_required
 from products.models import Product
+from django.shortcuts import get_object_or_404
+from django.utils.timezone import datetime
+from django.template.loader import render_to_string
+from django.http import JsonResponse
+
 # Create your views here.
 
 
@@ -34,3 +39,35 @@ def add_to_cart(request):
         # cart_detail.price = product.price
         # cart_detail.total = int(quantity) * product.price
         # cart_detail.save()
+
+
+def checkout_page(request):
+    cart = CartOrder.objects.get(user=request.user, order_status="Inprogress")
+    cart_detail = CartOrderDetail.objects.filter(cart=cart)
+
+    sub_total = cart.get_total()
+    delivery_fee = 25
+    total = sub_total + delivery_fee
+    discount_value = 0
+
+    today_date = datetime.today().date()
+
+    if request.method == "POST":
+        coupon_code = get_object_or_404(Coupon, code=request.POST['code'])
+        if coupon_code :
+            if coupon_code.quantity > 0 and coupon_code.to_date>= today_date >= coupon_code.from_date:
+                print('coupon valid')
+                discount_value = cart.get_total() / 100 * coupon_code.value
+                total = cart.get_total() - discount_value + delivery_fee
+                html = render_to_string('include/total.html', {'sub_total':sub_total, 'delivery_fee':delivery_fee, 'discount_value':discount_value, 'total':total, request:request})
+                return JsonResponse({'result':html})
+
+
+    context = {
+        'cart_detail':cart_detail,
+        'sub_total':sub_total,
+        'delivery_fee':delivery_fee,
+        'discount_value':discount_value,
+        'total':total,
+    }
+    return render(request, 'orders/checkout.html', context)
