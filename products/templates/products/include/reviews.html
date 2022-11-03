@@ -20,11 +20,11 @@
             </h5>
         </div>
         <ul class="review-rating">
-            <li class="icofont-ui-rating"></li>
-            <li class="icofont-ui-rating"></li>
-            <li class="icofont-ui-rating"></li>
-            <li class="icofont-ui-rating"></li>
-            <li class="icofont-ui-rate-blank"></li>
+            <li class="{% if review.rate >= 1 %}icofont-ui-rating{% endif %}"></li>
+            <li class="{% if review.rate >= 2 %}icofont-ui-rating{% else %}icofont-ui-rate-blank{% endif %}"></li>
+            <li class="{% if review.rate >= 3 %}icofont-ui-rating{% else %}icofont-ui-rate-blank{% endif %}"></li>
+            <li class="{% if review.rate >= 4 %}icofont-ui-rating{% else %}icofont-ui-rate-blank{% endif %}"></li>
+            <li class="{% if review.rate == 5 %}icofont-ui-rating{% else %}icofont-ui-rate-blank{% endif %}"></li>
         </ul>
         <p class="review-desc">{{review.review}}</p>
     </li>
