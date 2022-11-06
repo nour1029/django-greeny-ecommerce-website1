@@ -40,6 +40,12 @@ def add_to_cart(request):
         # cart_detail.total = int(quantity) * product.price
         # cart_detail.save()
 
+        cart = CartOrder.objects.get(user=request.user, order_status='Inprogress')
+        cart_detail = CartOrderDetail.objects.filter(cart=cart.id)
+        html = render_to_string('include/cart_side.html', {'cart':cart, 'cart_detail':cart_detail})
+        cart_total = cart.get_total()
+        return JsonResponse({'result':html, 'total':cart_total})
+
 
 def checkout_page(request):
     cart = CartOrder.objects.get(user=request.user, order_status="Inprogress")

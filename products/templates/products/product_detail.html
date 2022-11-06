@@ -117,7 +117,7 @@
                             </ul>
                         </div>
                         <div class="details-add-group">
-                            <form method="post" action="{% url 'orders:add_to_cart' %}">
+                            <form method="post" id="addToCartForm" action="{% url 'orders:add_to_cart' %}">
                                 {% csrf_token %}
                                 <input class="action-input myinput" title="Quantity Number" type="text" name="quantity" value="1">
                                 <input type="hidden" value="{{product.id}}" name="productid">
@@ -318,6 +318,22 @@
                     dataType:'json' ,
                     success:function(response){
                         $('#review-div').html(response['result'])
+                    },
+                    error:function(err){
+                        console.log(err)
+                    }
+                })
+            })
+            $(document).on('submit', '#addToCartForm', function(e){
+                e.preventDefault();
+                $.ajax({
+                    type:$(this).attr('method') ,
+                    url:$(this).attr('action') ,
+                    data:$(this).serialize() ,
+                    dataType:'json' ,
+                    success:function(response){
+                        $('#cartSidebar').html(response['result'])
+                        document.getElementById('cartTotal').textContent=response['total']
                     },
                     error:function(err){
                         console.log(err)

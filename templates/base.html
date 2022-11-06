@@ -193,7 +193,7 @@
             <button class="header-widget header-cart" title="Cartlist">
               <i class="fas fa-shopping-basket"></i>
               <sup>{% if cart_detail|length <= 9 %} {{cart_detail|length}} {% else %}9+{% endif %}</sup>
-              <span>{% translate "total price" %}<small>${{cart.get_total|floatformat:2}}</small></span>
+              <span>{% translate "total price" %}<small id="cartTotal">${{cart.get_total|floatformat:2}}</small></span>
             </button>
           </div>
         </div>
@@ -545,61 +545,8 @@
     <!--=====================================
                     CART SIDEBAR PART START
         =======================================-->
-    <aside class="cart-sidebar">
-      <div class="cart-header">
-        <div class="cart-total">
-          <i class="fas fa-shopping-basket"></i>
-          <span>{% translate "total item" %} ({{cart_detail|length}})</span>
-        </div>
-        <button class="cart-close"><i class="icofont-close"></i></button>
-      </div>
-      <ul class="cart-list">
-        {% for item in cart_detail %}
-          <li class="cart-item">
-            <div class="cart-media">
-              <a href="#"><img src="{{item.product.image.url}}" alt="product" /></a>
-              <button class="cart-delete">
-                <i class="far fa-trash-alt"></i>
-              </button>
-            </div>
-            <div class="cart-info-group">
-              <div class="cart-info">
-                <h6><a href="product-single.html">{{item.product}}</a></h6>
-                <p>{% translate "Unit Price" %} - ${{item.price|floatformat:2}}</p>
-              </div>
-              <div class="cart-action-group">
-                <div class="product-action">
-                  <button class="action-minus" title="Quantity Minus">
-                    <i class="icofont-minus"></i>
-                  </button>
-                  <input
-                    class="action-input"
-                    title="Quantity Number"
-                    type="text"
-                    name="quantity"
-                    value="{{item.quantity}}"
-                  />
-                  <button class="action-plus" title="Quantity Plus">
-                    <i class="icofont-plus"></i>
-                  </button>
-                </div>
-                <h6>${{item.total|floatformat:2}}</h6>
-              </div>
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
-      <div class="cart-footer">
-        <button class="coupon-btn">{% translate "Do you have a coupon code?" %}</button>
-        <form class="coupon-form">
-          <input type="text" placeholder="Enter your coupon code" />
-          <button type="submit"><span>{% translate "apply" %}</span></button>
-        </form>
-        <a class="cart-checkout-btn" href="checkout.html">
-          <span class="checkout-label">{% translate "Proceed to Checkout" %}</span>
-          <span class="checkout-price">${{cart.get_total|floatformat:2}}</span>
-        </a>
-      </div>
+    <aside class="cart-sidebar" id="cartSidebar">
+      {% include "include/cart_side.html" %}
     </aside>
     <!--=====================================
                     CART SIDEBAR PART END
