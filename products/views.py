@@ -70,16 +70,29 @@ class BrandList(ListView):
 
 
 
-class BrandDetail(DetailView):
-    model = Brand
+class BrandDetail(ListView):
+    model = Product
+    template_name = 'products/brand_detail.html'
+    paginate_by = 12
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     brand = self.get_object()
+    #     #context["brands"] = Brand.objects.annotate(product_count=Count('product_brand'))
+    #     context["brand_products"] = Product.objects.filter(brand=brand)
+    #     return context
+
+    def get_queryset(self):
+        self.brand_slug = self.kwargs['slug']
+        queryset = Product.objects.filter(brand__slug=self.brand_slug)
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        brand = self.get_object()
-        #context["brands"] = Brand.objects.annotate(product_count=Count('product_brand'))
-        context["brand_products"] = Product.objects.filter(brand=brand)
+        context["brand"] = Brand.objects.get(slug=self.brand_slug)
         return context
+    
 
+    
 
 
 def add_review(request,slug):
