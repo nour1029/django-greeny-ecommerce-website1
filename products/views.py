@@ -16,6 +16,18 @@ class ProductList(ListView):
     model = Product
     paginate_by = 50
 
+    def get_queryset(self):
+        try:
+            min_price = self.request.GET['min-price']
+            max_price = self.request.GET['max-price']
+            queryset = Product.objects.filter(price__gt=min_price, price__lt=max_price)
+            html = render_to_string('products/include/product_list_div.html', {'product_list':queryset, self.request:self.request})
+            return JsonResponse({'result':html})
+        except:
+            queryset = super().get_queryset()
+            print('out')
+        
+        return queryset
 
 class ProductDetail(DetailView):
     model = Product
