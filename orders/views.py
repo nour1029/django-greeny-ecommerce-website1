@@ -46,6 +46,18 @@ def add_to_cart(request):
         cart_total = cart.get_total()
         return JsonResponse({'result':html, 'total':cart_total})
 
+def delete_from_cart(request):
+    if request.method == "POST":
+        cartdetail_id = int(request.POST["cartdetail_id"])
+        
+        product = CartOrderDetail.objects.get(pk=cartdetail_id).delete()
+        
+
+        cart = CartOrder.objects.get(user=request.user, order_status='Inprogress')
+        cart_detail = CartOrderDetail.objects.filter(cart=cart.id)
+        html = render_to_string('include/cart_side.html', {'cart':cart, 'cart_detail':cart_detail})
+        return JsonResponse({'result':html})
+
 
 def checkout_page(request):
     cart = CartOrder.objects.get(user=request.user, order_status="Inprogress")
@@ -59,14 +71,16 @@ def checkout_page(request):
     today_date = datetime.today().date()
 
     if request.method == "POST":
+        print('post')
         coupon_code = get_object_or_404(Coupon, code=request.POST['code'])
         if coupon_code :
             if coupon_code.quantity > 0 and coupon_code.to_date>= today_date >= coupon_code.from_date:
                 print('coupon valid')
                 discount_value = cart.get_total() / 100 * coupon_code.value
                 total = cart.get_total() - discount_value + delivery_fee
-                html = render_to_string('include/total.html', {'sub_total':sub_total, 'delivery_fee':delivery_fee, 'discount_value':discount_value, 'total':total, request:request})
+                html = render_to_string('include/total.html', {'sub_total':sub_total, 'delivery_fee':delivery_fee, 'discount_value':discount_value, 'total':total, 'coupon_code':coupon_code, request:request})
                 return JsonResponse({'result':html})
+
 
 
     context = {

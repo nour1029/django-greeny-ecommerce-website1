@@ -8,14 +8,17 @@
     </div>
     <button class="cart-close"><i class="icofont-close"></i></button>
 </div>
-<ul class="cart-list">
+<ul class="cart-list" id="cartList">
     {% for item in cart_detail %}
         <li class="cart-item">
             <div class="cart-media">
             <a href="#"><img src="{{item.product.image.url}}" alt="product" /></a>
-            <button class="cart-delete">
-                <i class="far fa-trash-alt"></i>
-            </button>
+            <form id="cartProductDeleteForm">
+                <button class="cart-delete" id="cartDelete">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+                <input type="hidden" value="{{item.id}}" id="productIdDelete">
+            </form>
             </div>
             <div class="cart-info-group">
             <div class="cart-info">

@@ -1150,6 +1150,32 @@
     <script src="{% static 'js/main.js' %}"></script>
     <!--=====================================
                     JS LINK PART END
-        =======================================-->
+    =======================================-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    
+    <script>
+      $(document).ready(function(e){
+          $(document).on('submit', '#cartProductDeleteForm', function(e){
+              e.preventDefault();
+              cartDetailId = document.getElementById('productIdDelete').value;
+
+              $.ajax({
+                  type:'POST',
+                  url: '{% url "orders:delete_from_cart" %}',
+                  data: {'cartdetail_id':cartDetailId , 'csrfmiddlewaretoken': "{{csrf_token}}"},
+                  dataType: 'json',
+                  success:function(response){
+                      $('#cartSidebar').html(response['result'])
+                      console.log('product deleted')
+                  },
+                  error:function(err){
+                      console.log(err)
+                  }
+              })
+          })
+      })
+    </script>
+
   </body>
 </html>
