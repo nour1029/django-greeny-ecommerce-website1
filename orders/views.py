@@ -47,16 +47,15 @@ def add_to_cart(request):
         return JsonResponse({'result':html, 'total':cart_total})
 
 def delete_from_cart(request):
+
     if request.method == "POST":
         cartdetail_id = int(request.POST["cartdetail_id"])
-        
         product = CartOrderDetail.objects.get(pk=cartdetail_id).delete()
         
-
         cart = CartOrder.objects.get(user=request.user, order_status='Inprogress')
         cart_detail = CartOrderDetail.objects.filter(cart=cart.id)
-        html = render_to_string('include/cart_side.html', {'cart':cart, 'cart_detail':cart_detail})
-        return JsonResponse({'result':html})
+        #html = render_to_string('include/cart_side.html', {'cart':cart, 'cart_detail':cart_detail})
+        return JsonResponse({'result':'html'})
 
 
 def checkout_page(request):

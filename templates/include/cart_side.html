@@ -23,6 +23,7 @@
             <div class="cart-info-group">
             <div class="cart-info">
                 <h6><a href="product-single.html">{{item.product}}</a></h6>
+                {{item.pk}}
                 <p>{% translate "Unit Price" %} - ${{item.price|floatformat:2}}</p>
             </div>
             <div class="cart-action-group">
