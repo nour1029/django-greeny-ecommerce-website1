@@ -4,49 +4,43 @@
 <div class="cart-header">
     <div class="cart-total">
         <i class="fas fa-shopping-basket"></i>
-        <span>{% translate "total item" %} ({{cart_detail|length}})</span>
+        <span>{% translate "total item" %} (${cart_detail|length})</span>
     </div>
     <button class="cart-close"><i class="icofont-close"></i></button>
 </div>
 <ul class="cart-list" id="cartList">
-    {% for item in cart_detail %}
-        <li class="cart-item">
+        <li v-for="item in order_list" class="cart-item">
             <div class="cart-media">
-            <a href="#"><img src="{{item.product.image.url}}" alt="product" /></a>
-            <form id="cartProductDeleteForm">
-                <button class="cart-delete" id="cartDelete">
-                    <i class="far fa-trash-alt"></i>
-                </button>
-                <input type="hidden" value="{{item.id}}" id="productIdDelete">
-            </form>
+            <a href="#"><img src="" alt="product" /></a>
+            <button class="cart-delete" id="cartDelete" v-on:click="deleteCartOrder(item.id)">
+                <i class="far fa-trash-alt"></i>
+            </button>
             </div>
             <div class="cart-info-group">
             <div class="cart-info">
-                <h6><a href="product-single.html">{{item.product}}</a></h6>
-                {{item.pk}}
-                <p>{% translate "Unit Price" %} - ${{item.price|floatformat:2}}</p>
+                <h6><a href="product-single.html">${item.product}</a></h6>
+                <p>{% translate "Unit Price" %} - $${item.price}</p>
             </div>
             <div class="cart-action-group">
                 <div class="product-action">
                 <button class="action-minus" title="Quantity Minus">
                     <i class="icofont-minus"></i>
                 </button>
-                <input
+                <!-- <input
                     class="action-input"
                     title="Quantity Number"
                     type="text"
                     name="quantity"
-                    value="{{item.quantity}}"
-                />
+                    value=${item.quantity}
+                /> -->
                 <button class="action-plus" title="Quantity Plus">
                     <i class="icofont-plus"></i>
                 </button>
                 </div>
-                <h6>${{item.total|floatformat:2}}</h6>
+                <h6>$${item.total}</h6>
             </div>
             </div>
         </li>
-    {% endfor %}
 </ul>
 <div class="cart-footer">
 <button class="coupon-btn">{% translate "Do you have a coupon code?" %}</button>
@@ -56,6 +50,6 @@
 </form>
 <a class="cart-checkout-btn" href="checkout.html">
     <span class="checkout-label">{% translate "Proceed to Checkout" %}</span>
-    <span class="checkout-price">${{cart.get_total|floatformat:2}}</span>
+    <span class="checkout-price">${{cart.get_total}}</span>
 </a>
 </div>
