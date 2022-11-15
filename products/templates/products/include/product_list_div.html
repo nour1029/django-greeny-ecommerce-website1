@@ -9,9 +9,11 @@
                     <div class="product-label">
                         <label class="label-text new">{{product.flag}}</label>
                     </div>
-                    <button class="product-wish wish">
-                        <i class="fas fa-heart"></i>
-                    </button>
+                    <form id="addToFavForm" data-form-id="{{product.id}}">
+                        <button class="product-wish wish {% if product in user.Profile.favorites.all %}active{% endif %}" id="favorite-{{product.id}}">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </form>
                     <a class="product-image" href="product-video.html">
                         <img src="{{product.image.url}}" alt="product">
                     </a>
@@ -51,7 +53,7 @@
         </div>
     {% endfor %}
 </div>
-{% comment %} {% if is_paginated %}
+{% if is_paginated %}
     <div class="row">
         <div class="col-lg-12">
             <div class="bottom-paginate">
@@ -87,4 +89,4 @@
             </div>
         </div>
     </div>
-{% endif %} {% endcomment %}
+{% endif %}

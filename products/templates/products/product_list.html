@@ -389,21 +389,32 @@
                 })
             })
 
+            
+            $(document).on('submit', '#addToFavForm', function(e){
                 e.preventDefault();
+
+                const productId = e.target.getAttribute('data-form-id')
+                const clickedBtn = document.getElementById(`favorite-${productId}`)
+                
                 $.ajax({
-                    type:$(this).attr('method') ,
-                    url:$(this).attr('action') ,
-                    data:$(this).serialize() ,
-                    dataType:'json' ,
-                    success:function(response){
-                        $('#cartSidebar').html(response['result'])
-                        document.getElementById('cartTotal').textContent=response['total']
+                    method : 'POST' ,
+                    url : '/products/add_to_wish/' ,
+                    data : {'productid':productId , 'csrfmiddlewaretoken': "{{csrf_token}}"},
+                    dataType :'json',
+                    success : function(response){
+                        if (response['result']) {
+                            $(clickedBtn).addClass('active');
+                        } else {
+                            $(clickedBtn).removeClass('active');
+                        }
+                        console.log(response['result'])
                     },
-                    error:function(err){
+                    error : function(err){
                         console.log(err)
                     }
                 })
             })
+        })
         
     </script>
 {% endblock body %}

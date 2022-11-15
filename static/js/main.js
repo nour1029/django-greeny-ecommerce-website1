@@ -133,10 +133,12 @@ $('.header-src').on('click', function(){
 //========================================
 //       WISH ICON ACTIVE FUNCTION
 //========================================
-$('.wish').on('click', function(){
-    $(this).toggleClass('active');
-}); 
-
+// $('.wish').on('click', function(){
+//     $(this).toggleClass('active');
+// }); 
+// $(document).on('click', '.wish', function(){
+//     $(this).toggleClass('active');
+// })
 
 //========================================
 //      ADD TO CART BUTTON FUNCTION

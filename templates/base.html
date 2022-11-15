@@ -1174,6 +1174,7 @@
       $(document).ready(function(e){
           $(document).on('submit', '#cartProductDeleteForm', function(e){
               e.preventDefault();
+
               const csrftoken = getCookie('csrftoken')
 
               cartDetailId = document.getElementById('productIdDelete').value;
@@ -1192,6 +1193,10 @@
                       console.log(err)
                   }
               })
+          })
+
+          $(document).on('click', '#cartDelete', function(e){
+            console.log('clicked')
           })
       })
     </script>

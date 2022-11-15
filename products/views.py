@@ -119,6 +119,11 @@ def add_to_favorites(request):
     product = Product.objects.get(id=prodcut_id)
 
     if product in request.user.Profile.favorites.all():
+        liked = False
         request.user.Profile.favorites.remove(product)
     else:
+        liked = True
         request.user.Profile.favorites.add(product)
+
+
+    return JsonResponse({'result':liked})
