@@ -13,11 +13,12 @@
         <li class="cart-item">
             <div class="cart-media">
             <a href="#"><img src="{{item.product.image.url}}" alt="product" /></a>
-            <form id="cartProductDeleteForm">
+            <form id="cartProductDeleteForm" method="post">
+                <!-- {% csrf_token %} -->
                 <button class="cart-delete" id="cartDelete">
                     <i class="far fa-trash-alt"></i>
                 </button>
-                <input type="hidden" value="{{item.id}}" id="productIdDelete">
+                <input type="hidden" value="{{item.id}}" name="order_id" id="productIdDelete">
             </form>
             </div>
             <div class="cart-info-group">

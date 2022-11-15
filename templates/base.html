@@ -1177,15 +1177,15 @@
               const csrftoken = getCookie('csrftoken')
 
               cartDetailId = document.getElementById('productIdDelete').value;
-
+              console.log(cartDetailId)
               $.ajax({
-                  type:'DELETE',
-                  url: `http://127.0.0.1:8000/orders/api/cart/delete/${cartDetailId}`,
-                  data: {'cartdetail_id':cartDetailId },
+                  type:$(this).attr('method'),
+                  url: `/orders/cart/delete/`,
+                  data: $(this).serialize() ,
                   headers:{"X-CSRFToken": csrftoken }, // HERE: add it to the request header
                   dataType: 'json',
                   success:function(response){
-                      $('#cartSidebar').html(response)
+                      $('#cartSidebar').html(response['result'])
                       console.log('product deleted')
                   },
                   error:function(err){
