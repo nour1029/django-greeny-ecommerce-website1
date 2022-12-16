@@ -49,7 +49,7 @@
       rel="stylesheet"
       href="{% static 'fonts/fontawesome/fontawesome.min.css' %}"
     />
-
+                
     <!-- VENDOR -->
     <link
       rel="stylesheet"
@@ -103,7 +103,6 @@
             <div class="header-top-select">
               <div class="header-select">
                 <i class="icofont-world"></i>
-
                 <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}">
                     <select name="language" class="select">
@@ -168,7 +167,7 @@
             class="header-widget"
             title="My Account"
           >
-            <img src="{{profile.image.url}}" alt="user" />
+            <img src="{{user.Profile.image.url}}" alt="user" />
           </a>
           {% else %}
           <a href="{% url 'login' %}" class="header-widget" title="Join">

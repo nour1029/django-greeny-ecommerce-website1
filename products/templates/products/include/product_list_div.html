@@ -7,7 +7,7 @@
             <div class="product-card">
                 <div class="product-media">
                     <div class="product-label">
-                        <label class="label-text new">{{product.flag}}</label>
+                        <label class="label-text {% if product.flag == "New" %}new{% elif  product.flag == "Featured" %}feat{% endif %}">{{product.flag}}</label>
                     </div>
                     <form id="addToFavForm" data-form-id="{{product.id}}">
                         <button class="product-wish wish {% if product in user.Profile.favorites.all %}active{% endif %}" id="favorite-{{product.id}}">
@@ -37,7 +37,7 @@
                     </h6>
                     <h6 class="product-price">
                         <del>$34</del>
-                        <span>${{product.price}}<small>/piece</small></span>
+                        <span>${{product.price}}</span>
                     </h6>
                     <button class="product-add" title="Add to Cart">
                         <i class="fas fa-shopping-basket"></i>
@@ -53,7 +53,7 @@
         </div>
     {% endfor %}
 </div>
-{% if is_paginated %}
+{% comment %} {% if is_paginated %}
     <div class="row">
         <div class="col-lg-12">
             <div class="bottom-paginate">
@@ -89,4 +89,4 @@
             </div>
         </div>
     </div>
-{% endif %}
+{% endif %} {% endcomment %}

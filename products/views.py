@@ -25,9 +25,12 @@ class ProductList(ListView):
             return JsonResponse({'result':html})
         except:
             queryset = super().get_queryset()
-            print('out')
         
+
         return queryset
+
+def product_list(request):
+    product = Product.objects.all()
 
 class ProductDetail(DetailView):
     model = Product

@@ -42,7 +42,7 @@
                 <div class="col-lg-6">
                     <div class="details-gallery">
                         <div class="details-label-group">
-                            <label class="details-label new">{{product.flag}}</label>
+                            <label class="details-label {% if product.flag == "New" %}new{% elif  product.flag == "Featured" %}feat{% endif %}">{{product.flag}}</label>
                             <label class="details-label off">-10%</label>
                         </div>
                         <ul class="details-preview"> 
@@ -98,7 +98,7 @@
                             <del>$38.00</del>
                             <span>${{product.price}}<small>/per kilo</small></span>
                         </h3>
-                        <p class="details-desc">{{product.desc|safe|truncatewords:20}}</p>
+                        {% comment %} <p class="details-desc">{{product.desc|safe|truncatewords:20}}</p> {% endcomment %}
                         <div class="details-list-group">
                             <label class="details-list-title">tags:</label>
                             <ul class="details-tag-list">

@@ -30,6 +30,9 @@ class Product(models.Model):
     quantity = models.IntegerField(_("Quantiy"), default=0)
     slug = models.SlugField(_("Slug"), null=True, blank=True)
 
+    class Meta:
+        ordering = ('-pk',)
+
 
     def get_avg_reviews(self):
         avg = self.product_review.aggregate(myavg=Avg('rate'))
