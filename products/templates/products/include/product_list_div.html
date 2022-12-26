@@ -27,10 +27,10 @@
                 <div class="product-content">
                     <div class="product-rating">
                         <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "1" %} active {% endif %} icofont-star"></i>
-                        <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "1" %} active {% endif %} icofont-star"></i>
-                        <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "1" %} active {% endif %} icofont-star"></i>
-                        <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "1" %} active {% endif %} icofont-star"></i>
-                        <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "1" %} active {% endif %} icofont-star"></i>
+                        <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "2" %} active {% endif %} icofont-star"></i>
+                        <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "3" %} active {% endif %} icofont-star"></i>
+                        <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "4" %} active {% endif %} icofont-star"></i>
+                        <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "5" %} active {% endif %} icofont-star"></i>
                         <a href="product-video.html">({{product.product_review.all|length}})</a>
                     </div>
                     <h6 class="product-name">
