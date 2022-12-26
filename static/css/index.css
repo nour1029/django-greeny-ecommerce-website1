@@ -36,8 +36,8 @@
 }
 
 .banner-1 {
-  background: -webkit-gradient(linear, left top, right top, from(#45f76354), to(#ffc3d024));
-  background: linear-gradient(to right, #45f76354, #ffc3d024);
+  background: -webkit-gradient(linear, left top, right top, from(#2c87f754), to(#ffc3d024));
+  background: linear-gradient(to right, #2c87f754, #ffc3d024);
 }
 
 .banner-2 {
