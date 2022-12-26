@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}" />
+{% endblock link %}
+
+{% block body %}
+
+        <!--=====================================
+                    BANNER PART START
+        =======================================-->
+        <section class="inner-section single-banner" style="background: url(images/single-banner.jpg) no-repeat center;">
+            <div class="container">
+                <h2>contact us</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                </ol>
+            </div>
+        </section>
+        <!--=====================================
+                    BANNER PART END
+        =======================================-->
+
+
+        <!--=====================================
+                    CONTACT PART START
+        =======================================-->
+        <section class="inner-section contact-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card">
+                            <i class="icofont-location-pin"></i>
+                            <h4>head office</h4>
+                            <p>{{site_info.address}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card active">
+                            <i class="icofont-phone"></i>
+                            <h4>phone number</h4>
+                            <p>
+                                <a href="#">{{site_info.phone_number}}</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card">
+                            <i class="icofont-email"></i>
+                            <h4>Support mail</h4>
+                            <p>
+                                <a href="#">{{site_info.email}}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="contact-map">
+                            <iframe src="{{site_info.address_googlemaps}}" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <form class="contact-form">
+                            <h4>Drop Your Thoughts</h4>
+                            <div class="form-group">
+                                <div class="form-input-group">
+                                    <input class="form-control" type="text" placeholder="Your Name">
+                                    <i class="icofont-user-alt-3"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input-group">
+                                    <input class="form-control" type="text" placeholder="Your Email">
+                                    <i class="icofont-email"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input-group">
+                                    <input class="form-control" type="text" placeholder="Your Subject">
+                                    <i class="icofont-book-mark"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input-group">
+                                    <textarea class="form-control" placeholder="Your Message"></textarea>
+                                    <i class="icofont-paragraph"></i>
+                                </div>
+                            </div>
+                            <button type="submit" class="form-btn-group">
+                                <i class="fas fa-envelope"></i>
+                                <span>send message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================
+                    CONTACT PART END
+        =======================================-->
+{% endblock body %}

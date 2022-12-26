@@ -27,6 +27,7 @@ urlpatterns = [
     path('products/', include('products.urls', namespace='products')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('orders/', include('orders.urls')),
+    path('info/', include('settings.urls', namespace='info')),
 
     path('summernote/', include('django_summernote.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
