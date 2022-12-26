@@ -48,7 +48,7 @@
                                         <td class="table-image"><img src="{{product.image.url}}" alt="product"></td>
                                         <td class="table-name"><h6>{{product}}</h6></td>
                                         <td class="table-price"><h6>${{product.price}}<small>/kilo</small></h6></td>
-                                        <td class="table-desc"><p>{{product.desc|truncatewords:7}}<a href="{% url 'products:product_detail' product.slug %}">read more</a></p></td>
+                                        <td class="table-desc"><p>{{product.desc|safe|truncatewords:7}}<a href="{% url 'products:product_detail' product.slug %}">read more</a></p></td>
                                         {% if product.quantity >= 1 %}
                                             <td class="table-status"><h6 class="stock-in">stock in</h6></td>
                                         {% else %}
