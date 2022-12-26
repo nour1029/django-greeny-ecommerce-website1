@@ -139,11 +139,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-LANGUAGES = [
-    ('ar', _('Arabic')),
-    ('en', _('English')),
-]
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -152,6 +147,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+LANGUAGES = [
+    ('ar', _('Arabic')),
+    ('en', _('English')),
+]
 
 LOCALE_PATHS = BASE_DIR / "locale",
 

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 
@@ -83,8 +84,8 @@
                     <div class="details-content">
                         <h3 class="details-name"><a href="#">{{product}}</a></h3>
                         <div class="details-meta">
-                            <p>SKU:<span>{{product.sku}}</span></p>
-                            <p>BRAND:<a href="#">{{product.brand}}</a></p>
+                            <p>{% translate "SKU" %}:<span>{{product.sku}}</span></p>
+                            <p>{% trans "BRAND" %}:<a href="#">{{product.brand}}</a></p>
                         </div>
                         <div class="details-rating">
                             <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "1" %} active {% endif %} icofont-star"></i>

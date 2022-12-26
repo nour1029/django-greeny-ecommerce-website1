@@ -1,4 +1,4 @@
-
+{% load i18n %}
 
 
 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3">
@@ -7,7 +7,7 @@
             <div class="product-card">
                 <div class="product-media">
                     <div class="product-label">
-                        <label class="label-text {% if product.flag == "New" %}new{% elif  product.flag == "Featured" %}feat{% endif %}">{{product.flag}}</label>
+                        <label class="label-text {% if product.flag == "New" %}new{% elif  product.flag == "Featured" %}feat{% endif %}">{% translate product.flag %}</label>
                     </div>
                     <form id="addToFavForm" data-form-id="{{product.id}}">
                         <button class="product-wish wish {% if product in user.Profile.favorites.all %}active{% endif %}" id="favorite-{{product.id}}">
@@ -40,9 +40,9 @@
                         <del>$34</del>
                         <span>${{product.price}}</span>
                     </h6>
-                    <button class="product-add" title="Add to Cart">
+                    <button class="product-add" title="{% translate "Add to Cart" %}">
                         <i class="fas fa-shopping-basket"></i>
-                        <span>add</span>
+                        <span>{% translate "add" %}</span>
                     </button>
                     <div class="product-action">
                         <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>

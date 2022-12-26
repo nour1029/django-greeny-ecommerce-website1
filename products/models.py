@@ -11,8 +11,8 @@ from django.urls import reverse
 
 
 FLAG_TYPE = (
-    ('New', 'New'),
-    ('Featured', 'Featured')
+    ('New', _('New')),
+    ('Featured', _('Featured')),
 )
 
 

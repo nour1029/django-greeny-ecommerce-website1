@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block body %}
     <!--=====================================
@@ -29,20 +30,20 @@
                         <a href="#"><img src="images/promo/shop/01.jpg" alt="promo"></a>
                     </div>
                     <div class="shop-widget">
-                        <h6 class="shop-widget-title">Filter by Price</h6>
+                        <h6 class="shop-widget-title">{% translate "Filter by Price" %}</h6>
                         <form method="get" id="priceFilter" action="{% url 'products:product_list' %}">
                             <div class="shop-widget-group">
-                                <input type="text" name="min-price" placeholder="Min - 00">
-                                <input type="text" name="max-price" placeholder="Max - 5k">
+                                <input type="text" name="min-price" placeholder="{% translate "Min" %} - 00">
+                                <input type="text" name="max-price" placeholder="{% translate "Max" %} - 5k">
                             </div>
                             <button type="submit" class="shop-widget-btn">
                                 <i class="fas fa-search"></i>
-                                <span>search</span>
+                                <span>{% trans "search" %}</span>
                             </button>
                         </form>
                     </div>
                     <div class="shop-widget">
-                        <h6 class="shop-widget-title">Filter by Rating</h6>
+                        <h6 class="shop-widget-title">{% trans "Filter by Rating" %}</h6>
                         <form>
                             <ul class="shop-widget-list">
                                 <li>
@@ -113,18 +114,18 @@
                             </ul>
                             <button class="shop-widget-btn">
                                 <i class="far fa-trash-alt"></i>
-                                <span>clear filter</span>
+                                <span>{% translate "clear filter" %}</span>
                             </button>
                         </form>
                     </div>
                     <div class="shop-widget">
-                        <h6 class="shop-widget-title">Filter by Tag</h6>
+                        <h6 class="shop-widget-title">{% translate "Filter by Tag" %}</h6>
                         <form>
                             <ul class="shop-widget-list">
                                 <li>
                                     <div class="shop-widget-content">
                                         <input type="checkbox" id="tag1">
-                                        <label for="tag1">new items</label>
+                                        <label for="tag1">{% translate "new items" %}</label>
                                     </div>
                                     <span class="shop-widget-number">(13)</span>
                                 </li>
@@ -145,7 +146,7 @@
                                 <li>
                                     <div class="shop-widget-content">
                                         <input type="checkbox" id="tag4">
-                                        <label for="tag4">feature items</label>
+                                        <label for="tag4">{% translate "feature items" %}</label>
                                     </div>
                                     <span class="shop-widget-number">(47)</span>
                                 </li>
@@ -159,12 +160,12 @@
                             </ul>
                             <button class="shop-widget-btn">
                                 <i class="far fa-trash-alt"></i>
-                                <span>clear filter</span>
+                                <span>{% translate "clear filter" %}</span>
                             </button>
                         </form>
                     </div>
                     <div class="shop-widget">
-                        <h6 class="shop-widget-title">Filter by Brand</h6>
+                        <h6 class="shop-widget-title">{% translate "Filter by Brand" %}</h6>
                         <form>
                             <input class="shop-widget-search" type="text" placeholder="Search...">
                             <ul class="shop-widget-list shop-widget-scroll">
@@ -227,14 +228,14 @@
                             </ul>
                             <button class="shop-widget-btn">
                                 <i class="far fa-trash-alt"></i>
-                                <span>clear filter</span>
+                                <span>{% trans "clear filter" %}</span>
                             </button>
                         </form>
                     </div>
                     <div class="shop-widget">
-                        <h6 class="shop-widget-title">Filter by Category</h6>
+                        <h6 class="shop-widget-title">{% translate "Filter by Category" %}</h6>
                         <form>
-                            <input class="shop-widget-search" type="text" placeholder="Search...">
+                            <input class="shop-widget-search" type="text" placeholder="{% translate "Search" %}...">
                             <ul class="shop-widget-list shop-widget-scroll">
                                 <li>
                                     <div class="shop-widget-content">
@@ -323,7 +324,7 @@
                             </ul>
                             <button class="shop-widget-btn">
                                 <i class="far fa-trash-alt"></i>
-                                <span>clear filter</span>
+                                <span>{% translate "clear filter" %}</span>
                             </button>
                         </form>
                     </div>
@@ -341,7 +342,7 @@
                                     </select>
                                 </div>
                                 <div class="filter-short">
-                                    <label class="filter-label">Short by :</label>
+                                    <label class="filter-label">{% translate "Short by" %} :</label>
                                     <select class="form-select filter-select">
                                         <option selected>default</option>
                                         <option value="3">trending</option>

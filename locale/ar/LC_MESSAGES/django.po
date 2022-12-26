@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-29 13:43+0200\n"
+"POT-Creation-Date: 2022-12-26 20:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,16 +20,17 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: .\accounts\models.py:15 .\accounts\models.py:42 .\accounts\models.py:52
-#: .\orders\models.py:26 .\orders\models.py:67 .\products\models.py:81
+#: .\orders\models.py:26 .\orders\models.py:67 .\products\models.py:95
 msgid "User"
 msgstr "المسخدم"
 
-#: .\accounts\models.py:17 .\home\models.py:9 .\products\models.py:29
-#: .\products\models.py:49 .\products\models.py:58 .\products\models.py:71
+#: .\accounts\models.py:17 .\home\models.py:9 .\products\models.py:30
+#: .\products\models.py:58 .\products\models.py:66 .\products\models.py:82
 msgid "Image"
 msgstr "الصورة"
 
 #: .\accounts\models.py:18 .\orders\models.py:27 .\orders\models.py:68
+#: .\orders\models.py:92
 msgid "Code"
 msgstr "الكود"
 
@@ -97,16 +98,16 @@ msgstr "موعد التسليم"
 msgid "Order"
 msgstr "اوردر"
 
-#: .\orders\models.py:50 .\orders\models.py:83 .\products\models.py:48
-#: .\products\models.py:79
+#: .\orders\models.py:50 .\orders\models.py:83 .\products\models.py:57
+#: .\products\models.py:93
 msgid "Product"
 msgstr "منتج"
 
-#: .\orders\models.py:51 .\orders\models.py:84
+#: .\orders\models.py:51 .\orders\models.py:84 .\orders\models.py:95
 msgid "Quantity"
 msgstr "الكمية"
 
-#: .\orders\models.py:52 .\orders\models.py:85 .\products\models.py:23
+#: .\orders\models.py:52 .\orders\models.py:85 .\products\models.py:24
 msgid "Price"
 msgstr "السعر"
 
@@ -114,56 +115,153 @@ msgstr "السعر"
 msgid "Total"
 msgstr "الاجمالي"
 
-#: .\products\models.py:19 .\products\models.py:56 .\products\models.py:70
+#: .\orders\models.py:93
+msgid "From Date"
+msgstr "من تاريخ"
+
+#: .\orders\models.py:94
+msgid "To Date"
+msgstr "إلى تاريخ"
+
+#: .\orders\models.py:96
+msgid "Is Valid"
+msgstr ""
+
+#: .\orders\models.py:97
+msgid "Value"
+msgstr ""
+
+#: .\products\models.py:14
+msgid "New"
+msgstr "جديد"
+
+#: .\products\models.py:15
+msgid "Featured"
+msgstr "مميز"
+
+#: .\products\models.py:20 .\products\models.py:65 .\products\models.py:81
 #: .\settings\models.py:8 .\settings\models.py:21 .\settings\models.py:32
 msgid "Name"
 msgstr "الاسم"
 
-#: .\products\models.py:20
+#: .\products\models.py:21 .\products\templates\products\product_detail.html:87
 msgid "SKU"
-msgstr ""
+msgstr "الكود"
 
-#: .\products\models.py:22 .\templates\base.html:349
+#: .\products\models.py:23 .\templates\base.html:345
 msgid "Brand"
 msgstr "العلامة التجارية"
 
-#: .\products\models.py:24
+#: .\products\models.py:25
 msgid "Description"
 msgstr "وصف"
 
-#: .\products\models.py:26
+#: .\products\models.py:27
 msgid "Flag"
 msgstr ""
 
-#: .\products\models.py:28
+#: .\products\models.py:29 .\templates\base.html:216
 msgid "Category"
-msgstr "فئة"
+msgstr "قسم"
 
-#: .\products\models.py:30
+#: .\products\models.py:31
+msgid "Video URL"
+msgstr "رابط الفيديو"
+
+#: .\products\models.py:32
 msgid "Quantiy"
 msgstr "كمية"
 
-#: .\products\models.py:31 .\products\models.py:59
+#: .\products\models.py:33 .\products\models.py:67
 msgid "Slug"
 msgstr ""
 
-#: .\products\models.py:82
+#: .\products\models.py:96
 msgid "Review"
 msgstr "مراجعة"
 
-#: .\products\models.py:83
+#: .\products\models.py:97
 msgid "Rate"
 msgstr "التقييم"
 
-#: .\products\models.py:85
+#: .\products\models.py:99
 msgid "Created at"
 msgstr "انشئ في"
 
-#: .\project\settings.py:130
+#: .\products\templates\products\include\product_list_div.html:43
+msgid "Add to Cart"
+msgstr "أضف إلى السلة"
+
+#: .\products\templates\products\include\product_list_div.html:45
+msgid "add"
+msgstr "اضف"
+
+#: .\products\templates\products\product_detail.html:88
+msgid "BRAND"
+msgstr "العلامة التجارية"
+
+#: .\products\templates\products\product_list.html:33
+#, fuzzy
+#| msgid "Unit Price"
+msgid "Filter by Price"
+msgstr "سعر القطعة"
+
+#: .\products\templates\products\product_list.html:36
+msgid "Min"
+msgstr "أدنى"
+
+#: .\products\templates\products\product_list.html:37
+msgid "Max"
+msgstr "أقصى"
+
+#: .\products\templates\products\product_list.html:41
+msgid "search"
+msgstr "بحث"
+
+#: .\products\templates\products\product_list.html:46
+msgid "Filter by Rating"
+msgstr "الفلترة بالتقييم"
+
+#: .\products\templates\products\product_list.html:117
+#: .\products\templates\products\product_list.html:163
+#: .\products\templates\products\product_list.html:231
+#: .\products\templates\products\product_list.html:327
+msgid "clear filter"
+msgstr "ازالة الفلتر"
+
+#: .\products\templates\products\product_list.html:122
+msgid "Filter by Tag"
+msgstr "الفلترة بالكلمات المفتاحية"
+
+#: .\products\templates\products\product_list.html:128
+msgid "new items"
+msgstr "الأصناف جديدة"
+
+#: .\products\templates\products\product_list.html:149
+msgid "feature items"
+msgstr "الأصناف المميزة"
+
+#: .\products\templates\products\product_list.html:168
+msgid "Filter by Brand"
+msgstr "الفلترة بالعلامة التجارية"
+
+#: .\products\templates\products\product_list.html:236
+msgid "Filter by Category"
+msgstr "الفلترة بالقسم"
+
+#: .\products\templates\products\product_list.html:238
+msgid "Search"
+msgstr "بحث"
+
+#: .\products\templates\products\product_list.html:345
+msgid "Short by"
+msgstr "تصنيف على حسب"
+
+#: .\project\settings.py:152
 msgid "Arabic"
 msgstr "العربية"
 
-#: .\project\settings.py:131
+#: .\project\settings.py:153
 msgid "English"
 msgstr "الانجليزية"
 
@@ -192,67 +290,102 @@ msgid "Email"
 msgstr "ايميل"
 
 #: .\settings\models.py:40
-msgid "Adress"
-msgstr "عنوان"
+#, fuzzy
+#| msgid "Adress"
+msgid "Address"
+msgstr "العنوان"
 
-#: .\templates\base.html:195
+#: .\settings\models.py:41
+msgid "Google Maps Adress URL"
+msgstr "رابط العنوان خرائط جوجل"
+
+#: .\templates\base.html:99
+msgid "Welcome to Your Dream Online Store!"
+msgstr "أهلا بك في متجر احلامك الالكتروني!"
+
+#: .\templates\base.html:133
+msgid "offers"
+msgstr "عروض"
+
+#: .\templates\base.html:134
+msgid "need help"
+msgstr "تحتاج مساعدة"
+
+#: .\templates\base.html:135 .\templates\base.html:1016
+msgid "contact us"
+msgstr "تواصل معنا"
+
+#: .\templates\base.html:168
+msgid "My Account"
+msgstr "حسابي"
+
+#: .\templates\base.html:174
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#: .\templates\base.html:184
+msgid "Wishlist"
+msgstr "قائمة المفضلة"
+
+#: .\templates\base.html:188
+msgid "Cartlist"
+msgstr "السلة"
+
+#: .\templates\base.html:191
 #, fuzzy
 #| msgid "total item"
 msgid "total price"
 msgstr "اجمالي المنتجات"
 
-#: .\templates\base.html:217
+#: .\templates\base.html:213
 msgid "Products"
 msgstr "المنتجات"
 
-#: .\templates\base.html:220
-#, fuzzy
-#| msgid "Category"
-msgid "category"
-msgstr "فئة"
-
-#: .\templates\base.html:362
-#, fuzzy
-#| msgid "Order"
+#: .\templates\base.html:358
 msgid "Orders"
-msgstr "اوردر"
+msgstr "الطلبات"
 
-#: .\templates\base.html:370
-msgid "call us"
-msgstr "اتصل بنا"
-
-#: .\templates\base.html:377
-#, fuzzy
-#| msgid "Email"
-msgid "email us"
-msgstr "ايميل"
-
-#: .\templates\base.html:551
-msgid "total item"
-msgstr "اجمالي المنتجات"
-
-#: .\templates\base.html:567
-#, fuzzy
-#| msgid "Price"
-msgid "Unit Price"
-msgstr "السعر"
-
-#: .\templates\base.html:592
-msgid "Do you have a coupon code?"
-msgstr "هل لديك كوبون خصم؟"
-
-#: .\templates\base.html:595
-msgid "apply"
-msgstr "تاكيد"
-
-#: .\templates\base.html:598
-msgid "Proceed to Checkout"
-msgstr "تابع الى الدفع"
-
-#: .\templates\base.html:619
+#: .\templates\base.html:547
 msgid "join here"
 msgstr "انضم هنا"
 
-#: .\templates\base.html:1088
-msgid "contact us"
-msgstr "اتصل بنا"
+#: .\templates\include\cart_side.html:7
+msgid "total item"
+msgstr "اجمالي المنتجات"
+
+#: .\templates\include\cart_side.html:27
+msgid "Unit Price"
+msgstr "سعر القطعة"
+
+#: .\templates\include\cart_side.html:52
+msgid "Do you have a coupon code?"
+msgstr "هل لديك كوبون خصم؟"
+
+#: .\templates\include\cart_side.html:55
+msgid "apply"
+msgstr "تاكيد"
+
+#: .\templates\include\cart_side.html:58
+msgid "Proceed to Checkout"
+msgstr "تابع الى الدفع"
+
+#~ msgid "Trend"
+#~ msgstr "تريند"
+
+#, fuzzy
+#~| msgid "Order"
+#~ msgid "orders"
+#~ msgstr "الطلبات"
+
+#, fuzzy
+#~| msgid "Category"
+#~ msgid "category"
+#~ msgstr "فئة"
+
+#~ msgid "call us"
+#~ msgstr "اتصل بنا"
+
+#, fuzzy
+#~| msgid "Email"
+#~ msgid "email us"
+#~ msgstr "ايميل"
