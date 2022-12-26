@@ -27,6 +27,7 @@ class Product(models.Model):
     category = models.ForeignKey("Category", verbose_name=_(
         "Category"), related_name='product_category', on_delete=models.SET_NULL, null=True)
     image = models.ImageField(_("Image"), upload_to='products/')
+    video_url = models.URLField(_("Video URL"), max_length=200, null=True, blank=True)
     quantity = models.IntegerField(_("Quantiy"), default=0)
     slug = models.SlugField(_("Slug"), null=True, blank=True)
 
