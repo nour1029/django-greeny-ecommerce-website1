@@ -19,6 +19,10 @@ class Profile(models.Model):
     code_used = models.BooleanField(default=False)
     favorites = models.ManyToManyField(Product, verbose_name=_("Favorites"), related_name='favorites_product', null=True, blank=True)
 
+    def get_favorites_count(self):
+        favorites_count = self.favorites.count()
+        return favorites_count
+
     def __str__(self):
         return self.user.username
 

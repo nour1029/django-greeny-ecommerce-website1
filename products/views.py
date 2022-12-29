@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView
 from django.urls import reverse
 from products.forms import ReviewForm
 from .models import Brand, Category, Product, ProductImages, Review
+from accounts.models import Profile
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -127,6 +128,7 @@ def add_to_favorites(request):
     else:
         liked = True
         request.user.Profile.favorites.add(product)
+    
+    profile = Profile.objects.get(user=request.user)
 
-
-    return JsonResponse({'result':liked})
+    return JsonResponse({'result':liked, 'favorites_count':profile.get_favorites_count()})

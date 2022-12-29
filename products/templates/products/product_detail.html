@@ -335,6 +335,7 @@
                     success:function(response){
                         $('#cartSidebar').html(response['result'])
                         document.getElementById('cartTotal').textContent=response['total']
+                        document.getElementById('cartCount').textContent=response['count']
                     },
                     error:function(err){
                         console.log(err)

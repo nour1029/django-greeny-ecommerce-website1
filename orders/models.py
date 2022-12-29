@@ -39,6 +39,10 @@ class CartOrder(models.Model):
             total += product.total
         return total
 
+    def get_count(self):
+        total_count = self.cart_detail.count()
+        return total_count
+
     def __str__(self):
         return self.code
 

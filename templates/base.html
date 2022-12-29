@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!--=====================================
+        <!--=====================================
                     META TAG PART START
         =======================================-->
     <!-- REQUIRE META -->
@@ -130,21 +130,21 @@
           </div>
           <div class="col-md-7 col-lg-4">
             <ul class="header-top-list">
-              <li><a href="offer.html">{% translate "offers" %}</a></li>
-              <li><a href="faq.html">{% translate "need help" %}</a></li>
-              <li><a href="contact.html">{% translate "contact us" %}</a></li>
+              <li><a href="#">{% translate "offers" %}</a></li>
+              <li><a href="#">{% translate "need help" %}</a></li>
+              <li><a href="{% url 'info:contact_us' %}">{% translate "contact us" %}</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
     <!--=====================================
-                    HEADER TOP PART END 
-        =======================================-->
+                HEADER TOP PART END 
+    =======================================-->
 
     <!--=====================================
-                    HEADER PART START
-        =======================================-->
+                HEADER PART START
+    =======================================-->
     <header class="header-part">
       <div class="container">
         <div class="header-content">
@@ -183,11 +183,11 @@
           <div class="header-widget-group">
             <a href="{% url 'accounts:wishlist' %}" class="header-widget" title="{% translate "Wishlist" %}">
               <i class="fas fa-heart"></i>
-              <sup>{% if user.Profile.favorites.all|length <= 9 %}{{user.Profile.favorites.all|length}}{% else %}9+{% endif %}</sup>
+              <sup id="favoritesCount">{% if user.Profile.favorites.all|length <= 9 %}{{user.Profile.favorites.all|length}}{% else %}9+{% endif %}</sup>
             </a>
             <button class="header-widget header-cart" title="{% translate "Cartlist" %}">
               <i class="fas fa-shopping-basket"></i>
-              <sup>{% if cart_detail|length <= 9 %} {{cart_detail|length}} {% else %}9+{% endif %}</sup>
+              <sup id="cartCount">{% if cart_detail|length <= 9 %} {{cart_detail|length}} {% else %}9+{% endif %}</sup>
               <span>{% translate "total price" %}<small id="cartTotal">${{cart.get_total|floatformat:2}}</small></span>
             </button>
           </div>

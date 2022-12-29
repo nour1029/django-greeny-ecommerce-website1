@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-26 20:06+0200\n"
+"POT-Creation-Date: 2022-12-27 18:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,6 +81,19 @@ msgstr "العنوان الفرعي"
 #: .\home\models.py:10
 msgid "Active"
 msgstr "مفعل"
+
+#: .\home\templates\home\index.html:84
+msgid "our featured items"
+msgstr "أصنافنا المميزة"
+
+#: .\home\templates\home\index.html:297 .\home\templates\home\index.html:463
+#: .\home\templates\home\index.html:2712
+msgid "show more"
+msgstr "عرض المزيد"
+
+#: .\home\templates\home\index.html:366
+msgid "collected new items"
+msgstr "اصناف مجمعة جديدة"
 
 #: .\orders\models.py:29 .\orders\models.py:70
 msgid "Order Status"
@@ -188,11 +201,11 @@ msgstr "التقييم"
 msgid "Created at"
 msgstr "انشئ في"
 
-#: .\products\templates\products\include\product_list_div.html:43
+#: .\products\templates\products\include\product_card.html:39
 msgid "Add to Cart"
 msgstr "أضف إلى السلة"
 
-#: .\products\templates\products\include\product_list_div.html:45
+#: .\products\templates\products\include\product_card.html:41
 msgid "add"
 msgstr "اضف"
 
@@ -290,8 +303,6 @@ msgid "Email"
 msgstr "ايميل"
 
 #: .\settings\models.py:40
-#, fuzzy
-#| msgid "Adress"
 msgid "Address"
 msgstr "العنوان"
 
@@ -332,10 +343,8 @@ msgid "Cartlist"
 msgstr "السلة"
 
 #: .\templates\base.html:191
-#, fuzzy
-#| msgid "total item"
 msgid "total price"
-msgstr "اجمالي المنتجات"
+msgstr "السعر الاجمالي"
 
 #: .\templates\base.html:213
 msgid "Products"

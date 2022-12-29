@@ -1,4 +1,7 @@
 {% extends 'base.html' %} 
+{% load i18n %}
+
+
 {% block body %}
 
 
@@ -78,7 +81,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="section-heading">
-          <h2>our featured items</h2>
+          <h2>{% translate "our featured items" %}</h2>
         </div>
       </div>
     </div>
@@ -291,7 +294,7 @@
         <div class="section-btn-25">
           <a href="shop-4column.html" class="btn btn-outline">
             <i class="fas fa-eye"></i>
-            <span>show more</span>
+            <span>{% translate "show more" %}</span>
           </a>
         </div>
       </div>
@@ -360,7 +363,7 @@
     <div class="row">
       <div class="col">
         <div class="section-heading">
-          <h2>collected new items</h2>
+          <h2>{% translate "collected new items" %}</h2>
         </div>
       </div>
     </div>
@@ -457,7 +460,7 @@
         <div class="section-btn-25">
           <a href="shop-4column.html" class="btn btn-outline">
             <i class="fas fa-eye"></i>
-            <span>show more</span>
+            <span>{% translate "show more" %}</span>
           </a>
         </div>
       </div>
@@ -2706,7 +2709,7 @@
           <div class="section-btn-25">
             <a href="shop-4column.html" class="btn btn-outline">
               <i class="fas fa-eye"></i>
-              <span>show more</span>
+              <span>{% translate "show more" %}</span>
             </a>
           </div>
         </div>
