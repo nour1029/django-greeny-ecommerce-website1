@@ -1201,7 +1201,7 @@ button:focus {
   margin-right: 5px;
 }
 
-.product-action {
+.checkout-action {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1232,10 +1232,11 @@ button:focus {
   -o-transition: all linear .3s;
 }
 
-.product-action button i:hover {
+.product-card .checkout-action .product-add {
   color: var(--white);
-  background: var(--primary);
+  background: var(--green);
 }
+
 
 .product-action input {
   width: 100%;
@@ -1780,6 +1781,12 @@ tbody tr td:last-child {
   color: var(--white);
   background: var(--primary);
 }
+
+.product-card:hover .checkout-action .product-add {
+  color: var(--white);
+  background: #119744;
+}
+
 
 .product-media {
   position: relative;

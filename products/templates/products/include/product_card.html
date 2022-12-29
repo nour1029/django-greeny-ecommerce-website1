@@ -35,14 +35,21 @@
             <del>$34</del>
             <span>${{product.price}}</span>
         </h6>
-        <button class="product-add" title="{% translate "Add to Cart" %}">
-            <i class="fas fa-shopping-basket"></i>
-            <span>{% translate "add" %}</span>
-        </button>
-        <div class="product-action">
-            <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-            <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
-            <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-        </div>
+        <form method="post" id="addToCartForm" action="{% url 'orders:add_to_cart' %}">
+            {% csrf_token %}
+            <input type='hidden' name="quantity" value="1">
+            <input type="hidden" name="productid" value="{{product.id}}">
+            <button class="product-add product-add-to-cart" title="{% translate "Add to Cart" %}">
+                <i class="fas fa-shopping-basket"></i>
+                <span>{% translate "add" %}</span>
+            </button>
+
+            <div class="checkout-action">
+                <a class="product-add" href="{% url 'orders:checkout' %}" title="{% translate "Add to Cart" %}">
+                    <span>{% translate "Proceed to Checkout" %}</span>
+                </a>
+            </div>
+        </form>
+
     </div>
 </div>

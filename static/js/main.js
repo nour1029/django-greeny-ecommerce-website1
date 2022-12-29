@@ -143,8 +143,8 @@ $('.wish').on('click', function(){
 //========================================
 //      ADD TO CART BUTTON FUNCTION
 //========================================
-$('.product-add').on('click', function(){
-    var productAdd = $(this).next('.product-action');
+$('.product-add-to-cart').on('click', function(){
+    var productAdd = $(this).next('.checkout-action');
 
     $(this).hide();
     productAdd.css('display', 'flex');
