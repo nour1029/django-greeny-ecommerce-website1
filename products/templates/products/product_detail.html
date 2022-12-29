@@ -334,8 +334,11 @@
                     dataType:'json' ,
                     success:function(response){
                         $('#cartSidebar').html(response['result'])
+
+                        let cartCount = response['count'] <= 9 ? response['count'] : '9+';
+
                         document.getElementById('cartTotal').textContent=response['total']
-                        document.getElementById('cartCount').textContent=response['count']
+                        document.getElementById('cartCount').textContent=cartCount
                     },
                     error:function(err){
                         console.log(err)

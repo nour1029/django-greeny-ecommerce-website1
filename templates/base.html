@@ -1151,7 +1151,11 @@
                   dataType: 'json',
                   success:function(response){
                       $('#cartSidebar').html(response['result'])
-                      console.log('product deleted')
+
+                      let cartCount = response['count'] <= 9 ? response['count'] : '9+';
+
+                      document.getElementById('cartTotal').textContent=response['total']
+                      document.getElementById('cartCount').textContent=cartCount
                   },
                   error:function(err){
                       console.log(err)
