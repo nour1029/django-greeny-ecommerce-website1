@@ -14,8 +14,11 @@
 
 
 - Translation
+    
+    RTL ------> LTR
+
     - Products
-        - product_list
+        - product_list  Done
         - product_detail
         - category_list
         - category_detail
@@ -25,4 +28,13 @@
     - Accounts
         profile
         wishlist
+
+
+- Real-Time
+    - product_list
+        - add to fav   Done
+        - add to cart  Done
+        - filtering
+
+    - profile
         

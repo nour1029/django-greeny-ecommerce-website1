@@ -86,207 +86,70 @@
       </div>
     </div>
     <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
-      {% for item in featured %}
+      {% for product in featured %}
         <div class="col">
           <div class="feature-card">
             <div class="feature-media">
               <div class="feature-label">
-                <label class="label-text feat">{{item.flag}}</label>
+                <label class="label-text {% if product.flag == "New" %}new{% elif product.flag == "Featured" %}feat{% endif %}">{% translate product.flag %}</label>
               </div>
-              <button class="feature-wish wish">
-                <i class="fas fa-heart"></i>
-              </button>
-              <a class="feature-image" href="{% url 'products:product_detail' item.slug %}">
-                <img src="{{item.image.url}}" alt="product" />
+              <form id="addToFavForm" data-form-id="{{product.id}}">
+                <button class="product-wish wish {% if product in user.Profile.favorites.all %}active{% endif %}" id="favorite-{{product.id}}">
+                    <i class="fas fa-heart"></i>
+                </button>
+              </form>
+              <a class="feature-image" href="{% url 'products:product_detail' product.slug %}">
+                <img src="{{product.image.url}}" alt="product" />
               </a>
               <div class="feature-widget">
-                <a
-                  title="Product Compare"
-                  href="compare.html"
-                  class="fas fa-random"
-                ></a>
-                <a
-                  title="Product Video"
-                  href="https://youtu.be/9xzcVxSBbG8"
-                  class="venobox fas fa-play"
-                  data-autoplay="true"
-                  data-vbtype="video"
-                ></a>
-                <a
-                  title="Product View"
-                  href="#"
-                  class="fas fa-eye"
-                  data-bs-toggle="modal"
-                  data-bs-target="#product-view-{{item.id}}"
-                ></a>
+                {% if product.video_url %}
+                  <a
+                    title="Product Video"
+                    href="{{product.video_url}}"
+                    class="venobox fas fa-play"
+                    data-autoplay="true"
+                    data-vbtype="video"
+                  ></a>
+                {% endif %}
               </div>
             </div>
             <div class="feature-content">
               <h6 class="feature-name">
-                <a href="product-video.html">{{item}}</a>
+                <a href="{{product.get_absolute_url}}">{{product}}</a>
               </h6>
               <div class="feature-rating">
-                <i class="active icofont-star"></i>
-                <i class="active icofont-star"></i>
-                <i class="active icofont-star"></i>
-                <i class="active icofont-star"></i>
-                <i class="icofont-star"></i>
-                <a href="product-video.html">(3 Reviews)</a>
+                <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "1" %} active {% endif %} icofont-star"></i>
+                <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "2" %} active {% endif %} icofont-star"></i>
+                <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "3" %} active {% endif %} icofont-star"></i>
+                <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "4" %} active {% endif %} icofont-star"></i>
+                <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "5" %} active {% endif %} icofont-star"></i>
+                <a href="{{product.get_absolute_url}}#reviews-section">({{product.product_review.all|length}} {% trans "Reviews" %})</a>
               </div>
               <h6 class="feature-price">
                 <del>$34</del>
-                <span>${{item.price}}<small>/piece</small></span>
+                <span>${{product.price}}</span>
               </h6>
               <p class="feature-desc">
-                {{item.desc|safe|truncatewords:15}}
+                {{product.desc|safe|truncatewords:15}}
               </p>
-              <button class="product-add" title="Add to Cart">
-                <i class="fas fa-shopping-basket"></i>
-                <span>add</span>
-              </button>
-              <div class="product-action">
-                <button class="action-minus" title="Quantity Minus">
-                  <i class="icofont-minus"></i>
+              <form method="post" id="addToCartForm" action="{% url 'orders:add_to_cart' %}">
+                {% csrf_token %}
+                <input type='hidden' name="quantity" value="1">
+                <input type="hidden" name="productid" value="{{product.id}}">
+                <button class="product-add product-add-to-cart" title="Add to Cart">
+                  <i class="fas fa-shopping-basket"></i>
+                  <span>{% trans "add" %}</span>
                 </button>
-                <input
-                  class="action-input"
-                  title="Quantity Number"
-                  type="text"
-                  name="quantity"
-                  value="1"
-                />
-                <button class="action-plus" title="Quantity Plus">
-                  <i class="icofont-plus"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--=====================================
-                    PRODUCT VIEW START
-        =======================================-->
-        <div class="modal fade" id="product-view-{{item.id}}">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <button
-                class="modal-close icofont-close"
-                data-bs-dismiss="modal"
-              ></button>
-              <div class="product-view">
-                <div class="row">
-                  <div class="col-md-6 col-lg-6">
-                    <div class="view-gallery">
-                      <div class="view-label-group">
-                        <label class="view-label new">{{item.flag}}</label>
-                        <label class="view-label off">-10%</label>
-                      </div>
-                      <ul class="preview-slider slider-arrow">
-                        {% for image in item.product_image.all %}
-                          <li><img src="{{image.image.url}}" alt="product" /></li>
-                        {% endfor %}
-                      </ul>
-                      <ul class="thumb-slider">
-                        {% for image in item.product_image.all %}
-                          <li><img src="{{image.image.url}}" alt="product" /></li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-lg-6">
-                    <div class="view-details">
-                      <h3 class="view-name">
-                        <a href="product-video.html">{{item}}</a>
-                      </h3>
-                      <div class="view-meta">
-                        <p>SKU:<span>{{item.sku}}</span></p>
-                        <p>BRAND:<a href="#">{{item.brand}}</a></p>
-                      </div>
-                      <div class="view-rating">
-                        <i class="active icofont-star"></i>
-                        <i class="active icofont-star"></i>
-                        <i class="active icofont-star"></i>
-                        <i class="active icofont-star"></i>
-                        <i class="icofont-star"></i>
-                        <a href="product-video.html">(3 reviews)</a>
-                      </div>
-                      <h3 class="view-price">
-                        <del>$38.00</del>
-                        <span>${{item.price}}.00<small>/per kilo</small></span>
-                      </h3>
-                      <p class="view-desc">
-                        {{item.desc|truncatewords:20}}
-                      </p>
-                      <div class="view-list-group">
-                        <label class="view-list-title">tags:</label>
-                        <ul class="view-tag-list">
-                          {% for tag in item.tags.all %}
-                            <li><a href="#">{{tag}}</a></li>
-                          {% endfor %}
-                        </ul>
-                      </div>
-                      <div class="view-list-group">
-                        <label class="view-list-title">Share:</label>
-                        <ul class="view-share-list">
-                          <li>
-                            <a href="#" class="icofont-facebook" title="Facebook"></a>
-                          </li>
-                          <li>
-                            <a href="#" class="icofont-twitter" title="Twitter"></a>
-                          </li>
-                          <li>
-                            <a href="#" class="icofont-linkedin" title="Linkedin"></a>
-                          </li>
-                          <li>
-                            <a href="#" class="icofont-instagram" title="Instagram"></a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="view-add-group">
-                        <button class="product-add" title="Add to Cart">
-                          <i class="fas fa-shopping-basket"></i>
-                          <span>add to cart</span>
-                        </button>
-                        <div class="product-action">
-                          <button class="action-minus" title="Quantity Minus">
-                            <i class="icofont-minus"></i>
-                          </button>
-                          <input
-                            class="action-input"
-                            title="Quantity Number"
-                            type="text"
-                            name="quantity"
-                            value="1"
-                          />
-                          <button class="action-plus" title="Quantity Plus">
-                            <i class="icofont-plus"></i>
-                          </button>
-                        </div>
-                      </div>
-                      <div class="view-action-group">
-                        <a class="view-wish wish" href="#" title="Add Your Wishlist">
-                          <i class="icofont-heart"></i>
-                          <span>add to wish</span>
-                        </a>
-                        <a
-                          class="view-compare"
-                          href="compare.html"
-                          title="Compare This Item"
-                        >
-                          <i class="fas fa-random"></i>
-                          <span>Compare This</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--=====================================
-                    PRODUCT VIEW END
-        =======================================-->
 
+                <div class="checkout-action">
+                  <a class="product-add" href="{% url 'orders:checkout' %}" title="{% translate "Add to Cart" %}">
+                      <span>{% translate "Proceed to Checkout" %}</span>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       {% endfor %}
     </div>
     <div class="row">
@@ -370,78 +233,9 @@
     <div class="row">
       <div class="col">
         <ul class="new-slider slider-arrow">
-          {% for item in new %}
+          {% for product in new %}
             <li>
-              <div class="product-card">
-                <div class="product-media">
-                  <div class="product-label">
-                    <label class="label-text new">{{item.flag}}</label>
-                  </div>
-                  <button class="product-wish wish">
-                    <i class="fas fa-heart"></i>
-                  </button>
-                  <a class="product-image" href="{% url 'products:product_detail' item.slug %}">
-                    <img src="{{item.image.url}}" alt="product" />
-                  </a>
-                  <div class="product-widget">
-                    <a
-                      title="Product Compare"
-                      href="compare.html"
-                      class="fas fa-random"
-                    ></a>
-                    <a
-                      title="Product Video"
-                      href="https://youtu.be/9xzcVxSBbG8"
-                      class="venobox fas fa-play"
-                      data-autoplay="true"
-                      data-vbtype="video"
-                    ></a>
-                    <a
-                      title="Product View"
-                      href="#"
-                      class="fas fa-eye"
-                      data-bs-toggle="modal"
-                      data-bs-target="#product-view-{{item.id}}"
-                    ></a>
-                  </div>
-                </div>
-                <div class="product-content">
-                  <div class="product-rating">
-                    <i class="active icofont-star"></i>
-                    <i class="active icofont-star"></i>
-                    <i class="active icofont-star"></i>
-                    <i class="active icofont-star"></i>
-                    <i class="icofont-star"></i>
-                    <a href="{% url 'products:product_detail' item.slug %}">(3)</a>
-                  </div>
-                  <h6 class="product-name">
-                    <a href="{% url 'products:product_detail' item.slug %}">{{item}}</a>
-                  </h6>
-                  <h6 class="product-price">
-                    <del>$34</del>
-                    <span>${{item.price}}<small>/piece</small></span>
-                  </h6>
-                  <button class="product-add" title="Add to Cart">
-                    <i class="fas fa-shopping-basket"></i>
-                    <span>add</span>
-                  </button>
-                  <div class="product-action">
-                    <button class="action-minus" title="Quantity Minus">
-                      <i class="icofont-minus"></i>
-                    </button>
-                    <input
-                      class="action-input"
-                      title="Quantity Number"
-                      type="text"
-                      name="quantity"
-                      value="1"
-                    />
-                    <button class="action-plus" title="Quantity Plus">
-                      <i class="icofont-plus"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
+              {% include 'products/include/extend/product_card.html' %}
             </li>
             <!--=====================================
                         PRODUCT VIEW START
@@ -2753,7 +2547,7 @@
           <div class="section-btn-50">
             <a href="{% url 'products:brand_list' %}" class="btn btn-outline">
               <i class="fas fa-eye"></i>
-              <span>view all brands</span>
+              <span>{% translate "view all brands" %}</span>
             </a>
           </div>
         </div>
@@ -2804,5 +2598,60 @@
   <!--=====================================
               TESTIMONIAL PART END
   =======================================-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+      $(document).ready(function(e){          
+          $(document).on('submit', '#addToFavForm', function(e){
+              e.preventDefault();
+
+              const productId = e.target.getAttribute('data-form-id')
+              const clickedBtn = document.getElementById(`favorite-${productId}`)
+              
+              $.ajax({
+                  method : 'POST' ,
+                  url : '/products/add_to_wish/' ,
+                  data : {'productid':productId , 'csrfmiddlewaretoken': "{{csrf_token}}"},
+                  dataType :'json',
+                  success : function(response){
+                      if (response['result']) {
+                          $(clickedBtn).addClass('active');
+                      } else {
+                          $(clickedBtn).removeClass('active');
+                      }
+                      
+                      let favoritesCount = response['favorites_count'] <= 9 ? response['favorites_count'] : '9+';
+                      $('#favoritesCount').text(favoritesCount);
+                  },
+                  error : function(err){
+                      console.log(err)
+                  }
+              })
+          }),
+
+          $(document).on('submit', '#addToCartForm', function(e){
+              e.preventDefault();
+              $.ajax({
+                  type: $(this).attr('method'),
+                  url:$(this).attr('action'),
+                  data:$(this).serialize() ,
+                  dataType:'json',
+                  success:function(response){
+                  console.log('added')
+                      $('#cartSidebar').html(response['result'])
+
+                      let cartCount = response['count'] <= 9 ? response['count'] : '9+';
+
+                      document.getElementById('cartTotal').textContent=response['total']
+                      document.getElementById('cartCount').textContent=cartCount
+                  },
+                  error:function(err){
+                      console.log(err)
+                  }
+              })
+          })
+      })
+      
+  </script>
+
 
 {% endblock body %}
