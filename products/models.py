@@ -16,6 +16,13 @@ FLAG_TYPE = (
 )
 
 
+class PollManager(models.Manager):
+    def rate_avg(self, rate):
+        rate = int(rate)
+        rate_min = rate-0.5
+        rate_max = rate+0.5
+        return self.annotate(rate_avg=Avg('product_review__rate')).filter(rate_avg__gte=rate_min, rate_avg__lt=rate_max)
+
 class Product(models.Model):
     name = models.CharField(_("Name"), max_length=100)
     sku = models.IntegerField(_("SKU"))
@@ -31,6 +38,8 @@ class Product(models.Model):
     video_url = models.URLField(_("Video URL"), max_length=200, null=True, blank=True)
     quantity = models.IntegerField(_("Quantiy"), default=0)
     slug = models.SlugField(_("Slug"), null=True, blank=True)
+
+    objects = PollManager()
 
     class Meta:
         ordering = ('-pk',)

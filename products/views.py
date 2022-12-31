@@ -6,11 +6,12 @@ from django.urls import reverse
 from products.forms import ReviewForm
 from .models import Brand, Category, Product, ProductImages, Review
 from accounts.models import Profile
-from django.db.models import Count
+from django.db.models import Count, Avg, F, Q
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 # Creat your views here.
 
 
@@ -41,12 +42,23 @@ def product_filter(request):
 
     products = Product.objects.all()
 
-
+    # products = Product.objects.filter(Q(price__gte=50, price__lte=100) | Q(price__gte=500, price__lte=600))
+    # print(rating)
     
     if min_price:
         products = products.filter(price__gte=min_price)
     if max_price:
         products = products.filter(price__lte=max_price)
+    if rating:
+        query_list = []
+        for rate in rating:
+            rate = int(rate)
+            rate_min = rate-0.5
+            rate_max = rate+0.5
+            query_list.append(f'Q(rate_avg__gte={rate_min}, rate_avg__lt={rate_max})')
+        query_string = '|'.join(query_list)
+        queryset = eval(query_string)
+        products = products.annotate(rate_avg=Avg('product_review__rate')).filter(queryset)
     if flag:
         products = products.filter(flag__in=flag)
     if brand:
