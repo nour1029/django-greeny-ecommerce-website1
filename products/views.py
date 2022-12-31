@@ -32,11 +32,30 @@ class ProductList(ListView):
     #     return queryset
 
 def product_filter(request):
-    min_price = request.GET.get('min-price')
-    max_price = request.GET.get('max-price')
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+    rating = request.GET.getlist('rating[]')
+    flag = request.GET.getlist('flag[]')
+    brand = request.GET.getlist('brand[]')
+    category = request.GET.getlist('category[]')
 
-    products = Product.objects.filter(price__gte=min_price, price__lte=max_price)
+    products = Product.objects.all()
 
+
+    
+    if min_price:
+        products = products.filter(price__gte=min_price)
+    if max_price:
+        products = products.filter(price__lte=max_price)
+    if flag:
+        products = products.filter(flag__in=flag)
+    if brand:
+        products = products.filter(brand__in=brand)
+    if category:
+        products = products.filter(category__in=category)
+        
+    # products = Product.objects.filter(get_avg_reviews = 5)
+    # print(products)
 
     # Pagination
     paginator = Paginator(products, 12)

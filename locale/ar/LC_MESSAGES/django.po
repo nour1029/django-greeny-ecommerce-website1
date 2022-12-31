@@ -142,7 +142,7 @@ msgstr ""
 
 #: .\orders\models.py:97
 msgid "Value"
-msgstr ""
+msgstr "القيمة"
 
 #: .\products\models.py:14
 msgid "New"
