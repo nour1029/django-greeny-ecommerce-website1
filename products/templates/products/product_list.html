@@ -31,7 +31,7 @@
                     </div>
                     <div class="shop-widget">
                         <h6 class="shop-widget-title">{% translate "Filter by Price" %}</h6>
-                        <form method="get" id="priceFilter" action="{% url 'products:product_list' %}">
+                        <form method="get" id="priceFilter" action="{% url 'products:product_filter' %}">
                             <div class="shop-widget-group">
                                 <input type="text" name="min-price" placeholder="{% translate "Min" %} - 00">
                                 <input type="text" name="max-price" placeholder="{% translate "Max" %} - 5k">
@@ -381,7 +381,7 @@
                     data:$(this).serialize() ,
                     dataType:'json' ,
                     success:function(response){
-                       // $('#review-div').html(response['result'])
+                        $('#productList').html(response['result'])
                         console.log(response);
                     },
                     error:function(err){

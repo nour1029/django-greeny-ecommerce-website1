@@ -10,6 +10,7 @@ from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # Creat your views here.
 
 
@@ -17,21 +18,42 @@ class ProductList(ListView):
     model = Product
     paginate_by = 50
 
-    def get_queryset(self):
-        try:
-            min_price = self.request.GET['min-price']
-            max_price = self.request.GET['max-price']
-            queryset = Product.objects.filter(price__gt=min_price, price__lt=max_price)
-            html = render_to_string('products/include/product_list_div.html', {'product_list':queryset, self.request:self.request})
-            return JsonResponse({'result':html})
-        except:
-            queryset = super().get_queryset()
+    # def get_queryset(self):
+    #     try:
+    #         min_price = self.request.GET['min-price']
+    #         max_price = self.request.GET['max-price']
+    #         queryset = Product.objects.filter(price__gt=min_price, price__lt=max_price)
+    #         html = render_to_string('products/include/product_list_div.html', {'product_list':queryset, self.request:self.request})
+    #         return JsonResponse({'result':html})
+    #     except:
+    #         queryset = super().get_queryset()
         
 
-        return queryset
+    #     return queryset
 
-def product_list(request):
-    product = Product.objects.all()
+def product_filter(request):
+    min_price = request.GET.get('min-price')
+    max_price = request.GET.get('max-price')
+
+    products = Product.objects.filter(price__gte=min_price, price__lte=max_price)
+
+
+    # Pagination
+    paginator = Paginator(products, 12)
+    page = request.GET.get('page')
+    try:
+        product_list = paginator.page(page)
+    except PageNotAnInteger:
+        product_list = paginator.page(1)
+    except EmptyPage:  
+        product_list = paginator.page(paginator.num_pages)
+
+
+    html = render_to_string('products/include/product_list_div.html', {'product_list':product_list, 'page':page, 'value':'True'}, request=request)
+    # 'request=request' is for basic context_processors like 'user'
+
+    return JsonResponse({'result':html})
+
 
 class ProductDetail(DetailView):
     model = Product
