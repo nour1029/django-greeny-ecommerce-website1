@@ -67,7 +67,7 @@
                                 <div class="row">
                                     {% for number in numbers %}
                                         <div class="col-md-6 col-lg-4 alert fade show">
-                                            <div class="profile-card contact ">
+                                            <div class="profile-card contact {% if number.active %}active{% endif %}">
                                                 <h6>{{number.type}}</h6>
                                                 <p>{{number.phone_number}}</p>
                                                 <ul>

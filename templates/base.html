@@ -170,13 +170,13 @@
             <img src="{{user.Profile.image.url}}" alt="user" />
           </a>
           {% else %}
-          <a href="{% url 'login' %}" class="header-widget" title="Join">
+          <a href="{% url 'login' %}" class="header-widget" title="{% trans "Join" %}">
             <span>{% translate "Login" %}</span>
           </a>
           {% endif %}
 
           <form class="header-form">
-            <input type="text" placeholder="Search anything..." />
+            <input type="text" placeholder="{% trans "Search anything" %}..." />
             <button><i class="fas fa-search"></i></button>
           </form>
 
@@ -741,156 +741,6 @@
                     MOBILE-MENU PART END
         =======================================-->
 
-    <!--=====================================
-                    PRODUCT VIEW START
-        =======================================-->
-    <div class="modal fade" id="product-view">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <button
-            class="modal-close icofont-close"
-            data-bs-dismiss="modal"
-          ></button>
-          <div class="product-view">
-            <div class="row">
-              <div class="col-md-6 col-lg-6">
-                <div class="view-gallery">
-                  <div class="view-label-group">
-                    <label class="view-label new">new</label>
-                    <label class="view-label off">-10%</label>
-                  </div>
-                  <ul class="preview-slider slider-arrow">
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                  </ul>
-                  <ul class="thumb-slider">
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                    <li><img src="images/product/01.jpg" alt="product" /></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-6">
-                <div class="view-details">
-                  <h3 class="view-name">
-                    <a href="product-video.html">existing product name</a>
-                  </h3>
-                  <div class="view-meta">
-                    <p>SKU:<span>1234567</span></p>
-                    <p>BRAND:<a href="#">radhuni</a></p>
-                  </div>
-                  <div class="view-rating">
-                    <i class="active icofont-star"></i>
-                    <i class="active icofont-star"></i>
-                    <i class="active icofont-star"></i>
-                    <i class="active icofont-star"></i>
-                    <i class="icofont-star"></i>
-                    <a href="product-video.html">(3 reviews)</a>
-                  </div>
-                  <h3 class="view-price">
-                    <del>$38.00</del>
-                    <span>$24.00<small>/per kilo</small></span>
-                  </h3>
-                  <p class="view-desc">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit non
-                    tempora magni repudiandae sint suscipit tempore quis maxime
-                    explicabo veniam eos reprehenderit fuga
-                  </p>
-                  <div class="view-list-group">
-                    <label class="view-list-title">tags:</label>
-                    <ul class="view-tag-list">
-                      <li><a href="#">organic</a></li>
-                      <li><a href="#">vegetable</a></li>
-                      <li><a href="#">chilis</a></li>
-                    </ul>
-                  </div>
-                  <div class="view-list-group">
-                    <label class="view-list-title">Share:</label>
-                    <ul class="view-share-list">
-                      <li>
-                        <a
-                          href="#"
-                          class="icofont-facebook"
-                          title="Facebook"
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="icofont-twitter" title="Twitter"></a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="icofont-linkedin"
-                          title="Linkedin"
-                        ></a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="icofont-instagram"
-                          title="Instagram"
-                        ></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="view-add-group">
-                    <button class="product-add" title="Add to Cart">
-                      <i class="fas fa-shopping-basket"></i>
-                      <span>add to cart</span>
-                    </button>
-                    <div class="product-action">
-                      <button class="action-minus" title="Quantity Minus">
-                        <i class="icofont-minus"></i>
-                      </button>
-                      <input
-                        class="action-input"
-                        title="Quantity Number"
-                        type="text"
-                        name="quantity"
-                        value="1"
-                      />
-                      <button class="action-plus" title="Quantity Plus">
-                        <i class="icofont-plus"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="view-action-group">
-                    <a
-                      class="view-wish wish"
-                      href="#"
-                      title="Add Your Wishlist"
-                    >
-                      <i class="icofont-heart"></i>
-                      <span>add to wish</span>
-                    </a>
-                    <a
-                      class="view-compare"
-                      href="compare.html"
-                      title="Compare This Item"
-                    >
-                      <i class="fas fa-random"></i>
-                      <span>Compare This</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--=====================================
-                    PRODUCT VIEW END
-        =======================================-->
 
     {% block body %}{% endblock body %}
 
@@ -905,15 +755,15 @@
         <div class="row align-items-center">
           <div class="col-md-5 col-lg-6 col-xl-7">
             <div class="news-text">
-              <h2>Get 20% Discount for Subscriber</h2>
+              <h2>{% translate "Get 20% Discount for Subscriber" %}</h2>
               <p>Lorem ipsum dolor consectetur adipisicing accusantium</p>
             </div>
           </div>
           <div class="col-md-7 col-lg-6 col-xl-5">
             <form class="news-form">
-              <input type="text" placeholder="Enter Your Email Address" />
+              <input type="text" placeholder="{% translate "Enter Your Email Address" %}" />
               <button>
-                <span><i class="icofont-ui-email"></i>Subscribe</span>
+                <span><i class="icofont-ui-email"></i>{% translate "Subscribe" %}</span>
               </button>
             </form>
           </div>
@@ -936,7 +786,7 @@
                 <i class="fas fa-truck"></i>
               </div>
               <div class="intro-content">
-                <h5>free home delivery</h5>
+                <h5>{% translate "free home delivery" %}</h5>
                 <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
               </div>
             </div>
@@ -947,7 +797,7 @@
                 <i class="fas fa-sync-alt"></i>
               </div>
               <div class="intro-content">
-                <h5>instant return policy</h5>
+                <h5>{% translate "instant return policy" %}</h5>
                 <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
               </div>
             </div>
@@ -958,7 +808,7 @@
                 <i class="fas fa-headset"></i>
               </div>
               <div class="intro-content">
-                <h5>quick support system</h5>
+                <h5>{% translate "quick support system" %}</h5>
                 <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
               </div>
             </div>
@@ -969,7 +819,7 @@
                 <i class="fas fa-lock"></i>
               </div>
               <div class="intro-content">
-                <h5>secure payment way</h5>
+                <h5>{% translate "secure payment way" %}</h5>
                 <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
               </div>
             </div>
@@ -982,7 +832,7 @@
         =======================================-->
 
     <!--=====================================
-                     FOOTER PART START
+                      FOOTER PART START
         =======================================-->
     <footer class="footer-part">
       <div class="container">
@@ -1039,21 +889,20 @@
           </div>
           <div class="col-sm-6 col-xl-3">
             <div class="footer-widget">
-              <h3 class="footer-title">quick Links</h3>
+              <h3 class="footer-title">{% translate "quick Links" %}</h3>
               <div class="footer-links">
                 <ul>
-                  <li><a href="#">My Account</a></li>
-                  <li><a href="#">Order History</a></li>
-                  <li><a href="#">Order Tracking</a></li>
-                  <li><a href="#">Best Seller</a></li>
-                  <li><a href="#">New Arrivals</a></li>
+                  <li><a href="#">{% trans "My Account" %}</a></li>
+                  <li><a href="#">{% trans "Order History" %}</a></li>
+                  <li><a href="#">{% translate "Order Tracking" %}</a></li>
+                  <li><a href="#">{% translate "Best Seller" %}</a></li>
+                  <li><a href="#">{% translate "New Arrivals" %}</a></li>
                 </ul>
                 <ul>
-                  <li><a href="#">Location</a></li>
-                  <li><a href="#">Affiliates</a></li>
-                  <li><a href="#">Contact</a></li>
-                  <li><a href="#">Carrer</a></li>
-                  <li><a href="#">Faq</a></li>
+                  <li><a href="#">{% translate "Location" %}</a></li>
+                  <li><a href="#">{% translate "Affiliates" %}</a></li>
+                  <li><a href="#">{% translate "Contact" %}</a></li>
+                  <li><a href="#">{% translate "Faq" %}</a></li>
                 </ul>
               </div>
             </div>
@@ -1063,16 +912,16 @@
           <div class="col-12">
             <div class="footer-bottom">
               <p class="footer-copytext">
-                &copy; All Copyrights Reserved by
+                &copy; {% trans "All Copyrights Reserved by" %}
                 <a
                   target="_blank"
                   href="https://themeforest.net/user/mironcoder"
-                  >Mironcoder</a
+                  >Nour Mohamed</a
                 >
               </p>
               <div class="footer-card">
                 <a href="#"
-                  ><img src="images/payment/jpg/01.jpg" alt="payment"
+                  ><img src="{% static 'images/payment/jpg/01.jpg' %}" alt="payment"
                 /></a>
                 <a href="#"
                   ><img src="images/payment/jpg/02.jpg" alt="payment"

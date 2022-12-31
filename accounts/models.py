@@ -17,7 +17,7 @@ class Profile(models.Model):
         _("Image"), upload_to='profile/', null=True, blank=True)
     code = models.CharField(_("Code"), max_length=8, default=generate_code)
     code_used = models.BooleanField(default=False)
-    favorites = models.ManyToManyField(Product, verbose_name=_("Favorites"), related_name='favorites_product', null=True, blank=True)
+    favorites = models.ManyToManyField(Product, verbose_name=_("Favorites"), related_name='favorites_product', blank=True)
 
     def get_favorites_count(self):
         favorites_count = self.favorites.count()
@@ -46,6 +46,7 @@ class UserPhoneNumber(models.Model):
         "User"), related_name='UserPhone', on_delete=models.CASCADE)
     phone_number = models.CharField(_("Phone Number"), max_length=15)
     type = models.CharField(_("Type"), max_length=10, choices=DATA_TYPE)
+    active = models.BooleanField(_("Active"), default=False)
 
     def __str__(self):
         return f"{self.user.username} - {self.type}"

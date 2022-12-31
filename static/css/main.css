@@ -1245,6 +1245,7 @@ button:focus {
   -o-transition: all linear .3s;
 }
 
+.feature-card .checkout-action .product-add,
 .product-card .checkout-action .product-add {
   color: var(--white);
   background: var(--green);
@@ -1795,6 +1796,7 @@ tbody tr td:last-child {
   background: var(--primary);
 }
 
+.feature-card:hover .checkout-action .product-add,
 .product-card:hover .checkout-action .product-add {
   color: var(--white);
   background: #119744;
@@ -3393,7 +3395,7 @@ tbody tr td:last-child {
   white-space: nowrap;
   text-transform: capitalize;
   color: var(--primary);
-  background: var(--green-chalk);
+  background: #d3fffe;
   text-shadow: var(--primary-tshadow);
   transition: all linear .3s;
   -webkit-transition: all linear .3s;
@@ -3508,7 +3510,7 @@ tbody tr td:last-child {
 }
 
 .profile-card.active {
-  background: var(--green-chalk);
+  background: #d3fffe;
   border-color: var(--primary);
 }
 

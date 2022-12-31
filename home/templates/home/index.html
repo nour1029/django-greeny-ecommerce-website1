@@ -136,7 +136,7 @@
                 {% csrf_token %}
                 <input type='hidden' name="quantity" value="1">
                 <input type="hidden" name="productid" value="{{product.id}}">
-                <button class="product-add product-add-to-cart" title="Add to Cart">
+                <button class="product-add feature-add product-add-to-cart" title="Add to Cart">
                   <i class="fas fa-shopping-basket"></i>
                   <span>{% trans "add" %}</span>
                 </button>
@@ -2537,7 +2537,7 @@
             </div>
             <div class="brand-meta">
               <h4>{{brand}}</h4>
-              <p>({{brand.product_count}} items)</p>
+              <p>({{brand.product_count}} {% translate "items" %})</p>
             </div>
           </div>
         {% endfor %}
@@ -2566,7 +2566,7 @@
       <div class="row">
         <div class="col-12">
           <div class="section-heading">
-            <h2>client's feedback</h2>
+            <h2>{% translate "client's feedback" %}</h2>
           </div>
         </div>
       </div>
