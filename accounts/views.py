@@ -6,6 +6,7 @@ from .models import Profile, UserAdress, UserPhoneNumber
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -66,7 +67,24 @@ def profile(request):
 
 @login_required
 def edit_profile(request):
-    pass
+    number_id = request.POST.get('number-id')
+    address_id = request.POST.get('address-id')
+
+
+    if number_id:
+        phone_number = UserPhoneNumber.objects.get(user=request.user, pk=number_id)
+        others_phone_numbers = UserPhoneNumber.objects.filter(user=request.user).exclude(id=number_id).update(active=False)
+        phone_number.active = True
+        phone_number.save()
+        return JsonResponse({'result':'success'})
+
+    if address_id:
+        address = UserAdress.objects.get(user=request.user, pk=address_id)
+        others_addresses = UserAdress.objects.filter(user=request.user).exclude(id=address_id).update(active=False)
+        address.active = True
+        address.save()
+        return JsonResponse({'result':'success'})
+    
 
 
 

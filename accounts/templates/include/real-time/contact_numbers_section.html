@@ -1,0 +1,22 @@
+<div class="account-card">
+    <div class="account-title">
+        <h4>contact number</h4>
+        <button data-bs-toggle="modal" data-bs-target="#contact-add">add contact</button>
+    </div>
+    <div class="account-content">
+        <div class="row">
+            {% for number in numbers %}
+                <div class="col-md-6 col-lg-4 alert fade show">
+                    <div class="profile-card contact {% if number.active %}active{% endif %}" data-id='{{number.id}}'>
+                        <h6>{{number.type}}</h6>
+                        <p>{{number.phone_number}}</p>
+                        <ul>
+                            <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit"></button></li>
+                            <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

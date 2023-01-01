@@ -64,6 +64,7 @@ class UserAdress(models.Model):
     region = models.CharField(_("Region"), max_length=50)
     street = models.CharField(_("Street"), max_length=50)
     notes = models.CharField(_("Notes"), max_length=50, null=True, blank=True)
+    active = models.BooleanField(_("Active"), default=False)
 
     def __str__(self):
         return f"{self.user.username} - {self.type}"

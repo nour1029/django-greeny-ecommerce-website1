@@ -58,27 +58,8 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <div class="account-card">
-                            <div class="account-title">
-                                <h4>contact number</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#contact-add">add contact</button>
-                            </div>
-                            <div class="account-content">
-                                <div class="row">
-                                    {% for number in numbers %}
-                                        <div class="col-md-6 col-lg-4 alert fade show">
-                                            <div class="profile-card contact {% if number.active %}active{% endif %}">
-                                                <h6>{{number.type}}</h6>
-                                                <p>{{number.phone_number}}</p>
-                                                <ul>
-                                                    <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit"></button></li>
-                                                    <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-                            </div>
+                        <div id="contactNumbers">
+                            {% include "include/real-time/contact_numbers_section.html" %}
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -89,11 +70,11 @@
                             </div>
                             <div class="account-content">
                                 <div class="row">
-                                    {% for adress in user_adress %}
+                                    {% for address in user_adress %}
                                         <div class="col-md-6 col-lg-4 alert fade show">
-                                            <div class="profile-card address active">
-                                                <h6>{{adress.type}}</h6>
-                                                <p>{{adress.country}}, {{adress.city}}, {{adress.state}}. {{adress.region}}, {{adress.street}}, {{adress.notes}}</p>
+                                            <div class="profile-card address  {% if address.active %}active{% endif %}" data-id='{{address.id}}'>
+                                                <h6>{{address.type}}</h6>
+                                                <p>{{address.country}}, {{address.city}}, {{address.state}}. {{address.region}}, {{address.street}}, {{address.notes}}</p>
                                                 <ul class="user-action">
                                                     <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
                                                     <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
@@ -337,5 +318,58 @@
         <!--=====================================
                     MODAL EDIT FORM END
         =======================================-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            $(document).ready(function(e){
+                $('.profile-card.contact').on('click', function(){
+                    $('.profile-card.contact').removeClass('active');
+                    $(this).addClass('active');
+
+                    const csrftoken = getCookie('csrftoken')
+                    var numberId = $(this).data('id')
+
+                    $.ajax({
+                        type: 'post',
+                        url:'/accounts/profile/edit',
+                        data: {'number-id':numberId} ,
+                        headers:{"X-CSRFToken": csrftoken }, 
+                        dataType:'json',
+                        success:function(response){
+                            console.log('added')
+                        },
+                        error:function(err){
+                            console.log(err)
+                        }
+                    })
+                });
+
+
+                $('.profile-card.address').on('click', function(){
+                    $('.profile-card.address').removeClass('active');
+                    $(this).addClass('active');
+
+                    const csrftoken = getCookie('csrftoken')
+                    var addressId = $(this).data('id')
+
+                    $.ajax({
+                        type: 'post',
+                        url:'/accounts/profile/edit',
+                        data: {'address-id':addressId} ,
+                        headers:{"X-CSRFToken": csrftoken }, 
+                        dataType:'json',
+                        success:function(response){
+                            console.log('added')
+                        },
+                        error:function(err){
+                            console.log(err)
+                        }
+                    })
+                });
+
+            })
+        </script>
 
 {% endblock body %}
+
+
+

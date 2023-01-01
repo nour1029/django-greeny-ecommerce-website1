@@ -212,10 +212,7 @@ $('.profile-card.schedule').on('click', function(){
 //========================================
 //         PROFILE CONTACT ACTIVE
 //========================================
-$('.profile-card.contact').on('click', function(){
-    $('.profile-card.contact').removeClass('active');
-    $(this).addClass('active');
-});
+
 
 
 //========================================
