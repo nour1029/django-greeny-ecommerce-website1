@@ -991,7 +991,6 @@
               const csrftoken = getCookie('csrftoken')
 
               cartDetailId = document.getElementById('productIdDelete').value;
-              console.log(cartDetailId)
               $.ajax({
                   type:$(this).attr('method'),
                   url: `/orders/cart/delete/`,

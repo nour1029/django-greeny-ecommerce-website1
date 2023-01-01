@@ -36,7 +36,7 @@ def create_profile(sender, instance, created, **kwargs):
 DATA_TYPE = (
     ('Home', 'Home'),
     ('Office', 'Office'),
-    ('Bussines', 'Bussines'),
+    ('Bussiness', 'Bussiness'),
     ('Others', 'Others'),
 )
 

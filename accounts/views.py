@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.template.loader import render_to_string
 # Create your views here.
 
 
@@ -71,6 +72,8 @@ def edit_profile(request):
     address_id = request.POST.get('address-id')
 
 
+    print(request.POST)
+    print('-'*25)
     if number_id:
         phone_number = UserPhoneNumber.objects.get(user=request.user, pk=number_id)
         others_phone_numbers = UserPhoneNumber.objects.filter(user=request.user).exclude(id=number_id).update(active=False)
@@ -84,6 +87,45 @@ def edit_profile(request):
         address.active = True
         address.save()
         return JsonResponse({'result':'success'})
+
+def add_profile_number(request):
+    type = request.POST.get('type')
+    phone_number = request.POST.get('phone_number')
+    user = request.user
+
+    user_phone_number = UserPhoneNumber.objects.create(
+        user = user,
+        type = type,
+        phone_number = phone_number
+    )
+
+    numbers = UserPhoneNumber.objects.filter(user=request.user)
+    html = render_to_string('include/real-time/contact_numbers_section.html', {'numbers':numbers})
+    return JsonResponse({'result':html})
+
+def edit_profile_number(request):
+    nubmer_id = request.POST.get('id')
+    type = request.POST.get('type')
+    phone_number = request.POST.get('phone_number')
+    user = request.user
+
+
+    user_phone_number = UserPhoneNumber.objects.get(user=user, pk=nubmer_id)
+
+    user_phone_number.type = type
+    user_phone_number.phone_number = phone_number
+    user_phone_number.save()
+
+    numbers = UserPhoneNumber.objects.filter(user=request.user)
+    html = render_to_string('include/real-time/contact_numbers_section.html', {'numbers':numbers})
+    return JsonResponse({'result':html})
+
+
+
+def add_profile_address(request):
+    pass
+
+
     
 
 

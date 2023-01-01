@@ -58,8 +58,14 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
-                        <div id="contactNumbers">
-                            {% include "include/real-time/contact_numbers_section.html" %}
+                        <div class="account-card">
+                            <div class="account-title">
+                                <h4>contact number</h4>
+                                <button data-bs-toggle="modal" data-bs-target="#contact-add">add contact</button>
+                            </div>
+                            <div id="contactNumbers">
+                                {% include "include/real-time/contact_numbers_section.html" %}
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -76,66 +82,41 @@
                                                 <h6>{{address.type}}</h6>
                                                 <p>{{address.country}}, {{address.city}}, {{address.state}}. {{address.region}}, {{address.street}}, {{address.notes}}</p>
                                                 <ul class="user-action">
-                                                    <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
+                                                    <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit-{{address.id}}"></button></li>
                                                     <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
                                                 </ul>
                                             </div>
                                         </div>
+
+
+                                        <!-- address edit form -->
+                                        <div class="modal fade" id="address-edit-{{address.id}}">
+                                            <div class="modal-dialog modal-dialog-centered"> 
+                                                <div class="modal-content">
+                                                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
+                                                    <form class="modal-form">
+                                                        <div class="form-title">
+                                                            <h3>edit address info</h3>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label">title</label>
+                                                            <select class="form-select">
+                                                                <option value="home" {% if address.type == 'Home' %}selected{% endif %}>home</option>
+                                                                <option value="bussiness" {% if address.type == 'Bussiness' %}selected{% endif %}>bussiness</option>
+                                                                <option value="office" {% if address.type == 'Office' %}selected{% endif %}>office</option>
+                                                                <option value="others" {% if address.type == 'Others' %}selected{% endif %}>others</option>
+                                                            </select>        
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="form-label">address</label>
+                                                            <textarea class="form-control" placeholder="jalkuri, fatullah, narayanganj-1420. word no-09, road no-17/A"></textarea>
+                                                        </div>
+                                                        <button class="form-btn" type="submit">save address info</button>
+                                                    </form>
+                                                </div> 
+                                            </div> 
+                                        </div>
                                     {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="account-card mb-0">
-                            <div class="account-title">
-                                <h4>payment option</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#payment-add">add card</button>
-                            </div>
-                            <div class="account-content">
-                                <div class="row">
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="payment-card payment active">
-                                            <img src="images/payment/png/01.png" alt="payment">
-                                            <h4>card number</h4>
-                                            <p>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <sup>1876</sup>
-                                            </p>
-                                            <h5>miron mahmud</h5>
-                                            <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="payment-card payment">
-                                            <img src="images/payment/png/02.png" alt="payment">
-                                            <h4>card number</h4>
-                                            <p>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <sup>1876</sup>
-                                            </p>
-                                            <h5>miron mahmud</h5>
-                                            <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="payment-card payment">
-                                            <img src="images/payment/png/03.png" alt="payment">
-                                            <h4>card number</h4>
-                                            <p>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <span>****</span>
-                                                <sup>1876</sup>
-                                            </p>
-                                            <h5>miron mahmud</h5>
-                                            <button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -156,21 +137,22 @@
             <div class="modal-dialog modal-dialog-centered"> 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
+                    <form class="modal-form" id="contactAddForm" method="post" action="{% url 'accounts:add_profile_number' %}">
                         <div class="form-title">
                             <h3>add new contact</h3>
                         </div>
                         <div class="form-group">
                             <label class="form-label">title</label>
-                            <select class="form-select">
-                                <option selected>choose title</option>
-                                <option value="primary">primary</option>
-                                <option value="secondary">secondary</option>
+                            <select name="type" class="form-select">
+                                <option value="Home" {% if number.type == 'Home' %}selected{% endif %}>home</option>
+                                <option value="Bussiness" {% if number.type == 'Bussiness' %}selected{% endif %}>bussiness</option>
+                                <option value="Office" {% if number.type == 'Office' %}selected{% endif %}>office</option>
+                                <option value="Others" {% if number.type == 'Others' %}selected{% endif %}>others</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label class="form-label">number</label>
-                            <input class="form-control" type="text" placeholder="Enter your number">
+                            <input class="form-control" type="text" name="phone_number" required placeholder="Enter your number">
                         </div>
                         <button class="form-btn" type="submit">save contact info</button>
                     </form>
@@ -249,7 +231,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">name</label>
-                            <input class="form-control" type="text" value="Miron Mahmud">
+                            <input class="form-control" type="text" value="Nour Mohamed">
                         </div>
                         <div class="form-group">
                             <label class="form-label">email</label>
@@ -261,72 +243,24 @@
             </div> 
         </div>
 
-        <!-- contact edit form -->
-        <div class="modal fade" id="contact-edit">
-            <div class="modal-dialog modal-dialog-centered"> 
-                <div class="modal-content">
-                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
-                        <div class="form-title">
-                            <h3>edit contact info</h3>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">title</label>
-                            <select class="form-select">
-                                <option value="primary" selected>primary</option>
-                                <option value="secondary">secondary</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">number</label>
-                            <input class="form-control" type="text" value="+8801838288389">
-                        </div>
-                        <button class="form-btn" type="submit">save contact info</button>
-                    </form>
-                </div> 
-            </div> 
-        </div>
 
-        <!-- address edit form -->
-        <div class="modal fade" id="address-edit">
-            <div class="modal-dialog modal-dialog-centered"> 
-                <div class="modal-content">
-                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
-                        <div class="form-title">
-                            <h3>edit address info</h3>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">title</label>
-                            <select class="form-select">
-                                <option value="home" selected>home</option>
-                                <option value="office">office</option>
-                                <option value="Bussiness">Bussiness</option>
-                                <option value="academy">academy</option>
-                                <option value="others">others</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">address</label>
-                            <textarea class="form-control" placeholder="jalkuri, fatullah, narayanganj-1420. word no-09, road no-17/A"></textarea>
-                        </div>
-                        <button class="form-btn" type="submit">save address info</button>
-                    </form>
-                </div> 
-            </div> 
-        </div>
+
+
         <!--=====================================
                     MODAL EDIT FORM END
         =======================================-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
+
+
+
             $(document).ready(function(e){
                 $('.profile-card.contact').on('click', function(){
                     $('.profile-card.contact').removeClass('active');
                     $(this).addClass('active');
 
-                    const csrftoken = getCookie('csrftoken')
-                    var numberId = $(this).data('id')
+                    const csrftoken = getCookie('csrftoken');
+                    var numberId = $(this).data('id');
 
                     $.ajax({
                         type: 'post',
@@ -335,10 +269,10 @@
                         headers:{"X-CSRFToken": csrftoken }, 
                         dataType:'json',
                         success:function(response){
-                            console.log('added')
+                            console.log('added');
                         },
                         error:function(err){
-                            console.log(err)
+                            console.log(err);
                         }
                     })
                 });
@@ -348,8 +282,8 @@
                     $('.profile-card.address').removeClass('active');
                     $(this).addClass('active');
 
-                    const csrftoken = getCookie('csrftoken')
-                    var addressId = $(this).data('id')
+                    const csrftoken = getCookie('csrftoken');
+                    var addressId = $(this).data('id');
 
                     $.ajax({
                         type: 'post',
@@ -358,14 +292,56 @@
                         headers:{"X-CSRFToken": csrftoken }, 
                         dataType:'json',
                         success:function(response){
-                            console.log('added')
+                            console.log('added');
                         },
                         error:function(err){
-                            console.log(err)
+                            console.log(err);
                         }
                     })
                 });
 
+
+                $('#contactAddForm').on('submit', function(e){
+                    e.preventDefault();
+                    const csrftoken = getCookie('csrftoken');
+
+                    $.ajax({
+                        type:$(this).attr('method'),
+                        url:$(this).attr('action'),
+                        data:$(this).serialize(),
+                        headers:{"X-CSRFToken": csrftoken }, 
+                        dataType:'json',
+                        success:function(response){
+                            $('#contactNumbers').html(response['result']);
+                            $('#contact-add').modal('hide');
+                            $('#contactAddForm')[0].reset();
+                        },
+                        error:function(err){
+                            console.log(err);
+                        }
+                    })
+                })
+
+
+                $('#contactEditForm').on('submit', function(e){
+                    e.preventDefault();
+                    const csrftoken = getCookie('csrftoken');
+
+                    $.ajax({
+                        type:$(this).attr('method'),
+                        url:$(this).attr('action'),
+                        data:$(this).serialize(),
+                        headers:{"X-CSRFToken": csrftoken }, 
+                        dataType:'json',
+                        success:function(response){
+                            $('.contact-edit-modal').modal('hide');
+                            $('#contactNumbers').html(response['result']);
+                        },
+                        error:function(err){
+                            console.log(err);
+                        }
+                    })
+                })
             })
         </script>
 
