@@ -4,45 +4,14 @@
         {% for number in numbers %}
             <div class="col-md-6 col-lg-4 alert fade show">
                 <div class="profile-card contact {% if number.active %}active{% endif %}" data-id='{{number.id}}'>
-                    <h6>{{number.type}}</h6>
-                    <p>{{number.phone_number}}</p>
+                    <h6 id="phoneType">{{number.type}}</h6>
+                    <p id="phoneNumber">{{number.phone_number}}</p>
                     <ul>
-                        <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit-{{number.id}}"></button></li>
+                        <li><button class="edit icofont-edit edit-btn" id="contactEditBtn" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit"></button></li>
                         <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
                     </ul>
                 </div>
             </div>
-            
-            <!-- contact edit form -->
-            <div class="modal fade contact-edit-modal" id="contact-edit-{{number.id}}">
-                <div class="modal-dialog modal-dialog-centered"> 
-                    <div class="modal-content">
-                        <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                        <form class="modal-form" id="contactEditForm" method="post" action="{% url 'accounts:edit_profile_number' %}">
-                            {% comment %} {% csrf_token %} {% endcomment %}
-                            <div class="form-title">
-                                <h3>edit contact info</h3>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">title</label>
-                                <select class="form-select" name="type">
-                                    <option value="home" {% if number.type == 'Home' %}selected{% endif %}>home</option>
-                                    <option value="bussiness" {% if number.type == 'Bussiness' %}selected{% endif %}>bussiness</option>
-                                    <option value="office" {% if number.type == 'Office' %}selected{% endif %}>office</option>
-                                    <option value="others" {% if number.type == 'Others' %}selected{% endif %}>others</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">number</label>
-                                <input class="form-control" name="phone_number" type="text" value="{{number.phone_number}}">
-                                <input type="hidden" id="numberId" name="id" value="{{number.id}}">
-                            </div>
-                            <button class="form-btn" type="submit">save contact info</button>
-                        </form>
-                    </div> 
-                </div> 
-            </div>
-            
         {% endfor %}
     </div>
 </div>
