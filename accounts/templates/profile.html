@@ -63,7 +63,7 @@
                                 <h4>contact number</h4>
                                 <button data-bs-toggle="modal" data-bs-target="#contact-add">add contact</button>
                             </div>
-                            <div id="contactNumbers">
+                            <div id="contactNumbersSection">
                                 {% include "include/real-time/contact_numbers_section.html" %}
                             </div>
                         </div>
@@ -284,52 +284,52 @@
 
 
             $(document).ready(function(e){
-                // $('.profile-card.contact').on('click', function(){
-                //     $('.profile-card.contact').removeClass('active');
-                //     $(this).addClass('active');
+                $('#contactNumbersSection').on('click', '.profile-card.contact', function(){
+                    $('.profile-card.contact').removeClass('active');
+                    $(this).addClass('active');
 
-                //     const csrftoken = getCookie('csrftoken');
-                //     var numberId = $(this).data('id');
+                    const csrftoken = getCookie('csrftoken');
+                    var numberId = $(this).data('id');
 
-                //     $.ajax({
-                //         type: 'post',
-                //         url:'/accounts/profile/edit',
-                //         data: {'number-id':numberId} ,
-                //         headers:{"X-CSRFToken": csrftoken }, 
-                //         dataType:'json',
-                //         success:function(response){
-                //             console.log('added');
-                //         },
-                //         error:function(err){
-                //             console.log(err);
-                //         }
-                //     })
-                // });
+                    $.ajax({
+                        type: 'post',
+                        url:'/accounts/profile/edit',
+                        data: {'number-id':numberId} ,
+                        headers:{"X-CSRFToken": csrftoken }, 
+                        dataType:'json',
+                        success:function(response){
+                            console.log('added');
+                        },
+                        error:function(err){
+                            console.log(err);
+                        }
+                    })
+                });
 
 
-                // $('.profile-card.address').on('click', function(){
-                //     $('.profile-card.address').removeClass('active');
-                //     $(this).addClass('active');
+                $('#contactNumbersSection').on('click', '.profile-card.address', function(){
+                    $('.profile-card.address').removeClass('active');
+                    $(this).addClass('active');
 
-                //     const csrftoken = getCookie('csrftoken');
-                //     var addressId = $(this).data('id');
+                    const csrftoken = getCookie('csrftoken');
+                    var addressId = $(this).data('id');
 
-                //     $.ajax({
-                //         type: 'post',
-                //         url:'/accounts/profile/edit',
-                //         data: {'address-id':addressId} ,
-                //         headers:{"X-CSRFToken": csrftoken }, 
-                //         dataType:'json',
-                //         success:function(response){
-                //             console.log('added');
-                //         },
-                //         error:function(err){
-                //             console.log(err);
-                //         }
-                //     })
-                // });
+                    $.ajax({
+                        type: 'post',
+                        url:'/accounts/profile/edit',
+                        data: {'address-id':addressId} ,
+                        headers:{"X-CSRFToken": csrftoken }, 
+                        dataType:'json',
+                        success:function(response){
+                            console.log('added');
+                        },
+                        error:function(err){
+                            console.log(err);
+                        }
+                    })
+                });
 
-                $('#contactNumbers').on('click', '.edit-btn', function(e){
+                $('#contactNumbersSection').on('click', '.edit-btn', function(e){
                     const phoneType = $(this).closest('div').find('#phoneType').text();
                     const phoneNumber = $(this).closest('div').find('#phoneNumber').text();
                     const numberId = $(this).closest('div').data('id');
@@ -351,7 +351,7 @@
                         headers:{"X-CSRFToken": csrftoken }, 
                         dataType:'json',
                         success:function(response){
-                            $('#contactNumbers').html(response['result']);
+                            $('#contactNumbersSection').html(response['result']);
                             $('#contact-add').modal('hide');
                             $('#contactAddForm')[0].reset();
 
@@ -377,7 +377,7 @@
                         dataType:'json',
                         success:function(response){
                             $('.contact-edit-modal').modal('hide');
-                            $('#contactNumbers').html(response['result']);
+                            $('#contactNumbersSection').html(response['result']);
 
                             
                         },
