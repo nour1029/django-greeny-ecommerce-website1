@@ -85,7 +85,7 @@ def edit_profile(request):
         return JsonResponse({'result':'success'})
 
     if address_id:
-        print("i'm hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+        # print("i'm hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
         address = UserAdress.objects.get(user=request.user, pk=address_id)
         others_addresses = UserAdress.objects.filter(user=request.user).exclude(id=address_id).update(active=False)
         address.active = True
