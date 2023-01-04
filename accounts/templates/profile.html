@@ -74,50 +74,8 @@
                                 <h4>delivery address</h4>
                                 <button data-bs-toggle="modal" data-bs-target="#address-add">add address</button>
                             </div>
-                            <div class="account-content">
-                                <div class="row">
-                                    {% for address in user_adress %}
-                                        <div class="col-md-6 col-lg-4 alert fade show">
-                                            <div class="profile-card address  {% if address.active %}active{% endif %}" data-id='{{address.id}}'>
-                                                <h6>{{address.type}}</h6>
-                                                <p>{{address.country}}, {{address.city}}, {{address.state}}. {{address.region}}, {{address.street}}, {{address.notes}}</p>
-                                                <ul class="user-action">
-                                                    <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit-{{address.id}}"></button></li>
-                                                    <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- address edit form -->
-                                        <div class="modal fade" id="address-edit-{{address.id}}">
-                                            <div class="modal-dialog modal-dialog-centered"> 
-                                                <div class="modal-content">
-                                                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                                                    <form class="modal-form">
-                                                        <div class="form-title">
-                                                            <h3>edit address info</h3>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="form-label">title</label>
-                                                            <select class="form-select">
-                                                                <option value="home" {% if address.type == 'Home' %}selected{% endif %}>home</option>
-                                                                <option value="bussiness" {% if address.type == 'Bussiness' %}selected{% endif %}>bussiness</option>
-                                                                <option value="office" {% if address.type == 'Office' %}selected{% endif %}>office</option>
-                                                                <option value="others" {% if address.type == 'Others' %}selected{% endif %}>others</option>
-                                                            </select>        
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="form-label">address</label>
-                                                            <textarea class="form-control" placeholder="jalkuri, fatullah, narayanganj-1420. word no-09, road no-17/A"></textarea>
-                                                        </div>
-                                                        <button class="form-btn" type="submit">save address info</button>
-                                                    </form>
-                                                </div> 
-                                            </div> 
-                                        </div>
-                                    {% endfor %}
-                                </div>
+                            <div id="addressesSection">
+                                {% include "include/real-time/addresses_section.html" %}
                             </div>
                         </div>
                     </div>
@@ -142,12 +100,13 @@
                             <h3>add new contact</h3>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">title</label>
-                            <select name="type" class="form-select">
-                                <option value="Home" {% if number.type == 'Home' %}selected{% endif %}>home</option>
-                                <option value="Bussiness" {% if number.type == 'Bussiness' %}selected{% endif %}>bussiness</option>
-                                <option value="Office" {% if number.type == 'Office' %}selected{% endif %}>office</option>
-                                <option value="Others" {% if number.type == 'Others' %}selected{% endif %}>others</option>
+                            <label  class="form-label">title</label>
+                            <select required name="type" class="form-select">
+                                <option selected value="">choose type</option>
+                                <option value="Home">home</option>
+                                <option value="Bussiness">bussiness</option>
+                                <option value="Office">office</option>
+                                <option value="Others">others</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -165,24 +124,55 @@
             <div class="modal-dialog modal-dialog-centered"> 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
+                    <form class="modal-form" id="addressAddForm" method="post" action="{% url 'accounts:add_profile_address' %}">
                         <div class="form-title">
                             <h3>add new address</h3>
                         </div>
                         <div class="form-group">
                             <label class="form-label">title</label>
-                            <select class="form-select">
-                                <option selected>choose title</option>
-                                <option value="home">home</option>
-                                <option value="office">office</option>
+                            <select required name="type" class="form-select">
+                                <option selected>choose type</option>
+                                <option value="Home">Home</option>
                                 <option value="Bussiness">Bussiness</option>
-                                <option value="academy">academy</option>
-                                <option value="others">others</option>
+                                <option value="Office">Office</option>
+                                <option value="Others">Others</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">address</label>
-                            <textarea class="form-control" placeholder="Enter your address"></textarea>
+                            <label class="form-label">country</label>
+                            <select required name="country" class="form-select">
+                                <option selected>choose type</option>
+                                {% for country in country_list %}
+                                    <option value="{{country.id}}">{{country}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">city</label>
+                            <select required name="city" class="form-select">
+                                <option selected>choose type</option>
+                                {% for city in city_list %}
+                                    <option value="{{city.id}}">{{city}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">state</label>
+                            <input required id="" class="form-control" name="state" type="text">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">region</label>
+                            <input required id="" class="form-control" name="region" type="text">
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">street</label>
+                            <input required id="" class="form-control" name="street" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">notes</label>
+                            <textarea class="form-control" name="notes"></textarea>
                         </div>
                         <button class="form-btn" type="submit">save address info</button>
                     </form>
@@ -307,7 +297,7 @@
                 });
 
 
-                $('#contactNumbersSection').on('click', '.profile-card.address', function(){
+                $('#addressesSection').on('click', '.profile-card.address', function(){
                     $('.profile-card.address').removeClass('active');
                     $(this).addClass('active');
 
@@ -361,6 +351,30 @@
                             console.log(err);
                         }
                     })
+                });
+
+                
+                $('#addressAddForm').on('submit', function(e){
+                    e.preventDefault();
+                    const csrftoken = getCookie('csrftoken');
+
+                    $.ajax({
+                        type:$(this).attr('method'),
+                        url:$(this).attr('action'),
+                        data:$(this).serialize(),
+                        headers:{"X-CSRFToken": csrftoken }, 
+                        dataType:'json',
+                        success:function(response){
+                            $('#addressesSection').html(response['result']);
+                            $('#address-add').modal('hide');
+                            $('#addressAddForm')[0].reset();
+
+
+                        },
+                        error:function(err){
+                            console.log(err);
+                        }
+                    })
                 })
 
 
@@ -386,6 +400,41 @@
                         }
                     })
                 })
+
+                $('#contactNumbersSection').on('click', '.delete-btn', function(){
+                    const csrftoken = getCookie('csrftoken');
+                    const numberId = $(this).closest('div').data('id');
+                    
+                    $.ajax({
+                        type:'post',
+                        url:'/accounts/profile/delete/contact',
+                        data: {'id':numberId},
+                        headers:{"X-CSRFToken": csrftoken },
+                        dataType:'json',
+                        success:function(response){
+                            console.log('deleted')
+                            $('#contactNumbersSection').html(response['result']);
+                        }
+                    })
+                });
+
+                $('#addressesSection').on('click', '.delete-btn', function(){
+                    const csrftoken = getCookie('csrftoken');
+                    const numberId = $(this).closest('div').data('id');
+                    
+                    $.ajax({
+                        type:'post',
+                        url:'/accounts/profile/delete/address',
+                        data: {'id':numberId},
+                        headers:{"X-CSRFToken": csrftoken },
+                        dataType:'json',
+                        success:function(response){
+                            console.log('deleted')
+                            $('#addressesSection').html(response['result']);
+                        }
+                    })
+                });
+
             })
         </script>
 

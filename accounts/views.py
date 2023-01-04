@@ -1,8 +1,9 @@
 from multiprocessing import context
 import re
 from django.shortcuts import render, redirect
-from .forms import SignupForm, UserActivateForm
+from .forms import SignupForm, UserActivateForm, UserAdressForm
 from .models import Profile, UserAdress, UserPhoneNumber
+from settings.models import Country, City
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
@@ -61,8 +62,10 @@ def profile(request):
     profile = Profile.objects.get(user=request.user)
     numbers = UserPhoneNumber.objects.filter(user=request.user)
     user_adress = UserAdress.objects.filter(user=request.user)
+    country_list = Country.objects.all()
+    city_list = City.objects.all()
 
-    context = {'profile': profile, 'numbers': numbers, 'user_adress': user_adress, }
+    context = {'profile': profile, 'numbers': numbers, 'user_adress': user_adress, 'country_list':country_list, 'city_list':city_list}
     return render(request, 'profile.html', context)
 
 
@@ -72,8 +75,8 @@ def edit_profile(request):
     address_id = request.POST.get('address-id')
 
 
-    print(request.POST)
-    print('-'*25)
+    # print(request.POST)
+    # print('-'*25)
     if number_id:
         phone_number = UserPhoneNumber.objects.get(user=request.user, pk=number_id)
         others_phone_numbers = UserPhoneNumber.objects.filter(user=request.user).exclude(id=number_id).update(active=False)
@@ -82,6 +85,7 @@ def edit_profile(request):
         return JsonResponse({'result':'success'})
 
     if address_id:
+        print("i'm hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
         address = UserAdress.objects.get(user=request.user, pk=address_id)
         others_addresses = UserAdress.objects.filter(user=request.user).exclude(id=address_id).update(active=False)
         address.active = True
@@ -104,10 +108,11 @@ def add_profile_number(request):
     return JsonResponse({'result':html})
 
 def edit_profile_number(request):
+    user = request.user
     nubmer_id = request.POST.get('id')
     type = request.POST.get('type')
     phone_number = request.POST.get('phone_number')
-    user = request.user
+    
 
 
     user_phone_number = UserPhoneNumber.objects.get(user=user, pk=nubmer_id)
@@ -123,11 +128,38 @@ def edit_profile_number(request):
 
 
 def add_profile_address(request):
-    pass
+    user = request.user
+    # state = request.POST.get('state')
+    # country = request.POST.get('country')
+    # city = request.POST.get('city')
+    ## region = request.POST.get('region')
+    # street = request.POST.get('street')
+    # notes = request.POST.get('notes')
+    # print(f"{user}-{state}-{country}-{city}-{region}-{street}-{notes}")
+
+    changed_data = request.POST.copy()
+    changed_data['user'] = user
+
+    if request.POST:
+        form = UserAdressForm(data =changed_data)
+        if form.is_valid():
+            form.save()
 
 
-    
 
+    # user_address = UserAdress.objects.create(
+    #     user=user,
+    #     country=country,
+    #     city=city,
+    #     state=state,
+    ##     region=region,
+    #     street=street,
+    #     notes=notes,
+    # )
+
+    user_addresses = UserAdress.objects.filter(user=request.user)
+    html = render_to_string('include/real-time/addresses_section.html', {'user_adress':user_addresses})
+    return JsonResponse({'result':html})
 
 
 def wishlist(request):
@@ -136,5 +168,27 @@ def wishlist(request):
     context = {'profile':profile}
     return render(request, 'wishlist.html', context)
 
+
+
+
+def delete_profile_contact(request):
+    number_id = request.POST.get('id')
+    print(number_id)
+    print('-'*25)
+    user_phone_number = UserPhoneNumber.objects.get(pk=number_id).delete()
+    
+
+    numbers = UserPhoneNumber.objects.filter(user=request.user)
+    html = render_to_string('include/real-time/contact_numbers_section.html', {'numbers':numbers})
+    return JsonResponse({'result':html})
+
+def delete_profile_address(request):
+    print('delete','#'*50)
+    number_id = request.POST.get('id')
+    user_address = UserAdress.objects.get(pk=number_id).delete()
+
+    user_addresses = UserAdress.objects.filter(user=request.user)
+    html = render_to_string('include/real-time/addresses_section.html', {'user_adress':user_addresses})
+    return JsonResponse({'result':html})
 
 

@@ -63,7 +63,7 @@ class UserAdress(models.Model):
     state = models.CharField(_("State"), max_length=50)
     region = models.CharField(_("Region"), max_length=50)
     street = models.CharField(_("Street"), max_length=50)
-    notes = models.CharField(_("Notes"), max_length=50, null=True, blank=True)
+    notes = models.TextField(_("Notes"), max_length=50, null=True, blank=True)
     active = models.BooleanField(_("Active"), default=False)
 
     def __str__(self):
