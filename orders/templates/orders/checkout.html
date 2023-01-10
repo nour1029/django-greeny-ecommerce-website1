@@ -64,11 +64,11 @@
                                                 <td class="table-serial"><h6>{{forloop.counter}}</h6></td>
                                                 <td class="table-image"><img src="{{item.product.image.url}}" alt="product"></td>
                                                 <td class="table-name"><h6>{{item.product}}</h6></td>
-                                                <td class="table-price"><h6>${{item.product.price}}<small>/kilo</small></h6></td>
+                                                <td class="table-price"><h6>${{item.product.price}}</h6></td>
                                                 <td class="table-brand"><h6>{{item.product.brand}}</h6></td>
                                                 <td class="table-quantity"><h6>{{item.quantity}}</h6></td>
                                                 <td class="table-action">
-                                                    <a class="view" href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#product-view"><i class="fas fa-eye"></i></a>
+                                                    <a class="view" href="{{item.product.get_absolute_url}}" title="Quick View"><i class="fas fa-eye"></i></a>
                                                     <a class="trash" href="#" title="Remove Wishlist"><i class="icofont-trash"></i></a>
                                                 </td>
                                             </tr>

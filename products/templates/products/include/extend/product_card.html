@@ -32,7 +32,9 @@
             <a href="{% url 'products:product_detail' product.slug %}">{{product.name}}-{{product.category}}-{{product.brand}}</a>
         </h6>
         <h6 class="product-price">
-            <del>$34</del>
+            {% if product.price_before_discount %}
+                <del>${{product.price_before_discount}}</del>
+            {% endif %}
             <span>${{product.price}}</span>
         </h6>
         <form method="post" id="addToCartForm" action="{% url 'orders:add_to_cart' %}">

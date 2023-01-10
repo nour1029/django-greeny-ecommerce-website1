@@ -29,6 +29,7 @@ class Product(models.Model):
     brand = models.ForeignKey("Brand", verbose_name=_(
         "Brand"), related_name='product_brand', on_delete=models.SET_NULL, null=True, blank=True)
     price = models.FloatField(_("Price"))
+    price_before_discount = models.IntegerField(_("Before Discount Price"), default=0)
     desc = models.TextField(_("Description"), max_length=10000)
     tags = TaggableManager(blank=True)
     flag = models.CharField(_("Flag"), choices=FLAG_TYPE, max_length=15)
@@ -43,6 +44,7 @@ class Product(models.Model):
 
     class Meta:
         ordering = ('-pk',)
+
 
     def get_avg_reviews(self):
         avg = self.product_review.aggregate(myavg=Avg('rate'))

@@ -96,7 +96,9 @@
                             <a href="#">({{product.product_review.all|length}} reviews)</a>
                         </div>
                         <h3 class="details-price">
-                            <del>$38.00</del>
+                            {% if product.price_before_discount %}
+                                <del>${{product.price_before_discount}}</del>
+                            {% endif %}
                             <span>${{product.price}}</span>
                         </h3>
                         {% comment %} <p class="details-desc">{{product.desc|safe|truncatewords:20}}</p> {% endcomment %}
@@ -129,15 +131,10 @@
                             </form>
                         </div>
                         <div class="details-action-group">
-                            <form action="{% url 'products:add_to_favorites' %}" method="post">
-                                {% csrf_token %}
-                                <input type="submit" class="details-wish wish" title="Add Your Wishlist" value="add to wish">
-                                <input type="hidden" value="{{product.id}}" name="productid">
-                            </form>
-                            <a class="details-compare" href="compare.html" title="Compare This Item">
-                                <i class="fas fa-random"></i>
-                                <span>Compare This</span>
-                            </a>
+                            <button id="addToFavBtn" class="details-wish wish {% if product in user.Profile.favorites.all %}active{% endif %}" data-id="{{product.id}}" title="Add Your Wishlist">
+                                <i class="icofont-heart"></i>
+                                <span>add to wish</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -272,7 +269,9 @@
                                     <a href="product-video.html">{{product}}</a>
                                 </h6>
                                 <h6 class="product-price">
-                                    <del>$34</del>
+                                    {% if product.price_before_discount %}
+                                        <del>${{product.price_before_discount}}</del>
+                                    {% endif %}
                                     <span>${{product.price}}<small>/piece</small></span>
                                 </h6>
                                 <button class="product-add" title="Add to Cart">
@@ -325,6 +324,33 @@
                     }
                 })
             })
+
+            $(document).on('click', '#addToFavBtn', function(e){
+                const productId = $(this).data('id');
+                const clickedBtn = $(this);
+
+                $.ajax({
+                    method : 'POST' ,
+                    url : '/products/add_to_wish/' ,
+                    data : {'productid':productId , 'csrfmiddlewaretoken': "{{csrf_token}}"},
+                    dataType :'json',
+                    success : function(response){
+                        if (response['result']) {
+                            $(clickedBtn).addClass('active');
+                        } else {
+                            $(clickedBtn).removeClass('active');
+                        }
+                        
+                        let favoritesCount = response['favorites_count'] <= 9 ? response['favorites_count'] : '9+';
+                        $('#favoritesCount').text(favoritesCount);
+                    },
+                    error : function(err){
+                        console.log(err);
+                    }
+                })
+            })
+
+
             $(document).on('submit', '#addToCartForm', function(e){
                 e.preventDefault();
                 $.ajax({
