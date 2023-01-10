@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import CartOrder, CartOrderDetail, Order, Coupon
+from accounts.models import UserPhoneNumber, UserAdress
 from django.contrib.auth.decorators import login_required
 from products.models import Product
 from django.shortcuts import get_object_or_404
@@ -86,6 +87,8 @@ def checkout_page(request):
                 html = render_to_string('include/total.html', {'sub_total':sub_total, 'delivery_fee':delivery_fee, 'discount_value':discount_value, 'total':total, 'coupon_code':coupon_code, request:request})
                 return JsonResponse({'result':html})
 
+    numbers = UserPhoneNumber.objects.filter(user=request.user)
+    user_adress = UserAdress.objects.filter(user=request.user)
 
 
     context = {
@@ -94,5 +97,7 @@ def checkout_page(request):
         'delivery_fee':delivery_fee,
         'discount_value':discount_value,
         'total':total,
+        'numbers':numbers,
+        'user_adress':user_adress,
     }
     return render(request, 'orders/checkout.html', context)

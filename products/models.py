@@ -44,8 +44,7 @@ class Product(models.Model):
 
     class Meta:
         ordering = ('-pk',)
-
-
+        
     def get_avg_reviews(self):
         avg = self.product_review.aggregate(myavg=Avg('rate'))
         return avg
