@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-10 11:16+0200\n"
+"POT-Creation-Date: 2023-01-10 11:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -449,79 +449,68 @@ msgid "join here"
 msgstr "انضم هنا"
 
 #: .\templates\base.html:758
-#, python-format
 msgid "Get 20%% Discount for Subscriber"
-msgstr ""
+msgstr "الحصول على 20% خصم للمشتركين"
 
 #: .\templates\base.html:764
 msgid "Enter Your Email Address"
-msgstr ""
+msgstr "ادخل بريدك الالكتروني"
 
 #: .\templates\base.html:766
 msgid "Subscribe"
-msgstr ""
+msgstr "إشتراك"
 
 #: .\templates\base.html:789
 msgid "free home delivery"
-msgstr ""
+msgstr "توصيل مجاني للمنزل"
 
 #: .\templates\base.html:800
 msgid "instant return policy"
-msgstr ""
+msgstr "سياسة الإرجاع الفوري"
 
 #: .\templates\base.html:811
 msgid "quick support system"
-msgstr ""
+msgstr "نظام دعم سريع"
 
 #: .\templates\base.html:822
 msgid "secure payment way"
-msgstr ""
+msgstr "طريقة دفع آمنة"
 
 #: .\templates\base.html:893
 msgid "quick Links"
-msgstr ""
+msgstr "روابط سريعة"
 
 #: .\templates\base.html:897
-#, fuzzy
-#| msgid "Orders"
 msgid "Order History"
-msgstr "الطلبات"
+msgstr "سجل الطلبات"
 
 #: .\templates\base.html:898
-#, fuzzy
-#| msgid "Order Time"
 msgid "Order Tracking"
-msgstr "وقت الاوردر"
+msgstr "تتبع الطلب"
 
 #: .\templates\base.html:899
 msgid "Best Seller"
-msgstr ""
+msgstr "الأكثر مبيعا"
 
-#: .\templates\base.html:900
-msgid "New Arrivals"
-msgstr ""
+#: .\templates\base.html:902
+msgid "Location"
+msgstr "الموقع"
 
 #: .\templates\base.html:903
-msgid "Location"
-msgstr ""
+msgid "Affiliates"
+msgstr "الشركات التابعة"
 
 #: .\templates\base.html:904
-msgid "Affiliates"
-msgstr ""
-
-#: .\templates\base.html:905
-#, fuzzy
-#| msgid "contact us"
 msgid "Contact"
 msgstr "تواصل معنا"
 
-#: .\templates\base.html:906
+#: .\templates\base.html:905
 msgid "Faq"
-msgstr ""
+msgstr "التعليمات"
 
-#: .\templates\base.html:916
+#: .\templates\base.html:915
 msgid "All Copyrights Reserved by"
-msgstr ""
+msgstr "جميع الحقوق محفوظة لدى"
 
 #: .\templates\include\cart_side.html:7
 msgid "total item"
