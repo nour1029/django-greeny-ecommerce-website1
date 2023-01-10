@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-10 14:23+0200\n"
+"POT-Creation-Date: 2023-01-10 16:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,19 +99,19 @@ msgstr "أصنافنا المميزة"
 msgid "Reviews"
 msgstr "التقييمات"
 
-#: .\home\templates\home\index.html:144
-#: .\products\templates\products\include\extend\product_card.html:46
-msgid "add"
-msgstr "اضف"
-
-#: .\home\templates\home\index.html:148
+#: .\home\templates\home\index.html:142
 #: .\products\templates\products\include\extend\product_card.html:44
 #: .\products\templates\products\include\extend\product_card.html:50
 #: .\products\templates\products\product_detail.html:110
 msgid "Add to Cart"
 msgstr "أضف إلى السلة"
 
-#: .\home\templates\home\index.html:149
+#: .\home\templates\home\index.html:144
+#: .\products\templates\products\include\extend\product_card.html:46
+msgid "add"
+msgstr "اضف"
+
+#: .\home\templates\home\index.html:148 .\home\templates\home\index.html:149
 #: .\products\templates\products\include\extend\product_card.html:51
 #: .\templates\include\cart_side.html:58
 msgid "Proceed to Checkout"
@@ -120,6 +120,26 @@ msgstr "تابع الى الدفع"
 #: .\home\templates\home\index.html:163 .\home\templates\home\index.html:260
 msgid "show more"
 msgstr "عرض المزيد"
+
+#: .\home\templates\home\index.html:182
+msgid "special discount offer for vegetable items"
+msgstr "خصم خاص على الخضروات"
+
+#: .\home\templates\home\index.html:189
+msgid "days"
+msgstr "أيام"
+
+#: .\home\templates\home\index.html:192
+msgid "hours"
+msgstr "ساعات"
+
+#: .\home\templates\home\index.html:195
+msgid "minutes"
+msgstr "دقائق"
+
+#: .\home\templates\home\index.html:198
+msgid "secconds"
+msgstr "ثواني"
 
 #: .\home\templates\home\index.html:213
 msgid "off"
@@ -161,7 +181,7 @@ msgstr "اوردر"
 #: .\orders\templates\orders\checkout.html:54 .\products\models.py:67
 #: .\products\models.py:103
 msgid "Product"
-msgstr "منتج"
+msgstr "المنتج"
 
 #: .\orders\models.py:55 .\orders\models.py:88 .\orders\models.py:99
 msgid "Quantity"
@@ -193,30 +213,24 @@ msgid "Value"
 msgstr "القيمة"
 
 #: .\orders\templates\include\total.html:5
-#, fuzzy
-#| msgid "Sub Title"
 msgid "Sub total"
-msgstr "العنوان الفرعي"
+msgstr ""
 
 #: .\orders\templates\include\total.html:9
-#, fuzzy
-#| msgid "Delivery Time"
 msgid "delivery fee"
-msgstr "موعد التسليم"
+msgstr "مصاريف التوصيل"
 
 #: .\orders\templates\include\total.html:13
 msgid "discount"
-msgstr ""
+msgstr "خصم"
 
 #: .\orders\templates\orders\checkout.html:46
-#, fuzzy
-#| msgid "Order"
 msgid "Your order"
-msgstr "الطلبات"
+msgstr "طلبك"
 
 #: .\orders\templates\orders\checkout.html:53
 msgid "Serial"
-msgstr ""
+msgstr "الرقم"
 
 #: .\orders\templates\orders\checkout.html:55 .\products\models.py:27
 #: .\products\models.py:75 .\products\models.py:91 .\settings\models.py:8
@@ -225,26 +239,20 @@ msgid "Name"
 msgstr "الاسم"
 
 #: .\orders\templates\orders\checkout.html:57
-#, fuzzy
-#| msgid "Brand"
 msgid "brand"
 msgstr "العلامة التجارية"
 
 #: .\orders\templates\orders\checkout.html:58
-#, fuzzy
-#| msgid "Quantity"
 msgid "quantity"
 msgstr "الكمية"
 
 #: .\orders\templates\orders\checkout.html:59
-#, fuzzy
-#| msgid "Location"
 msgid "action"
-msgstr "الموقع"
+msgstr "إجراء"
 
 #: .\orders\templates\orders\checkout.html:73
 msgid "Remove From Cart"
-msgstr ""
+msgstr "إزالة من السلة"
 
 #: .\orders\templates\orders\checkout.html:81
 #: .\templates\include\cart_side.html:52
@@ -252,10 +260,8 @@ msgid "Do you have a coupon code?"
 msgstr "هل لديك كوبون خصم؟"
 
 #: .\orders\templates\orders\checkout.html:83
-#, fuzzy
-#| msgid "Do you have a coupon code?"
 msgid "Enter your coupon code"
-msgstr "هل لديك كوبون خصم؟"
+msgstr "ادخل كوبون خصمك"
 
 #: .\orders\templates\orders\checkout.html:84
 #: .\templates\include\cart_side.html:55
@@ -263,38 +269,30 @@ msgid "apply"
 msgstr "تاكيد"
 
 #: .\orders\templates\orders\checkout.html:96
-#, fuzzy
-#| msgid "contact us"
 msgid "contact number"
-msgstr "تواصل معنا"
+msgstr "رقم الهاتف"
 
 #: .\orders\templates\orders\checkout.html:97
-#, fuzzy
-#| msgid "contact us"
 msgid "edit contacts"
-msgstr "تواصل معنا"
+msgstr "تعديل أرقام الهاتف"
 
 #: .\orders\templates\orders\checkout.html:118
-#, fuzzy
-#| msgid "Delivery Time"
 msgid "delivery address"
-msgstr "موعد التسليم"
+msgstr "عنوان التسليم"
 
 #: .\orders\templates\orders\checkout.html:119
 msgid "edit addresses"
-msgstr ""
+msgstr "تعديل العناوين"
 
 #: .\orders\templates\orders\checkout.html:137
 msgid "By making this purchase you agree to our"
-msgstr ""
+msgstr "بإجراء عملية الشراء تلك انت انت موافق على"
 
 #: .\orders\templates\orders\checkout.html:137
 msgid "Terms and Conditions"
-msgstr ""
+msgstr "الشروط والأحكام"
 
 #: .\orders\templates\orders\checkout.html:140
-#, fuzzy
-#| msgid "Proceed to Checkout"
 msgid "proced to checkout"
 msgstr "تابع الى الدفع"
 
@@ -563,6 +561,8 @@ msgid "join here"
 msgstr "انضم هنا"
 
 #: .\templates\base.html:758
+#, fuzzy, python-format
+#| msgid "Get 20%% Discount for Subscriber"
 msgid "Get 20%% Discount for Subscriber"
 msgstr "الحصول على 20% خصم للمشتركين"
 
