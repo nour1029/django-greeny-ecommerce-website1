@@ -150,6 +150,12 @@ $('.product-add-to-cart').on('click', function(){
     productAdd.css('display', 'flex');
 });
 
+// $('.product-add').on('click', function(){
+//     var productAdd = $(this).next('.product-action');
+
+//     $(this).hide();
+//     productAdd.css('display', 'flex');
+// });
 
 //========================================
 //      INCREMENT PRODUCT QUANTITY
