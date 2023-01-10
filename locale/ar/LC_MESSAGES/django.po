@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-10 10:49+0200\n"
+"POT-Creation-Date: 2023-01-10 11:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,10 +88,8 @@ msgstr "أصنافنا المميزة"
 
 #: .\home\templates\home\index.html:126
 #: .\products\templates\products\include\reviews.html:4
-#, fuzzy
-#| msgid "Review"
 msgid "Reviews"
-msgstr "مراجعة"
+msgstr "التقييمات"
 
 #: .\home\templates\home\index.html:141
 #: .\products\templates\products\include\extend\product_card.html:46
@@ -121,10 +119,8 @@ msgid "collected new items"
 msgstr "اصناف مجمعة جديدة"
 
 #: .\home\templates\home\index.html:2540
-#, fuzzy
-#| msgid "new items"
 msgid "items"
-msgstr "الأصناف جديدة"
+msgstr "اصناف"
 
 #: .\home\templates\home\index.html:2550
 msgid "view all brands"
@@ -250,70 +246,60 @@ msgid "BRAND"
 msgstr "العلامة التجارية"
 
 #: .\products\templates\products\product_detail.html:75
-#, fuzzy
-#| msgid "Review"
 msgid "reviews"
-msgstr "مراجعة"
+msgstr "تقييم"
 
 #: .\products\templates\products\product_detail.html:86
 msgid "tags"
-msgstr ""
+msgstr "كلمات مفتاحية"
 
 #: .\products\templates\products\product_detail.html:94
 msgid "Share"
-msgstr ""
+msgstr "مشاركة"
 
 #: .\products\templates\products\product_detail.html:112
-#, fuzzy
-#| msgid "Add to Cart"
 msgid "add to cart"
 msgstr "أضف إلى السلة"
 
 #: .\products\templates\products\product_detail.html:117
-#, fuzzy
-#| msgid "Quantity"
 msgid "Quantity Minus"
-msgstr "الكمية"
+msgstr "تنقيص الكمية"
 
 #: .\products\templates\products\product_detail.html:118
-#, fuzzy
-#| msgid "Quantity"
 msgid "Quantity Number"
 msgstr "الكمية"
 
 #: .\products\templates\products\product_detail.html:119
-#, fuzzy
-#| msgid "Quantity"
 msgid "Quantity Plus"
-msgstr "الكمية"
+msgstr "زيادة الكمية"
+
+#: .\products\templates\products\product_detail.html:126
+msgid "Add Your Wishlist"
+msgstr "اضف الى قائمة المفضلة"
 
 #: .\products\templates\products\product_detail.html:128
 msgid "add to wish"
-msgstr ""
+msgstr "اضافة الى المفضلة"
 
 #: .\products\templates\products\product_detail.html:160
 msgid "add your review"
-msgstr ""
+msgstr "اضف تقييمك"
 
 #: .\products\templates\products\product_detail.html:175
 msgid "descripe your review"
-msgstr ""
+msgstr "صف تقييمك"
 
 #: .\products\templates\products\product_detail.html:181
 msgid "drop your review"
-msgstr ""
+msgstr "اضافة"
 
 #: .\products\templates\products\product_detail.html:204
-#, fuzzy
-#| msgid "our featured items"
 msgid "related this items"
-msgstr "أصنافنا المميزة"
+msgstr "اصناف ذات صلة"
 
 #: .\products\templates\products\product_list.html:33
-#, fuzzy
-#| msgid "Unit Price"
 msgid "Filter by Price"
-msgstr "سعر القطعة"
+msgstr "الفلترة بالسعر"
 
 #: .\products\templates\products\product_list.html:36
 msgid "Min"

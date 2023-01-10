@@ -43,7 +43,7 @@
                 <div class="col-lg-6">
                     <div class="details-gallery">
                         <div class="details-label-group">
-                            <label class="details-label {% if product.flag == "New" %}new{% elif  product.flag == "Featured" %}feat{% endif %}">{{product.flag}}</label>
+                            <label class="details-label {% if product.flag == "New" %}new{% elif  product.flag == "Featured" %}feat{% endif %}">{% translate product.flag %}</label>
                             {% comment %} <label class="details-label off">-10%</label> {% endcomment %}
                         </div>
                         <ul class="details-preview"> 
@@ -121,7 +121,7 @@
                             </form>
                         </div>
                         <div class="details-action-group">
-                            <button id="addToFavBtn" class="details-wish wish {% if product in user.Profile.favorites.all %}active{% endif %}" data-id="{{product.id}}" title="Add Your Wishlist">
+                            <button id="addToFavBtn" class="details-wish wish {% if product in user.Profile.favorites.all %}active{% endif %}" data-id="{{product.id}}" title="{% translate "Add Your Wishlist" %}">
                                 <i class="icofont-heart"></i>
                                 <span>{% translate "add to wish" %}</span>
                             </button>
