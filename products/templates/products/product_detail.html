@@ -71,7 +71,7 @@
                             <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "3" %} active {% endif %} icofont-star"></i>
                             <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "4" %} active {% endif %} icofont-star"></i>
                             <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" == "5" %} active {% endif %}icofont-star"></i>
-                            <a id="rCount" href="#reviews-section">(<span id="reviewsCount">{{product.product_review.all|length}}</span> reviews)</a>
+                            <a href="#reviews-section">(<span id="reviewsCount">{{product.product_review.all|length}}</span> {% translate "reviews" %})</a>
                         </div>
                         <h3 class="details-price">
                             {% if product.price_before_discount %}
@@ -81,7 +81,7 @@
                         </h3>
                         {% comment %} <p class="details-desc">{{product.desc|safe|truncatewords:20}}</p> {% endcomment %}
                         <div class="details-list-group">
-                            <label class="details-list-title">tags:</label>
+                            <label class="details-list-title">{% translate "tags" %}:</label>
                             <ul class="details-tag-list">
                                 {% for tag in product.tags.all %}
                                     <li><a href="#">{{tag}}</a></li>
@@ -89,7 +89,7 @@
                             </ul>
                         </div>
                         <div class="details-list-group">
-                            <label class="details-list-title">Share:</label>
+                            <label class="details-list-title">{% translate "Share" %}:</label>
                             <ul class="details-share-list">
                                 <li><a href="#" class="icofont-facebook" title="Facebook"></a></li>
                                 <li><a href="#" class="icofont-twitter" title="Twitter"></a></li>
@@ -105,16 +105,16 @@
                                 <input type="hidden" value="{{product.id}}" name="productid">
                                 <div class="row">
                                     <div class="col-6">
-                                        <button class="product-add myinput" title="Add to Cart">
+                                        <button class="product-add myinput" title="{% translate "Add to Cart" %}">
                                             <i class="fas fa-shopping-basket"></i>
-                                            <span>add to cart</span>
+                                            <span>{% translate "add to cart" %}</span>
                                         </button>
                                     </div>
                                     <div class="col-6">
                                         <div class="product-action" style="display: flex;">
-                                            <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                            <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
-                                            <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                                            <button class="action-minus" title="{% translate "Quantity Minus" %}"><i class="icofont-minus"></i></button>
+                                            <input class="action-input" title="{% translate "Quantity Number" %}" type="text" name="quantity" value="1">
+                                            <button class="action-plus" title="{% translate "Quantity Plus" %}"><i class="icofont-plus"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@
                         <div class="details-action-group">
                             <button id="addToFavBtn" class="details-wish wish {% if product in user.Profile.favorites.all %}active{% endif %}" data-id="{{product.id}}" title="Add Your Wishlist">
                                 <i class="icofont-heart"></i>
-                                <span>add to wish</span>
+                                <span>{% translate "add to wish" %}</span>
                             </button>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="product-details-frame">
-                        <h3 class="frame-title">Description</h3>
+                        <h3 class="frame-title">{% translate "Description" %}</h3>
                         <div class="tab-descrip">
                             <p>{{product.desc|safe}}</p>
                         </div>
@@ -155,7 +155,7 @@
                         </div>
                     </div>
                     <div class="product-details-frame">
-                        <h3 class="frame-title">add your review</h3>
+                        <h3 class="frame-title">{% translate "add your review" %}</h3>
                         <form class="review-form" id="review-form" method="post" action="{% url 'products:add_review' product.slug %}">
                             {% csrf_token %}
                             <div class="row">
@@ -170,13 +170,13 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="review" placeholder="Describe"></textarea>
+                                        <textarea class="form-control" name="review" placeholder="{% translate "descripe your review" %}"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <button class="btn btn-inline" type="submit">
                                         <i class="icofont-water-drop"></i>
-                                        <span>drop your review</span>
+                                        <span>{% translate "drop your review" %}</span>
                                     </button>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@
             <div class="row">
                 <div class="col">
                     <div class="section-heading">
-                        <h2>related this items</h2>
+                        <h2>{% translate "related this items" %}</h2>
                     </div>
                 </div>
             </div>
@@ -209,16 +209,6 @@
                         {% include 'products/include/extend/product_card.html' %}
                     </div>
                 {% endfor %}
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-btn-25">
-                        <a href="shop-4column.html" class="btn btn-outline">
-                            <i class="fas fa-eye"></i>
-                            <span>view all related</span>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
