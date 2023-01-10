@@ -164,9 +164,10 @@ def add_review(request,slug):
             myform.save()
 
             reviews = Review.objects.filter(product=product)
-    
-            html = render_to_string('products/include/reviews.html', {'reviews':reviews, request:request}) # Render context data on page and returns html text
-            return JsonResponse({'result' : html})
+            reviews_count = reviews.count()
+
+            html = render_to_string('products/include/reviews.html', {'reviews':reviews}) # Render context data on page and returns html text
+            return JsonResponse({'result' : html, 'reviews_count':reviews_count})
 
 
 @login_required
