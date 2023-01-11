@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 
 {% block body %}
     <!--=====================================
@@ -28,53 +28,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-scroll">
-                        <table class="table-list">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Serial</th>
-                                    <th scope="col">Product</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">description</th>
-                                    <th scope="col">status</th>
-                                    <th scope="col">shopping</th>
-                                    <th scope="col">action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for product in profile.favorites.all %}
-                                    <tr>
-                                        <td class="table-serial"><h6>01</h6></td>
-                                        <td class="table-image"><img src="{{product.image.url}}" alt="product"></td>
-                                        <td class="table-name"><h6>{{product}}</h6></td>
-                                        <td class="table-price"><h6>${{product.price}}<small>/kilo</small></h6></td>
-                                        <td class="table-desc"><p>{{product.desc|safe|truncatewords:7}}<a href="{% url 'products:product_detail' product.slug %}">read more</a></p></td>
-                                        {% if product.quantity >= 1 %}
-                                            <td class="table-status"><h6 class="stock-in">stock in</h6></td>
-                                        {% else %}
-                                            <td class="table-status"><h6 class="stock-out">stock out</h6></td>
-                                        {% endif %}
-                                        <td class="table-shop">
-                                            <button class="product-add" title="Add to Cart">add to cart</button>
-                                            <div class="product-action">
-                                                <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                                <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
-                                                <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                                            </div>
-                                        </td>
-                                        <td class="table-action">
-                                            <a class="view" href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#product-view"><i class="fas fa-eye"></i></a>
-                                            <a class="trash" href="#" title="Remove Wishlist"><i class="icofont-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-
-                            </tbody>
-                        </table>
+                        <div id="tableList">
+                            {% include "include/real-time/wishlist-tablelist.html" %}
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            {% comment %} <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center mt-5">
                         <button class="btn btn-outline">
@@ -82,10 +42,39 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> {% endcomment %}
         </div>
     </section>
     <!--=====================================
                 WISHLIST PART END
     =======================================-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+
+
+        $(document).ready(function(e){
+            $('#tableList').on('click', '.remove-from-wishlist', function(e){
+                e.preventDefault()
+                console.log('clicked')
+                const productId = $(this).data('id');
+                const csrftoken = getCookie('csrftoken');
+
+                $.ajax({
+                    type:'post',
+                    url: `/products/remove_from_wish/`,
+                    data: {'productId':productId} ,
+                    headers:{"X-CSRFToken": csrftoken }, // HERE: add it to the request header
+                    dataType: 'json',
+                    success:function(response){
+                        $('#tableList').html(response['result'])
+                    },
+                    error:function(err){
+                        console.log(err)
+                    }
+                })
+            })  
+        })
+    </script>
 {% endblock body %}

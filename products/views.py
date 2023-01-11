@@ -186,3 +186,14 @@ def add_to_favorites(request):
     profile = Profile.objects.get(user=request.user)
 
     return JsonResponse({'result':liked, 'favorites_count':profile.get_favorites_count()})
+
+
+@login_required
+def remove_from_wishlist(request):
+    prodcut_id = request.POST['productId']
+    product = Product.objects.get(id=prodcut_id)
+
+    request.user.Profile.favorites.remove(product)
+
+    html = render_to_string('include/real-time/wishlist-tablelist.html', {}, request=request)
+    return JsonResponse({'result':html})

@@ -72,7 +72,7 @@
     {% block link %}
     {% endblock link %}
 
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+    
     <link rel="stylesheet" href="{% static 'css/user-auth.css' %}" />
     <link rel="stylesheet" href="{% static 'css/brand-single.css' %}" />
 
@@ -101,10 +101,11 @@
             <div class="header-top-select">
               <div class="header-select">
                 <i class="icofont-world"></i>
+                {% comment %} {% if LANGUAGE_CODE == 'ar' %}{% endif %} {% endcomment %}
+
                 <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}">
                     <select name="language" class="select">
-                        {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
                         {% for language in languages %}
@@ -115,14 +116,6 @@
                     </select>
                     <input type="submit" value="Go">
                 </form>
-              </div>
-              <div class="header-select">
-                <i class="icofont-money"></i>
-                <select class="select">
-                  <option value="english" selected>doller</option>
-                  <option value="bangali">pound</option>
-                  <option value="arabic">taka</option>
-                </select>
               </div>
             </div>
           </div>

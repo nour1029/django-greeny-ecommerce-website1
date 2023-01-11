@@ -1,4 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block link %}
+    {% if LANGUAGE_CODE == 'ar' %}
+        <link rel="stylesheet" href="{% static 'rtl_static/css/profile.css' %}" />
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+    {% endif %}
+{% endblock link %}
+
 
 {% block body %}
         <!--=====================================
@@ -26,8 +38,8 @@
                     <div class="col-lg-12">
                         <div class="account-card">
                             <div class="account-title">
-                                <h4>Your Profile</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#profile-edit">edit profile</button>
+                                <h4>{% translate "Your Profile" %}</h4>
+                                <button data-bs-toggle="modal" data-bs-target="#profile-edit">{% trans "edit profile" %}</button>
                             </div>
                             <div class="account-content">
                                 <div class="row">
@@ -41,14 +53,10 @@
                                         <h4>Nour Mohamed</h4>
                                     </div>
                                     <div class="col-md-6 col-lg-4">
-                                        <!-- <div class="form-group">
-                                            <label class="form-label">Email</label>
-                                            <input class="form-control" type="email" value="{{profile.user.email}}">
-                                        </div> -->
                                     </div>
                                     <div class="col-lg-2">
                                         <div class="profile-btn">
-                                            <a href="change-password.html">change pass.</a>
+                                            <a href="change-password.html">{% translate "change pass." %}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -58,8 +66,8 @@
                     <div class="col-lg-12">
                         <div class="account-card">
                             <div class="account-title">
-                                <h4>contact number</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#contact-add">add contact</button>
+                                <h4>{% translate "contact numbers" %}</h4>
+                                <button data-bs-toggle="modal" data-bs-target="#contact-add">{% translate "add contact" %}</button>
                             </div>
                             <div id="contactNumbersSection">
                                 {% include "include/real-time/contact_numbers_section.html" %}
@@ -69,8 +77,8 @@
                     <div class="col-lg-12">
                         <div class="account-card">
                             <div class="account-title">
-                                <h4>delivery address</h4>
-                                <button data-bs-toggle="modal" data-bs-target="#address-add">add address</button>
+                                <h4>{% translate "delivery addresses" %}</h4>
+                                <button data-bs-toggle="modal" data-bs-target="#address-add">{% translate "add address" %}</button>
                             </div>
                             <div id="addressesSection">
                                 {% include "include/real-time/addresses_section.html" %}
@@ -95,23 +103,23 @@
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
                     <form class="modal-form" id="contactAddForm" method="post" action="{% url 'accounts:add_profile_number' %}">
                         <div class="form-title">
-                            <h3>add new contact</h3>
+                            <h3>{% translate "add new contact" %}</h3>
                         </div>
                         <div class="form-group">
-                            <label  class="form-label">title</label>
+                            <label  class="form-label">{% translate "title" %}</label>
                             <select required name="type" class="form-select">
-                                <option selected value="">choose type</option>
-                                <option value="Home">home</option>
-                                <option value="Bussiness">bussiness</option>
-                                <option value="Office">office</option>
-                                <option value="Others">others</option>
+                                <option selected value="">{% translate "choose type" %}</option>
+                                <option value="Home">{% translate "home" %}</option>
+                                <option value="Bussiness">{% translate "bussiness" %}</option>
+                                <option value="Office">{% translate "office" %}</option>
+                                <option value="Others">{% trans "others" %}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">number</label>
-                            <input class="form-control" type="text" name="phone_number" required placeholder="Enter your number">
+                            <label class="form-label">{% translate "number" %}</label>
+                            <input class="form-control" type="text" name="phone_number" required placeholder="{% trans "Enter your number" %}">
                         </div>
-                        <button class="form-btn" type="submit">save contact info</button>
+                        <button class="form-btn" type="submit">{% trans "save contact info" %}</button>
                     </form>
                 </div> 
             </div> 
@@ -124,74 +132,55 @@
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
                     <form class="modal-form" id="addressAddForm" method="post" action="{% url 'accounts:add_profile_address' %}">
                         <div class="form-title">
-                            <h3>add new address</h3>
+                            <h3>{% translate "add new address" %}</h3>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">title</label>
+                            <label class="form-label">{% trans "title" %}</label>
                             <select required name="type" class="form-select">
-                                <option selected>choose type</option>
-                                <option value="Home">Home</option>
-                                <option value="Bussiness">Bussiness</option>
-                                <option value="Office">Office</option>
-                                <option value="Others">Others</option>
+                                <option selected>{% trans "choose type" %}</option>
+                                <option value="Home">{% translate "Home" %}</option>
+                                <option value="Bussiness">{% trans "Bussiness" %}</option>
+                                <option value="Office">{% trans "Office" %}</option>
+                                <option value="Others">{% trans "Others" %}</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">country</label>
+                            <label class="form-label">{% translate "country" %}</label>
                             <select required name="country" class="form-select">
-                                <option selected>choose type</option>
+                                <option selected>{% trans "choose type" %}</option>
                                 {% for country in country_list %}
                                     <option value="{{country.id}}">{{country}}</option>
                                 {% endfor %}
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">city</label>
+                            <label class="form-label">{% trans "city" %}</label>
                             <select required name="city" class="form-select">
-                                <option selected>choose type</option>
+                                <option selected>{% trans "choose type" %}</option>
                                 {% for city in city_list %}
                                     <option value="{{city.id}}">{{city}}</option>
                                 {% endfor %}
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">state</label>
+                            <label class="form-label">{% trans "state" %}</label>
                             <input required id="" class="form-control" name="state" type="text">
                             
                         </div>
                         <div class="form-group">
-                            <label class="form-label">region</label>
+                            <label class="form-label">{% trans "region" %}</label>
                             <input required id="" class="form-control" name="region" type="text">
                             
                         </div>
                         <div class="form-group">
-                            <label class="form-label">street</label>
+                            <label class="form-label">{% trans "street" %}</label>
                             <input required id="" class="form-control" name="street" type="text">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">notes</label>
+                            <label class="form-label">{% trans "notes" %}</label>
                             <textarea class="form-control" name="notes"></textarea>
                         </div>
-                        <button class="form-btn" type="submit">save address info</button>
-                    </form>
-                </div> 
-            </div> 
-        </div>
-
-        <!-- payment add form -->
-        <div class="modal fade" id="payment-add">
-            <div class="modal-dialog modal-dialog-centered"> 
-                <div class="modal-content">
-                    <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
-                        <div class="form-title">
-                            <h3>add new payment</h3>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">card number</label>
-                            <input class="form-control" type="text" placeholder="Enter your card number">
-                        </div>
-                        <button class="form-btn" type="submit">save card info</button>
+                        <button class="form-btn" type="submit">{% trans "save address info" %}</button>
                     </form>
                 </div> 
             </div> 

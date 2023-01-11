@@ -31,7 +31,7 @@
   --body: #f5f6f7;
   --border: #e8e8e8;
   --heading: #39404a;
-  --primary: #4e9eff;
+  --primary: #2c87f7;
   --sub-heading: #565765;
   --green-chalk: #ddffd5;
   --green-dark: #072f17;
@@ -3375,7 +3375,7 @@ tbody tr td:last-child {
   white-space: nowrap;
   text-transform: capitalize;
   color: var(--primary);
-  background: var(--green-chalk);
+  background: #d3fffe;
   text-shadow: var(--primary-tshadow);
   transition: all linear .3s;
   -webkit-transition: all linear .3s;
@@ -3490,7 +3490,7 @@ tbody tr td:last-child {
 }
 
 .profile-card.active {
-  background: var(--green-chalk);
+  background: #d3fffe;
   border-color: var(--primary);
 }
 

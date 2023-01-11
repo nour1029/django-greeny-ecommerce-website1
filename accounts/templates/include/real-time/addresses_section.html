@@ -1,10 +1,12 @@
+{% load i18n %}
+
 <div class="account-content">
     <div class="row">
         {% for address in user_adress %}
             <div class="col-md-6 col-lg-4 alert fade show">
                 <div class="profile-card address  {% if address.active %}active{% endif %}" data-id='{{address.id}}'>
                     <h6>{{address.type}}</h6>
-                    <p>{{address.country}}, {{address.city}}, {{address.state}}. {{address.region}}, {{address.street}}, {{address.notes}}</p>
+                    <p>{{address.country}}, {{address.city}}, {{address.state}}. {{address.region}}, {{address.street}}</p>
                     <ul class="user-action">
                         <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit-{{address.id}}"></button></li>
                         <li><button class="trash icofont-ui-delete delete-btn" title="Remove This" data-bs-dismiss="alert"></button></li>
@@ -20,10 +22,10 @@
                         <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
                         <form class="modal-form">
                             <div class="form-title">
-                                <h3>edit address info</h3>
+                                <h3>{% translate "edit address info" %}</h3>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">title</label>
+                                <label class="form-label">{% translate "title" %}</label>
                                 <select class="form-select">
                                     <option value="home" {% if address.type == 'Home' %}selected{% endif %}>home</option>
                                     <option value="bussiness" {% if address.type == 'Bussiness' %}selected{% endif %}>bussiness</option>
@@ -32,10 +34,10 @@
                                 </select>        
                             </div>
                             <div class="form-group">
-                                <label class="form-label">address</label>
+                                <label class="form-label">{% translate "address" %}</label>
                                 <textarea class="form-control" placeholder="jalkuri, fatullah, narayanganj-1420. word no-09, road no-17/A"></textarea>
                             </div>
-                            <button class="form-btn" type="submit">save address info</button>
+                            <button class="form-btn" type="submit">{% translate "save address info" %}</button>
                         </form>
                     </div> 
                 </div> 
