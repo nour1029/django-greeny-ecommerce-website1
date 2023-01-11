@@ -3,9 +3,17 @@
 {% load i18n %}
 
 
+
+{% block link %}
+  {% if LANGUAGE_CODE == 'en' %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+  {% else %}
+    <link rel="stylesheet" href="{% static 'rtl_static/css/index.css' %}"/>
+  {% endif %}
+  
+{% endblock link %}
+
 {% block body %}
-
-
 <!--=====================================
                 BANNER PART START
     =======================================-->
@@ -437,6 +445,5 @@
       })
       
   </script>
-
-
+  
 {% endblock body %}

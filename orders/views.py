@@ -101,3 +101,10 @@ def checkout_page(request):
         'user_adress':user_adress,
     }
     return render(request, 'orders/checkout.html', context)
+
+
+
+def invoice(requset, pk):
+    order = Order.objects.get(pk=pk)
+    context = {'order':order}
+    return render(requset, 'orders/invoice.html', context)
