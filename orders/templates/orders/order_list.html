@@ -3,7 +3,12 @@
 {% load i18n %}
 
 {% block link %}
-    <link rel="stylesheet" href="{% static 'css/orderlist.css' %}">
+    {% if LANGUAGE_CODE == 'ar' %}
+        <link rel="stylesheet" href="{% static 'rtl_static/css/orderlist.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/orderlist.css' %}">
+    {% endif %}
+    
 {% endblock link %}
 
 {% block body %}
@@ -33,16 +38,6 @@
                 <div class="col-lg-12">
                     <div class="orderlist-filter">
                         <h5>{% translate "total order" %} <span>- ({{orders|length}})</span></h5>
-                        <div class="filter-short">
-                            <label class="form-label">sort by:</label>
-                            <select class="form-select">
-                                <option value="all" selected>all order</option>
-                                <option value="recieved">recieved order</option>
-                                <option value="processed">processed order</option>
-                                <option value="shipped">shipped order</option>
-                                <option value="delivered">delivered order</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -52,7 +47,7 @@
                         <div class="orderlist">
                             <div class="orderlist-head">
                                 <h5>{% translate "order" %}#{{forloop.counter|stringformat:"02d"}}</h5>
-                                <h5>order {{order.order_status}}</h5>
+                                <h5>{% translate  order.order_status %}</h5>
                             </div>
                             <div class="orderlist-body">
                                 <div class="row">
@@ -61,19 +56,19 @@
                                             <ul class="order-track-list">
                                                 <li class="order-track-item {% if order.order_status == 'Recieved' or  order.order_status == 'Processed' or  order.order_status == 'Shipped' or  order.order_status == 'Delivered' %}active{% endif %}">
                                                     <i class="icofont-{% if order.order_status == 'Recieved' or  order.order_status == 'Processed' or  order.order_status == 'Shipped' or  order.order_status == 'Delivered' %}check{% endif %}"></i>
-                                                    <span>order recieved</span>
+                                                    <span>{% translate "order received" %}</span>
                                                 </li>
                                                 <li class="order-track-item {% if order.order_status == "Processed" or order.order_status == "Shipped" or order.order_status == "Delivered" %} active {% endif %}">
                                                     <i class="icofont-{% if order.order_status == "Processed" or order.order_status == "Shipped" or order.order_status == "Delivered" %}check{% else %}close{% endif %}"></i>
-                                                    <span>order processed</span>
+                                                    <span>{% translate "order processed" %}</span>
                                                 </li>
                                                 <li class="order-track-item {% if order.order_status == "Shipped" or order.order_status == "Delivered" %}active{% endif %}">
                                                     <i class="icofont-{% if order.order_status == "Shipped" or order.order_status == "Delivered" %}check{% else %}close{% endif %}"></i>
-                                                    <span>order shipped</span>
+                                                    <span>{% translate "order shipped" %}</span>
                                                 </li>
                                                 <li class="order-track-item {% if order.order_status == 'Delivered' %}active{% endif %}">
                                                     <i class="icofont-{% if order.order_status == 'Delivered' %}check{% else %}close{% endif %}"></i>
-                                                    <span>order delivered</span>
+                                                    <span>{% translate "order delivered" %}</span>
                                                 </li>
                                             </ul>
                                         </div>

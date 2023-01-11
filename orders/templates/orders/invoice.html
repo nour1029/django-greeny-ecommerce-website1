@@ -2,9 +2,15 @@
 {% load static %}
 {% load i18n %}
 
+{% get_current_language as LANGUAGE_CODE %}
 
 {% block link %}
-    <link rel="stylesheet" href="{% static 'css/invoice.css' %}">
+    {% if LANGUAGE_CODE == 'ar' %}
+        <link rel="stylesheet" href="{% static 'rtl_static/css/invoice.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/invoice.css' %}">
+    {% endif %}
+    
 {% endblock link %}
 
 {% block body %}

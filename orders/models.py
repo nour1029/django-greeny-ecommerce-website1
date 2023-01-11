@@ -9,10 +9,10 @@ from django.db.models import Count, Sum
 
 
 STATUS_CHOICES = (
-    ('Recieved', 'Recieved'),
-    ('Processed', 'Processed'),
-    ('Shipped', 'Shipped'),
-    ('Delivered', 'Delivered'),
+    ('Recieved', _('Recieved')),
+    ('Processed', _('Processed')),
+    ('Shipped', _('Shipped')),
+    ('Delivered', _('Delivered')),
 )
 
 
