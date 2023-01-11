@@ -1,5 +1,3 @@
-from itertools import product
-from msilib.schema import ListView
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.urls import reverse
