@@ -161,6 +161,33 @@ def add_profile_address(request):
     html = render_to_string('include/real-time/addresses_section.html', {'user_adress':user_addresses})
     return JsonResponse({'result':html})
 
+def edit_profile_address(request):
+    user = request.user
+    pk = request.POST.get('id')
+    type = request.POST.get('type')
+    country_pk = request.POST.get('country')
+    city_pk = request.POST.get('city')
+    state = request.POST.get('state')
+    region = request.POST.get('region')
+    street = request.POST.get('street')
+
+    country = Country.objects.get(pk=country_pk)
+    city = City.objects.get(pk=city_pk)
+
+    address = UserAdress.objects.get(pk=pk, user=user)
+    address.type = type
+    address.country = country
+    address.city = city
+    address.state = state
+    address.region = region
+    address.street = street
+    address.save()
+
+    user_addresses = UserAdress.objects.filter(user=user)
+
+    html = render_to_string('include/real-time/addresses_section.html', {'user_adress':user_addresses})
+    return JsonResponse({'result':html})
+
 
 def wishlist(request):
     profile = Profile.objects.get(user=request.user)

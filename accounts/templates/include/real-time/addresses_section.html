@@ -16,28 +16,62 @@
 
 
             <!-- address edit form -->
-            <div class="modal fade" id="address-edit-{{address.id}}">
+            <div class="modal fade address-edit-modal" id="address-edit-{{address.id}}">
                 <div class="modal-dialog modal-dialog-centered"> 
                     <div class="modal-content">
                         <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                        <form class="modal-form">
+                        <form class="modal-form address-edit-form" method="post" action="{% url 'accounts:edit_profile_address' %}">
                             <div class="form-title">
                                 <h3>{% translate "edit address info" %}</h3>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">{% translate "title" %}</label>
-                                <select class="form-select">
-                                    <option value="home" {% if address.type == 'Home' %}selected{% endif %}>home</option>
-                                    <option value="bussiness" {% if address.type == 'Bussiness' %}selected{% endif %}>bussiness</option>
-                                    <option value="office" {% if address.type == 'Office' %}selected{% endif %}>office</option>
-                                    <option value="others" {% if address.type == 'Others' %}selected{% endif %}>others</option>
-                                </select>        
+                                <label class="form-label">{% trans "title" %}</label>
+                                <select required name="type" class="form-select">
+                                    <option selected>{% trans "choose type" %}</option>
+                                    <option value="Home">{% translate "Home" %}</option>
+                                    <option value="Bussiness">{% trans "Bussiness" %}</option>
+                                    <option value="Office">{% trans "Office" %}</option>
+                                    <option value="Others">{% trans "Others" %}</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">{% translate "address" %}</label>
-                                <textarea class="form-control" placeholder="jalkuri, fatullah, narayanganj-1420. word no-09, road no-17/A"></textarea>
+                                <label class="form-label">{% translate "country" %}</label>
+                                <select required name="country" class="form-select">
+                                    <option selected>{% trans "choose type" %}</option>
+                                    {% for country in country_list %}
+                                        <option value="{{country.id}}">{{country}}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
-                            <button class="form-btn" type="submit">{% translate "save address info" %}</button>
+                            <div class="form-group">
+                                <label class="form-label">{% trans "city" %}</label>
+                                <select required name="city" class="form-select">
+                                    <option selected>{% trans "choose type" %}</option>
+                                    {% for city in city_list %}
+                                        <option value="{{city.id}}">{{city}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">{% trans "state" %}</label>
+                                <input required id="" class="form-control" name="state" type="text">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">{% trans "region" %}</label>
+                                <input required id="" class="form-control" name="region" type="text">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">{% trans "street" %}</label>
+                                <input required id="" class="form-control" name="street" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">{% trans "notes" %}</label>
+                                <textarea class="form-control" name="notes"></textarea>
+                            </div>
+                            <input type="hidden" name="id" value="{{address.id}}">
+                            <button class="form-btn" type="submit">{% trans "save address info" %}</button>
                         </form>
                     </div> 
                 </div> 

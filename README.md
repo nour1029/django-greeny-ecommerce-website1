@@ -16,3 +16,4 @@ Main features :
 - coupon codes
 - multiple images for product
 - real-time add to 
+- mutliple language choices with auto direction switch between LTR and RTL
