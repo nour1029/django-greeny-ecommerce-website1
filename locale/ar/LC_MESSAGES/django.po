@@ -75,30 +75,22 @@ msgid "Notes"
 msgstr "ملاحظات"
 
 #: .\accounts\templates\include\real-time\addresses_section.html:25
-#, fuzzy
-#| msgid "edit addresses"
 msgid "edit address info"
-msgstr "تعديل العناوين"
+msgstr "تعديل العنوان"
 
 #: .\accounts\templates\include\real-time\addresses_section.html:28
 #: .\accounts\templates\profile.html:109 .\accounts\templates\profile.html:138
-#, fuzzy
-#| msgid "Title"
 msgid "title"
 msgstr "العنوان"
 
 #: .\accounts\templates\include\real-time\addresses_section.html:37
-#, fuzzy
-#| msgid "Address"
 msgid "address"
 msgstr "العنوان"
 
 #: .\accounts\templates\include\real-time\addresses_section.html:40
 #: .\accounts\templates\profile.html:183
-#, fuzzy
-#| msgid "delivery address"
 msgid "save address info"
-msgstr "عنوان التسليم"
+msgstr "حفظ العنوان"
 
 #: .\accounts\templates\profile.html:41
 msgid "Your Profile"

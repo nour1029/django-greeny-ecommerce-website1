@@ -27,48 +27,48 @@
                             <div class="form-group">
                                 <label class="form-label">{% trans "title" %}</label>
                                 <select required name="type" class="form-select">
-                                    <option selected>{% trans "choose type" %}</option>
-                                    <option value="Home">{% translate "Home" %}</option>
-                                    <option value="Bussiness">{% trans "Bussiness" %}</option>
-                                    <option value="Office">{% trans "Office" %}</option>
-                                    <option value="Others">{% trans "Others" %}</option>
+                                    <option value="">{% trans "choose type" %}</option>
+                                    <option value="Home" {% if address.type == 'Home' %}selected{% endif %}>{% translate "Home" %}</option>
+                                    <option value="Bussiness" {% if address.type == 'Bussiness' %}selected{% endif %}>{% trans "Bussiness" %}</option>
+                                    <option value="Office" {% if address.type == 'Office' %}selected{% endif %}>{% trans "Office" %}</option>
+                                    <option value="Others" {% if address.type == 'Others' %}selected{% endif %}>{% trans "Others" %}</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">{% translate "country" %}</label>
                                 <select required name="country" class="form-select">
-                                    <option selected>{% trans "choose type" %}</option>
+                                    <option value="">{% trans "choose type" %}</option>
                                     {% for country in country_list %}
-                                        <option value="{{country.id}}">{{country}}</option>
+                                        <option {% if address.country == country %}selected{% endif %} value="{{country.id}}">{{country}}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">{% trans "city" %}</label>
                                 <select required name="city" class="form-select">
-                                    <option selected>{% trans "choose type" %}</option>
+                                    <option value="">{% trans "choose type" %}</option>
                                     {% for city in city_list %}
-                                        <option value="{{city.id}}">{{city}}</option>
+                                        <option {% if address.city == city %}selected{% endif %} value="{{city.id}}">{{city}}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="form-label">{% trans "state" %}</label>
-                                <input required id="" class="form-control" name="state" type="text">
+                                <input required id="" class="form-control" name="state" type="text" value="{{address.state}}">
                                 
                             </div>
                             <div class="form-group">
                                 <label class="form-label">{% trans "region" %}</label>
-                                <input required id="" class="form-control" name="region" type="text">
+                                <input required id="" class="form-control" name="region" type="text" value="{{address.region}}">
                                 
                             </div>
                             <div class="form-group">
                                 <label class="form-label">{% trans "street" %}</label>
-                                <input required id="" class="form-control" name="street" type="text">
+                                <input required id="" class="form-control" name="street" type="text" value="{{address.street}}">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">{% trans "notes" %}</label>
-                                <textarea class="form-control" name="notes"></textarea>
+                                <textarea class="form-control" name="notes" value="{{address.notes}}"></textarea>
                             </div>
                             <input type="hidden" name="id" value="{{address.id}}">
                             <button class="form-btn" type="submit">{% trans "save address info" %}</button>
