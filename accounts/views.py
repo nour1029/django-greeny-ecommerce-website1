@@ -1,5 +1,3 @@
-from multiprocessing import context
-import re
 from django.shortcuts import render, redirect
 from .forms import SignupForm, UserActivateForm, UserAdressForm
 from .models import Profile, UserAdress, UserPhoneNumber
@@ -92,6 +90,7 @@ def edit_profile(request):
         address.save()
         return JsonResponse({'result':'success'})
 
+@login_required
 def add_profile_number(request):
     type = request.POST.get('type')
     phone_number = request.POST.get('phone_number')
@@ -107,6 +106,7 @@ def add_profile_number(request):
     html = render_to_string('include/real-time/contact_numbers_section.html', {'numbers':numbers})
     return JsonResponse({'result':html})
 
+@login_required
 def edit_profile_number(request):
     user = request.user
     nubmer_id = request.POST.get('id')
@@ -126,7 +126,7 @@ def edit_profile_number(request):
     return JsonResponse({'result':html})
 
 
-
+@login_required
 def add_profile_address(request):
     user = request.user
     # state = request.POST.get('state')
@@ -161,6 +161,7 @@ def add_profile_address(request):
     html = render_to_string('include/real-time/addresses_section.html', {'user_adress':user_addresses})
     return JsonResponse({'result':html})
 
+@login_required
 def edit_profile_address(request):
     user = request.user
     pk = request.POST.get('id')
@@ -189,6 +190,7 @@ def edit_profile_address(request):
     return JsonResponse({'result':html})
 
 
+@login_required
 def wishlist(request):
     profile = Profile.objects.get(user=request.user)
 
@@ -197,7 +199,7 @@ def wishlist(request):
 
 
 
-
+@login_required
 def delete_profile_contact(request):
     number_id = request.POST.get('id')
     print(number_id)
@@ -209,6 +211,7 @@ def delete_profile_contact(request):
     html = render_to_string('include/real-time/contact_numbers_section.html', {'numbers':numbers})
     return JsonResponse({'result':html})
 
+@login_required
 def delete_profile_address(request):
     print('delete','#'*50)
     number_id = request.POST.get('id')

@@ -151,7 +151,7 @@ class BrandDetail(ListView):
 
     
 
-
+@login_required
 def add_review(request,slug):
     product = Product.objects.get(slug=slug)
     if request.method == 'POST':
@@ -189,7 +189,7 @@ def add_to_favorites(request):
 
 
 @login_required
-def remove_from_wishlist(request):
+def remove_from_favorites(request):
     prodcut_id = request.POST['productId']
     product = Product.objects.get(id=prodcut_id)
 

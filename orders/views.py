@@ -19,7 +19,7 @@ def order_list(request):
     return render(request, 'orders/order_list.html', context)
 
 
-
+@login_required
 def add_to_cart(request):
     if request.method == "POST":
         product_id = request.POST['productid']
@@ -49,8 +49,8 @@ def add_to_cart(request):
 
         return JsonResponse({'result':html, 'total':cart_total, 'count':cart_count})
 
+@login_required
 def delete_from_cart(request):
-    
     if request.method == "POST":
         cartdetail_id = int(request.POST["order_id"])
         product = CartOrderDetail.objects.get(pk=cartdetail_id).delete()
@@ -64,7 +64,7 @@ def delete_from_cart(request):
 
         return JsonResponse({'result':html, 'total':cart_total, 'count':cart_count})
 
-
+@login_required
 def checkout_page(request):
     cart = CartOrder.objects.get(user=request.user, order_status="Inprogress")
     cart_detail = CartOrderDetail.objects.filter(cart=cart)
@@ -103,7 +103,7 @@ def checkout_page(request):
     return render(request, 'orders/checkout.html', context)
 
 
-
+@login_required
 def invoice(requset, pk):
     order = Order.objects.get(pk=pk)
     context = {'order':order}
