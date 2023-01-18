@@ -41,25 +41,8 @@
                                 <h4>{% translate "Your Profile" %}</h4>
                                 <button data-bs-toggle="modal" data-bs-target="#profile-edit">{% trans "edit profile" %}</button>
                             </div>
-                            <div class="account-content">
-                                <div class="row">
-                                    <div class="col-lg-2">
-                                        <div class="profile-image">
-                                            <a href="#"><img src="{{profile.image.url}}" alt="user"></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 mt-4">
-                                        <!-- <label for="">Name:</label> -->
-                                        <h4>Nour Mohamed</h4>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4">
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <div class="profile-btn">
-                                            <a href="change-password.html">{% translate "change pass." %}</a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div id="profileInfoSection">
+                                {% include "include/real-time/profile_info_section.html" %}
                             </div>
                         </div>
                     </div>
@@ -198,23 +181,24 @@
             <div class="modal-dialog modal-dialog-centered"> 
                 <div class="modal-content">
                     <button class="modal-close" data-bs-dismiss="modal"><i class="icofont-close"></i></button>
-                    <form class="modal-form">
+                    <form class="modal-form" id="profileInfoForm" method="post" action="{% url 'accounts:edit_profile_info' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div class="form-title">
-                            <h3>edit profile info</h3>
+                            <h3>{% trans "edit profile info" %}</h3>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">profile image</label>
-                            <input class="form-control" type="file">
+                            <label class="form-label">{% trans "photo" %}</label>
+                            <input class="form-control" name="image" type="file" >
                         </div>
                         <div class="form-group">
-                            <label class="form-label">name</label>
-                            <input class="form-control" type="text" value="Nour Mohamed">
+                            <label class="form-label">{% trans "first name" %}</label>
+                            <input class="form-control" type="text" name="first_name" value="{{profile.first_name}}">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">email</label>
-                            <input class="form-control" type="text" value="mironcoder@gmail.com">
+                            <label class="form-label">{% trans "last name" %}</label>
+                            <input class="form-control" type="text" name="last_name" value="{{profile.last_name}}">
                         </div>
-                        <button class="form-btn" type="submit">save profile info</button>
+                        <button class="form-btn" type="submit">{% trans "save profile info" %}</button>
                     </form>
                 </div> 
             </div> 
@@ -317,6 +301,30 @@
                     $('#numberId').val(numberId);
 
                 })
+                $('#profileInfoForm').on('submit', function(e){
+                    e.preventDefault();
+                    const csrftoken = getCookie('csrftoken');
+
+                    $.ajax({
+                        type:$(this).attr('method'),
+                        url:$(this).attr('action'),
+                        data:$(this).serialize(),
+                        headers:{"X-CSRFToken": csrftoken }, 
+                        dataType:'json',
+                        success:function(response){
+                            $('#profileInfoSection').html(response['result']);
+                            $('#profile-edit').modal('hide');
+                            // $('#profileInfoForm')[0].reset();
+
+
+                        },
+                        error:function(err){
+                            console.log(err);
+                        }
+                    })
+                });
+
+
                 $('#contactAddForm').on('submit', function(e){
                     e.preventDefault();
                     const csrftoken = getCookie('csrftoken');

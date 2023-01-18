@@ -66,6 +66,21 @@ def profile(request):
     context = {'profile': profile, 'numbers': numbers, 'user_adress': user_adress, 'country_list':country_list, 'city_list':city_list}
     return render(request, 'profile.html', context)
 
+@login_required
+def edit_profile_info(request):
+    image = request.FILES.get('image')
+    first_name = request.POST.get('first_name')
+    last_name = request.POST.get('last_name')
+
+    profile = Profile.objects.get(user=request.user)
+    profile.first_name = first_name
+    profile.last_name = last_name
+    if image:
+        profile.image = image
+    profile.save()
+
+    html = render_to_string('include/real-time/profile_info_section.html', {}, request=request)
+    return JsonResponse({'result':html})
 
 @login_required
 def edit_profile(request):
