@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-18 09:34+0200\n"
+"POT-Creation-Date: 2023-01-20 17:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,6 +255,8 @@ msgid "get offer"
 msgstr "احصل على عرض"
 
 #: .\home\templates\home\index.html:65 .\home\templates\home\index.html:333
+#: .\products\templates\products\brand_detail.html:55
+#: .\products\templates\products\category_list.html:39
 msgid "items"
 msgstr "اصناف"
 
@@ -634,6 +636,10 @@ msgstr "التقييم"
 msgid "Created at"
 msgstr "انشئ في"
 
+#: .\products\templates\products\brand_detail.html:53
+msgid "rating"
+msgstr ""
+
 #: .\products\templates\products\product_detail.html:67
 msgid "BRAND"
 msgstr "العلامة التجارية"
@@ -781,6 +787,42 @@ msgstr "العنوان"
 msgid "Google Maps Adress URL"
 msgstr "رابط العنوان خرائط جوجل"
 
+#: .\settings\templates\contact_us.html:37
+msgid "head office"
+msgstr "المكتب الرئيسي"
+
+#: .\settings\templates\contact_us.html:44
+msgid "phone number"
+msgstr "رقم التليفون"
+
+#: .\settings\templates\contact_us.html:53
+msgid "Support mail"
+msgstr "ايميل للدعم"
+
+#: .\settings\templates\contact_us.html:68
+msgid "Drop Your Thoughts"
+msgstr "أرسل أفكارك"
+
+#: .\settings\templates\contact_us.html:71
+msgid "Your Name"
+msgstr "إسمك"
+
+#: .\settings\templates\contact_us.html:77
+msgid "Your Email"
+msgstr "بريدك الألكتروني"
+
+#: .\settings\templates\contact_us.html:83
+msgid "Subject"
+msgstr "العنوان"
+
+#: .\settings\templates\contact_us.html:89
+msgid "Your Message"
+msgstr "رسالتك"
+
+#: .\settings\templates\contact_us.html:95
+msgid "send message"
+msgstr "إرسال الرسالة"
+
 #: .\templates\base.html:97
 msgid "Welcome to Your Dream Online Store!"
 msgstr "أهلا بك في متجر احلامك الالكتروني!"
@@ -793,11 +835,11 @@ msgstr "عروض"
 msgid "need help"
 msgstr "تحتاج مساعدة"
 
-#: .\templates\base.html:127 .\templates\base.html:858
+#: .\templates\base.html:127 .\templates\base.html:862
 msgid "contact us"
 msgstr "تواصل معنا"
 
-#: .\templates\base.html:160 .\templates\base.html:888
+#: .\templates\base.html:160 .\templates\base.html:892
 msgid "My Account"
 msgstr "حسابي"
 
@@ -867,39 +909,39 @@ msgstr "نظام دعم سريع"
 msgid "secure payment way"
 msgstr "طريقة دفع آمنة"
 
-#: .\templates\base.html:885
+#: .\templates\base.html:889
 msgid "quick Links"
 msgstr "روابط سريعة"
 
-#: .\templates\base.html:889
+#: .\templates\base.html:893
 msgid "Order History"
 msgstr "سجل الطلبات"
 
-#: .\templates\base.html:890
+#: .\templates\base.html:894
 msgid "Order Tracking"
 msgstr "تتبع الطلب"
 
-#: .\templates\base.html:891
+#: .\templates\base.html:895
 msgid "Best Seller"
 msgstr "الأكثر مبيعا"
 
-#: .\templates\base.html:894
-msgid "Location"
-msgstr "الموقع"
-
-#: .\templates\base.html:895
+#: .\templates\base.html:900
 msgid "Affiliates"
 msgstr "الشركات التابعة"
 
-#: .\templates\base.html:896
+#: .\templates\base.html:901
 msgid "Contact"
 msgstr "تواصل معنا"
 
-#: .\templates\base.html:897
+#: .\templates\base.html:902
 msgid "Faq"
 msgstr "التعليمات"
 
-#: .\templates\base.html:907
+#: .\templates\base.html:903
+msgid "Support"
+msgstr ""
+
+#: .\templates\base.html:913
 msgid "All Copyrights Reserved by"
 msgstr "جميع الحقوق محفوظة لدى"
 
@@ -910,6 +952,9 @@ msgstr "اجمالي المنتجات"
 #: .\templates\include\cart_side.html:27
 msgid "Unit Price"
 msgstr "سعر القطعة"
+
+#~ msgid "Location"
+#~ msgstr "الموقع"
 
 #~ msgid "address"
 #~ msgstr "العنوان"
