@@ -1,5 +1,3 @@
-from itertools import product
-from msilib.schema import ListView
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.urls import reverse
@@ -17,7 +15,22 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 class ProductList(ListView):
     model = Product
-    paginate_by = 50
+    paginate_by = 12
+
+def product_list(request):
+    products = Product.objects.all()
+    # Pagination
+    paginator = Paginator(products, 12)
+    page = request.GET.get('page')
+    try:
+        product_list = paginator.page(page)
+    except PageNotAnInteger:
+        product_list = paginator.page(1)
+    except EmptyPage:  
+        product_list = paginator.page(paginator.num_pages)
+
+    context = {'product_list':product_list, 'page':page}
+    return render(request, 'products/product_list.html', context)
 
 def product_filter(request):
     min_price = request.GET.get('min_price')
