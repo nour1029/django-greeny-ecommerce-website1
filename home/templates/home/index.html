@@ -24,7 +24,11 @@
       <div class="row align-items-center">
         <div class="col-md-6 col-lg-6">
           <div class="banner-content">
-            <h1>{{banner.title}}</h1>
+            {% if LANGUAGE_CODE == 'ar' %}
+              <h1>{{banner.title_ar}}</h1>
+            {% elif LANGUAGE_CODE == 'en' %}
+              <h1>{{banner.title_en}}</h1>
+            {% endif %}
             <p>{{banner.sub_title}}</p>
             <div class="banner-btn">
               <a class="btn btn-inline" href="{% url 'products:product_list' %}">
@@ -33,7 +37,7 @@
               </a>
               <a class="btn btn-outline" href="offer.html">
                 <i class="icofont-sale-discount"></i>
-                <span>get offer</span>
+                <span>{% translate "get offer" %}</span>
               </a>
             </div>
           </div>

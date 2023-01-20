@@ -74,7 +74,7 @@
 
     
     <link rel="stylesheet" href="{% static 'css/user-auth.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/brand-single.css' %}" />
+
 
     <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
 
@@ -122,7 +122,7 @@
           <div class="col-md-7 col-lg-4">
             <ul class="header-top-list">
               <li><a href="#">{% translate "offers" %}</a></li>
-              <li><a href="#">{% translate "need help" %}</a></li>
+              <li><a href="nourmohamed.com">{% translate "need help" %}</a></li>
               <li><a href="{% url 'info:contact_us' %}">{% translate "contact us" %}</a></li>
             </ul>
           </div>
@@ -830,8 +830,11 @@
         <div class="row">
           <div class="col-sm-6 col-xl-3">
             <div class="footer-widget">
-              <a class="footer-logo" href="#">
+              {% comment %} <a class="footer-logo" href="#">
                 <img src="{{site_info.logo.url}}" alt="logo" />
+              </a> {% endcomment %}
+              <a href="{% url 'home:home_page' %}" class="footer-logo mylogo">
+                Nour
               </a>
               <p class="footer-desc">{{site_info.about}}</p>
               <ul class="footer-social">
@@ -883,16 +886,17 @@
               <h3 class="footer-title">{% translate "quick Links" %}</h3>
               <div class="footer-links">
                 <ul>
-                  <li><a href="#">{% trans "My Account" %}</a></li>
-                  <li><a href="#">{% trans "Order History" %}</a></li>
-                  <li><a href="#">{% translate "Order Tracking" %}</a></li>
+                  <li><a href="{% url 'accounts:profile' %}">{% trans "My Account" %}</a></li>
+                  <li><a href="{% url 'orders:order_list' %}">{% trans "Order History" %}</a></li>
+                  <li><a href="{% url 'orders:order_list' %}">{% translate "Order Tracking" %}</a></li>
                   <li><a href="#">{% translate "Best Seller" %}</a></li>
                 </ul>
                 <ul>
-                  <li><a href="#">{% translate "Location" %}</a></li>
+                  {% comment %} <li><a href="{% url 'settings:contact_us' %}">{% translate "Location" %}</a></li> {% endcomment %}
                   <li><a href="#">{% translate "Affiliates" %}</a></li>
-                  <li><a href="#">{% translate "Contact" %}</a></li>
+                  <li><a href="{% url 'settings:contact_us' %}">{% translate "Contact" %}</a></li>
                   <li><a href="#">{% translate "Faq" %}</a></li>
+                  <li><a href="nourmohamed.com">{% translate "Support" %}</a></li>
                 </ul>
               </div>
             </div>
@@ -905,7 +909,8 @@
                 &copy; {% trans "All Copyrights Reserved by" %}
                 <a
                   target="_blank"
-                  href="https://themeforest.net/user/mironcoder"
+                  href="https://www.nourmohamed.com"
+                  style="color: #87e1fa;"
                   >Nour Mohamed</a
                 >
               </p>
@@ -914,13 +919,13 @@
                   ><img src="{% static 'images/payment/jpg/01.jpg' %}" alt="payment"
                 /></a>
                 <a href="#"
-                  ><img src="images/payment/jpg/02.jpg" alt="payment"
+                  ><img src="{% static 'images/payment/jpg/02.jpg' %}" alt="payment"
                 /></a>
                 <a href="#"
-                  ><img src="images/payment/jpg/03.jpg" alt="payment"
+                  ><img src="{% static 'images/payment/jpg/03.jpg' %}" alt="payment"
                 /></a>
                 <a href="#"
-                  ><img src="images/payment/jpg/04.jpg" alt="payment"
+                  ><img src="{% static 'images/payment/jpg/04.jpg' %}" alt="payment"
                 /></a>
               </div>
             </div>

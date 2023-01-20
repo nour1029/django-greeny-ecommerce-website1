@@ -13,6 +13,8 @@ from utils.code_generator import generate_code
 class Profile(models.Model):
     user = models.OneToOneField(User, verbose_name=_(
         "User"), related_name='Profile', on_delete=models.CASCADE)
+    first_name = models.CharField(_("First Name"), max_length=50)
+    last_name = models.CharField(_("Last Name"), max_length=50)
     image = models.ImageField(
         _("Image"), upload_to='profile/', null=True, blank=True)
     code = models.CharField(_("Code"), max_length=8, default=generate_code)

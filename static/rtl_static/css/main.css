@@ -4297,7 +4297,7 @@ tbody tr td:last-child {
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .header-widget span {
+  .header-cart span {
     display: none;
   }
 }

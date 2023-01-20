@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-11 17:05+0200\n"
+"POT-Creation-Date: 2023-01-20 17:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,58 +19,66 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: .\accounts\models.py:15 .\accounts\models.py:46 .\accounts\models.py:57
+#: .\accounts\models.py:15 .\accounts\models.py:48 .\accounts\models.py:59
 #: .\orders\models.py:27 .\orders\models.py:72 .\products\models.py:105
 msgid "User"
 msgstr "المسخدم"
 
-#: .\accounts\models.py:17 .\home\models.py:9 .\products\models.py:38
+#: .\accounts\models.py:16
+msgid "First Name"
+msgstr "الإسم"
+
+#: .\accounts\models.py:17
+msgid "Last Name"
+msgstr "اللقب"
+
+#: .\accounts\models.py:19 .\home\models.py:9 .\products\models.py:38
 #: .\products\models.py:68 .\products\models.py:76 .\products\models.py:92
 msgid "Image"
 msgstr "الصورة"
 
-#: .\accounts\models.py:18 .\orders\models.py:28 .\orders\models.py:73
+#: .\accounts\models.py:20 .\orders\models.py:28 .\orders\models.py:73
 #: .\orders\models.py:106
 msgid "Code"
 msgstr "الكود"
 
-#: .\accounts\models.py:20
+#: .\accounts\models.py:22
 msgid "Favorites"
 msgstr "المفضل"
 
-#: .\accounts\models.py:47 .\settings\models.py:39
+#: .\accounts\models.py:49 .\settings\models.py:39
 msgid "Phone Number"
 msgstr "رقم التليفون"
 
-#: .\accounts\models.py:48 .\accounts\models.py:58
+#: .\accounts\models.py:50 .\accounts\models.py:60
 msgid "Type"
 msgstr "نوع"
 
-#: .\accounts\models.py:49 .\accounts\models.py:67 .\home\models.py:10
+#: .\accounts\models.py:51 .\accounts\models.py:69 .\home\models.py:10
 msgid "Active"
 msgstr "مفعل"
 
-#: .\accounts\models.py:60 .\settings\models.py:10
+#: .\accounts\models.py:62 .\settings\models.py:10
 msgid "Country"
 msgstr "البلد"
 
-#: .\accounts\models.py:62
+#: .\accounts\models.py:64
 msgid "City"
 msgstr "المدينة"
 
-#: .\accounts\models.py:63
+#: .\accounts\models.py:65
 msgid "State"
 msgstr "الولاية"
 
-#: .\accounts\models.py:64
+#: .\accounts\models.py:66
 msgid "Region"
 msgstr "المنطقة"
 
-#: .\accounts\models.py:65
+#: .\accounts\models.py:67
 msgid "Street"
 msgstr "الشارع"
 
-#: .\accounts\models.py:66
+#: .\accounts\models.py:68
 msgid "Notes"
 msgstr "ملاحظات"
 
@@ -79,18 +87,76 @@ msgid "edit address info"
 msgstr "تعديل العنوان"
 
 #: .\accounts\templates\include\real-time\addresses_section.html:28
-#: .\accounts\templates\profile.html:109 .\accounts\templates\profile.html:138
+#: .\accounts\templates\profile.html:92 .\accounts\templates\profile.html:121
 msgid "title"
 msgstr "العنوان"
 
-#: .\accounts\templates\include\real-time\addresses_section.html:37
-msgid "address"
-msgstr "العنوان"
-
+#: .\accounts\templates\include\real-time\addresses_section.html:30
 #: .\accounts\templates\include\real-time\addresses_section.html:40
-#: .\accounts\templates\profile.html:183
+#: .\accounts\templates\include\real-time\addresses_section.html:49
+#: .\accounts\templates\profile.html:94 .\accounts\templates\profile.html:123
+#: .\accounts\templates\profile.html:133 .\accounts\templates\profile.html:142
+msgid "choose type"
+msgstr "اختر النوع"
+
+#: .\accounts\templates\include\real-time\addresses_section.html:31
+#: .\accounts\templates\profile.html:124
+msgid "Home"
+msgstr "منزل"
+
+#: .\accounts\templates\include\real-time\addresses_section.html:32
+#: .\accounts\templates\profile.html:125
+msgid "Bussiness"
+msgstr "عمل"
+
+#: .\accounts\templates\include\real-time\addresses_section.html:33
+#: .\accounts\templates\profile.html:126
+msgid "Office"
+msgstr "مكتب"
+
+#: .\accounts\templates\include\real-time\addresses_section.html:34
+#: .\accounts\templates\profile.html:127
+msgid "Others"
+msgstr "غيرهم"
+
+#: .\accounts\templates\include\real-time\addresses_section.html:38
+#: .\accounts\templates\profile.html:131
+msgid "country"
+msgstr "البلد"
+
+#: .\accounts\templates\include\real-time\addresses_section.html:47
+#: .\accounts\templates\profile.html:140
+msgid "city"
+msgstr "المدينة"
+
+#: .\accounts\templates\include\real-time\addresses_section.html:56
+#: .\accounts\templates\profile.html:149
+msgid "state"
+msgstr "الولاية"
+
+#: .\accounts\templates\include\real-time\addresses_section.html:61
+#: .\accounts\templates\profile.html:154
+msgid "region"
+msgstr "المنطقة"
+
+#: .\accounts\templates\include\real-time\addresses_section.html:66
+#: .\accounts\templates\profile.html:159
+msgid "street"
+msgstr "الشارع"
+
+#: .\accounts\templates\include\real-time\addresses_section.html:70
+#: .\accounts\templates\profile.html:163
+msgid "notes"
+msgstr "ملاحظات"
+
+#: .\accounts\templates\include\real-time\addresses_section.html:74
+#: .\accounts\templates\profile.html:166
 msgid "save address info"
 msgstr "حفظ العنوان"
+
+#: .\accounts\templates\include\real-time\profile_info_section.html:18
+msgid "change pass."
+msgstr "تغيير الباس."
 
 #: .\accounts\templates\profile.html:41
 msgid "Your Profile"
@@ -100,106 +166,77 @@ msgstr "صفحتك الشخصية"
 msgid "edit profile"
 msgstr "تعديل حسابك"
 
-#: .\accounts\templates\profile.html:59
-msgid "change pass."
-msgstr "تغيير الباس."
-
-#: .\accounts\templates\profile.html:69
+#: .\accounts\templates\profile.html:52
 msgid "contact numbers"
 msgstr "أرقام الاتصال"
 
-#: .\accounts\templates\profile.html:70
+#: .\accounts\templates\profile.html:53
 msgid "add contact"
 msgstr "إضافة رقم"
 
-#: .\accounts\templates\profile.html:80
+#: .\accounts\templates\profile.html:63
 msgid "delivery addresses"
 msgstr "عنواين التسليم"
 
-#: .\accounts\templates\profile.html:81
+#: .\accounts\templates\profile.html:64
 msgid "add address"
 msgstr "إضافة عنوان"
 
-#: .\accounts\templates\profile.html:106
+#: .\accounts\templates\profile.html:89
 msgid "add new contact"
 msgstr "إضافة رقم هاتف جديد"
 
-#: .\accounts\templates\profile.html:111 .\accounts\templates\profile.html:140
-#: .\accounts\templates\profile.html:150 .\accounts\templates\profile.html:159
-msgid "choose type"
-msgstr "اختر النوع"
-
-#: .\accounts\templates\profile.html:112
+#: .\accounts\templates\profile.html:95
 msgid "home"
 msgstr "بيت"
 
-#: .\accounts\templates\profile.html:113
+#: .\accounts\templates\profile.html:96
 msgid "bussiness"
 msgstr "عمل"
 
-#: .\accounts\templates\profile.html:114
+#: .\accounts\templates\profile.html:97
 msgid "office"
 msgstr "مكتب"
 
-#: .\accounts\templates\profile.html:115
+#: .\accounts\templates\profile.html:98
 msgid "others"
 msgstr "غيرهم"
 
-#: .\accounts\templates\profile.html:119
+#: .\accounts\templates\profile.html:102
 msgid "number"
 msgstr "رقم التليفون"
 
-#: .\accounts\templates\profile.html:120
+#: .\accounts\templates\profile.html:103
 msgid "Enter your number"
 msgstr "ادخل رقم هاتفك"
 
-#: .\accounts\templates\profile.html:122
+#: .\accounts\templates\profile.html:105
 msgid "save contact info"
 msgstr "حفظ رقم الهاتف"
 
-#: .\accounts\templates\profile.html:135
+#: .\accounts\templates\profile.html:118
 msgid "add new address"
 msgstr "اضف عنوان جديد"
 
-#: .\accounts\templates\profile.html:141
-msgid "Home"
-msgstr "منزل"
+#: .\accounts\templates\profile.html:187
+msgid "edit profile info"
+msgstr "تعديل معلومات الحساب"
 
-#: .\accounts\templates\profile.html:142
-msgid "Bussiness"
-msgstr "عمل"
+#: .\accounts\templates\profile.html:190
+msgid "photo"
+msgstr "الصورة"
 
-#: .\accounts\templates\profile.html:143
-msgid "Office"
-msgstr "مكتب"
+#: .\accounts\templates\profile.html:194
+msgid "first name"
+msgstr "الإسم"
 
-#: .\accounts\templates\profile.html:144
-msgid "Others"
-msgstr "غيرهم"
+#: .\accounts\templates\profile.html:198
+msgid "last name"
+msgstr "اللقب"
 
-#: .\accounts\templates\profile.html:148
-msgid "country"
-msgstr "البلد"
-
-#: .\accounts\templates\profile.html:157
-msgid "city"
-msgstr "المدينة"
-
-#: .\accounts\templates\profile.html:166
-msgid "state"
-msgstr "الولاية"
-
-#: .\accounts\templates\profile.html:171
-msgid "region"
-msgstr "المنطقة"
-
-#: .\accounts\templates\profile.html:176
-msgid "street"
-msgstr "الشارع"
-
-#: .\accounts\templates\profile.html:180
-msgid "notes"
-msgstr "ملاحظات"
+#: .\accounts\templates\profile.html:201
+msgid "save profile info"
+msgstr "حفظ معلومات الحساب"
 
 #: .\home\models.py:7
 msgid "Title"
@@ -213,7 +250,13 @@ msgstr "العنوان الفرعي"
 msgid "shop now"
 msgstr "تسوق الآن"
 
+#: .\home\templates\home\index.html:36
+msgid "get offer"
+msgstr "احصل على عرض"
+
 #: .\home\templates\home\index.html:65 .\home\templates\home\index.html:333
+#: .\products\templates\products\brand_detail.html:55
+#: .\products\templates\products\category_list.html:39
 msgid "items"
 msgstr "اصناف"
 
@@ -286,7 +329,7 @@ msgstr "عرض كل العلامات التجارية"
 
 #: .\home\templates\home\index.html:362
 msgid "client's feedback"
-msgstr ""
+msgstr "آراء العملاء"
 
 #: .\orders\models.py:12
 msgid "Recieved"
@@ -593,6 +636,10 @@ msgstr "التقييم"
 msgid "Created at"
 msgstr "انشئ في"
 
+#: .\products\templates\products\brand_detail.html:53
+msgid "rating"
+msgstr ""
+
 #: .\products\templates\products\product_detail.html:67
 msgid "BRAND"
 msgstr "العلامة التجارية"
@@ -649,60 +696,56 @@ msgstr "اضافة"
 msgid "related this items"
 msgstr "اصناف ذات صلة"
 
-#: .\products\templates\products\product_list.html:33
+#: .\products\templates\products\product_list.html:30
 msgid "Filter by Price"
 msgstr "الفلترة بالسعر"
 
-#: .\products\templates\products\product_list.html:36
+#: .\products\templates\products\product_list.html:33
 msgid "Min"
 msgstr "أدنى"
 
-#: .\products\templates\products\product_list.html:37
+#: .\products\templates\products\product_list.html:34
 msgid "Max"
 msgstr "أقصى"
 
-#: .\products\templates\products\product_list.html:43
+#: .\products\templates\products\product_list.html:40
 msgid "search"
 msgstr "بحث"
 
-#: .\products\templates\products\product_list.html:47
+#: .\products\templates\products\product_list.html:44
 msgid "Filter by Rating"
 msgstr "الفلترة بالتقييم"
 
-#: .\products\templates\products\product_list.html:118
-#: .\products\templates\products\product_list.html:143
-#: .\products\templates\products\product_list.html:163
-#: .\products\templates\products\product_list.html:185
+#: .\products\templates\products\product_list.html:115
+#: .\products\templates\products\product_list.html:140
+#: .\products\templates\products\product_list.html:160
+#: .\products\templates\products\product_list.html:182
 msgid "clear filter"
 msgstr "ازالة الفلتر"
 
-#: .\products\templates\products\product_list.html:123
+#: .\products\templates\products\product_list.html:120
 msgid "Filter by Tag"
 msgstr "الفلترة بالكلمات المفتاحية"
 
-#: .\products\templates\products\product_list.html:129
+#: .\products\templates\products\product_list.html:126
 msgid "new items"
 msgstr "الأصناف جديدة"
 
-#: .\products\templates\products\product_list.html:136
+#: .\products\templates\products\product_list.html:133
 msgid "feature items"
 msgstr "الأصناف المميزة"
 
-#: .\products\templates\products\product_list.html:148
+#: .\products\templates\products\product_list.html:145
 msgid "Filter by Brand"
 msgstr "الفلترة بالعلامة التجارية"
 
-#: .\products\templates\products\product_list.html:168
+#: .\products\templates\products\product_list.html:165
 msgid "Filter by Category"
 msgstr "الفلترة بالقسم"
 
-#: .\products\templates\products\product_list.html:170
+#: .\products\templates\products\product_list.html:167
 msgid "Search"
 msgstr "بحث"
-
-#: .\products\templates\products\product_list.html:203
-msgid "Short by"
-msgstr "تصنيف على حسب"
 
 #: .\project\settings.py:152
 msgid "Arabic"
@@ -744,6 +787,42 @@ msgstr "العنوان"
 msgid "Google Maps Adress URL"
 msgstr "رابط العنوان خرائط جوجل"
 
+#: .\settings\templates\contact_us.html:37
+msgid "head office"
+msgstr "المكتب الرئيسي"
+
+#: .\settings\templates\contact_us.html:44
+msgid "phone number"
+msgstr "رقم التليفون"
+
+#: .\settings\templates\contact_us.html:53
+msgid "Support mail"
+msgstr "ايميل للدعم"
+
+#: .\settings\templates\contact_us.html:68
+msgid "Drop Your Thoughts"
+msgstr "أرسل أفكارك"
+
+#: .\settings\templates\contact_us.html:71
+msgid "Your Name"
+msgstr "إسمك"
+
+#: .\settings\templates\contact_us.html:77
+msgid "Your Email"
+msgstr "بريدك الألكتروني"
+
+#: .\settings\templates\contact_us.html:83
+msgid "Subject"
+msgstr "العنوان"
+
+#: .\settings\templates\contact_us.html:89
+msgid "Your Message"
+msgstr "رسالتك"
+
+#: .\settings\templates\contact_us.html:95
+msgid "send message"
+msgstr "إرسال الرسالة"
+
 #: .\templates\base.html:97
 msgid "Welcome to Your Dream Online Store!"
 msgstr "أهلا بك في متجر احلامك الالكتروني!"
@@ -756,11 +835,11 @@ msgstr "عروض"
 msgid "need help"
 msgstr "تحتاج مساعدة"
 
-#: .\templates\base.html:127 .\templates\base.html:858
+#: .\templates\base.html:127 .\templates\base.html:862
 msgid "contact us"
 msgstr "تواصل معنا"
 
-#: .\templates\base.html:160 .\templates\base.html:888
+#: .\templates\base.html:160 .\templates\base.html:892
 msgid "My Account"
 msgstr "حسابي"
 
@@ -830,39 +909,39 @@ msgstr "نظام دعم سريع"
 msgid "secure payment way"
 msgstr "طريقة دفع آمنة"
 
-#: .\templates\base.html:885
+#: .\templates\base.html:889
 msgid "quick Links"
 msgstr "روابط سريعة"
 
-#: .\templates\base.html:889
+#: .\templates\base.html:893
 msgid "Order History"
 msgstr "سجل الطلبات"
 
-#: .\templates\base.html:890
+#: .\templates\base.html:894
 msgid "Order Tracking"
 msgstr "تتبع الطلب"
 
-#: .\templates\base.html:891
+#: .\templates\base.html:895
 msgid "Best Seller"
 msgstr "الأكثر مبيعا"
 
-#: .\templates\base.html:894
-msgid "Location"
-msgstr "الموقع"
-
-#: .\templates\base.html:895
+#: .\templates\base.html:900
 msgid "Affiliates"
 msgstr "الشركات التابعة"
 
-#: .\templates\base.html:896
+#: .\templates\base.html:901
 msgid "Contact"
 msgstr "تواصل معنا"
 
-#: .\templates\base.html:897
+#: .\templates\base.html:902
 msgid "Faq"
 msgstr "التعليمات"
 
-#: .\templates\base.html:907
+#: .\templates\base.html:903
+msgid "Support"
+msgstr ""
+
+#: .\templates\base.html:913
 msgid "All Copyrights Reserved by"
 msgstr "جميع الحقوق محفوظة لدى"
 
@@ -873,6 +952,15 @@ msgstr "اجمالي المنتجات"
 #: .\templates\include\cart_side.html:27
 msgid "Unit Price"
 msgstr "سعر القطعة"
+
+#~ msgid "Location"
+#~ msgstr "الموقع"
+
+#~ msgid "address"
+#~ msgstr "العنوان"
+
+#~ msgid "Short by"
+#~ msgstr "تصنيف على حسب"
 
 #~ msgid "Trend"
 #~ msgstr "تريند"
