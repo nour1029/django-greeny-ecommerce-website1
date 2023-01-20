@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.timezone import datetime
 from django.template.loader import render_to_string
 from django.http import JsonResponse
-
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # Create your views here.
 
 
@@ -15,7 +15,16 @@ from django.http import JsonResponse
 def order_list(request):
     orders = Order.objects.filter(user=request.user)
 
-    context = {'orders': orders}
+    page = request.GET.get('page', 1)
+    paginator = Paginator(orders, 12)
+    try:
+        orders = paginator.page(page)
+    except PageNotAnInteger:
+        orders = paginator.page(1)
+    except EmptyPage:  
+        orders = paginator.page(paginator.num_pages)
+
+    context = {'orders': orders, 'page':page}
     return render(request, 'orders/order_list.html', context)
 
 
