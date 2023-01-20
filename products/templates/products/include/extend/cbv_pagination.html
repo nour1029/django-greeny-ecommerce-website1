@@ -1,16 +1,11 @@
-{% load i18n %}
+{% comment %} {% with "{% if LANGUAGE_CODE == 'ar' %}right{% else %}left{% endif %}" as first_arrow %}
+
+{{first_arrow}}
+
+{% endwith %} {% endcomment %}
 
 
-<div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3">
-    {% for product in product_list %}
-        <div class="col">
-            {% include 'products/include/extend/product_card.html' %}
-        </div>
-    {% endfor %}
-</div>
-
-
-{% comment %} {% if is_paginated %}
+{% if is_paginated %}
     <div class="row">
         <div class="col-lg-12">
             <div class="bottom-paginate">
@@ -46,4 +41,4 @@
             </div>
         </div>
     </div>
-{% endif %} {% endcomment %}
+{% endif %} 

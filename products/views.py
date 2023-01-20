@@ -19,19 +19,6 @@ class ProductList(ListView):
     model = Product
     paginate_by = 50
 
-    # def get_queryset(self):
-    #     try:
-    #         min_price = self.request.GET['min-price']
-    #         max_price = self.request.GET['max-price']
-    #         queryset = Product.objects.filter(price__gt=min_price, price__lt=max_price)
-    #         html = render_to_string('products/include/product_list_div.html', {'product_list':queryset, self.request:self.request})
-    #         return JsonResponse({'result':html})
-    #     except:
-    #         queryset = super().get_queryset()
-        
-
-    #     return queryset
-
 def product_filter(request):
     min_price = request.GET.get('min_price')
     max_price = request.GET.get('max_price')
@@ -41,9 +28,6 @@ def product_filter(request):
     category = request.GET.getlist('category[]')
 
     products = Product.objects.all()
-
-    # products = Product.objects.filter(Q(price__gte=50, price__lte=100) | Q(price__gte=500, price__lte=600))
-    # print(rating)
     
     if min_price:
         products = products.filter(price__gte=min_price)
@@ -66,8 +50,6 @@ def product_filter(request):
     if category:
         products = products.filter(category__in=category)
         
-    # products = Product.objects.filter(get_avg_reviews = 5)
-    # print(products)
 
     # Pagination
     paginator = Paginator(products, 12)
@@ -80,9 +62,7 @@ def product_filter(request):
         product_list = paginator.page(paginator.num_pages)
 
 
-    html = render_to_string('products/include/product_list_div.html', {'product_list':product_list, 'page':page, 'value':'True'}, request=request)
-    # 'request=request' is for basic context_processors like 'user'
-
+    html = render_to_string('products/include/product_list_div.html', {'product_list':product_list, 'page':page, 'value':'True'}, request=request)  # 'request=request' is for basic context_processors like 'user'
     return JsonResponse({'result':html})
 
 
@@ -109,12 +89,6 @@ class CategoryList(ListView):
         return queryset
     
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context["category_list"] = Category.objects.all().annotate(
-    #         product_count=Count('product_category'))
-    #     return context
-
 
 class BrandList(ListView):
     model = Brand
@@ -131,21 +105,18 @@ class BrandDetail(ListView):
     model = Product
     template_name = 'products/brand_detail.html'
     paginate_by = 12
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     brand = self.get_object()
-    #     #context["brands"] = Brand.objects.annotate(product_count=Count('product_brand'))
-    #     context["brand_products"] = Product.objects.filter(brand=brand)
-    #     return context
 
     def get_queryset(self):
         self.brand_slug = self.kwargs['slug']
         queryset = Product.objects.filter(brand__slug=self.brand_slug)
+        # print(queryset['count'], '#'*50)
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["brand"] = Brand.objects.get(slug=self.brand_slug)
+        context["rating_count"] = Product.objects.filter(brand__slug=self.brand_slug).aggregate(count=Count('product_review'))['count']
+        context["rating_avg"] = Product.objects.filter(brand__slug=self.brand_slug).aggregate(avg=Avg('product_review__rate'))['avg']
         return context
     
 
