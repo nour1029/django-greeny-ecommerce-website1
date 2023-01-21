@@ -135,9 +135,9 @@
       <div class="container">
         <div class="header-content">
           <div class="header-media-group">
-            <button class="header-user">
-              <img src="{{user.Profile.image.url}}" alt="user" />
-            </button>
+            <a class="header-user" href="{% url 'accounts:profile' %}">
+              <img src="{{user.Profile.image.url}}" alt="user" style="width: 40px; height: 40px;"/>
+            </a>
             <a href="{% url 'home:home_page' %}" class=" mylogo">Nour</a>
             <button class="header-src"><i class="fas fa-search"></i></button>
           </div>

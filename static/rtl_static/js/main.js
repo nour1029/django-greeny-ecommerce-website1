@@ -71,15 +71,15 @@ $('.nav-link').on('click', function(){
 //========================================
 //         NAV SIDEBAR FUNCTION
 //========================================
-$('.header-user').on('click', function(){
-    $('body').css('overflow', 'hidden');
-    $('.nav-sidebar').addClass('active');
-    $('.nav-close').on('click', function(){
-        $('body').css('overflow', 'inherit');
-        $('.nav-sidebar').removeClass('active');
-        $('.backdrop').fadeOut();
-    });
-});
+// $('.header-user').on('click', function(){
+//     $('body').css('overflow', 'hidden');
+//     $('.nav-sidebar').addClass('active');
+//     $('.nav-close').on('click', function(){
+//         $('body').css('overflow', 'inherit');
+//         $('.nav-sidebar').removeClass('active');
+//         $('.backdrop').fadeOut();
+//     });
+// });
 
 
 //========================================
