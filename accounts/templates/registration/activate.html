@@ -1,5 +1,25 @@
-<form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Activate">
-</form>
+{% extends 'auth_base.html' %}
+
+{% load i18n %}
+{% block body %}
+<div class="user-form-card">
+    <div class="user-form-title">
+        <h2>{% translate "Activation" %}</h2>
+        <p>{% translate "We have send a verification code to your email" %}</p>
+    </div>
+    <div class="user-form-group">
+        <form class="user-form" method='post'>
+            {% csrf_token %}
+            {{form}}
+            <div class="form-button">
+                <button type="submit">{% translate "activate" %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+    <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="{% translate "Activate" %}">
+    </form>
+{% endblock body %}

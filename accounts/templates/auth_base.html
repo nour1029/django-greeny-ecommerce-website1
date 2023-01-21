@@ -72,8 +72,24 @@
                     CSS LINK PART END
         =======================================-->
     </head>
+    <section class="user-form-part">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-10 col-md-12 col-lg-12 col-xl-10">
+                    <div class="user-form-logo mylogo">
+                        <a href="{% url 'home:home_page' %}">Nour</a>
+                    </div>
 
-        {% block body %}{% endblock body %}
+                    {% block body %}
+                    {% endblock body %}
+                    
+                    <div class="user-form-footer">
+                        <p>&COPY; {% translate "Copyright by" %} <a href="https://www.nourmohamed.com">Nour Mohamed</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
         <!--=====================================
                     JS LINK PART START

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-21 23:21+0200\n"
+"POT-Creation-Date: 2023-01-21 23:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -263,14 +263,17 @@ msgid "login with instagram"
 msgstr "سجل دخولك بانستجرام"
 
 #: .\accounts\templates\registration\login.html:28
+#: .\accounts\templates\registration\signup.html:27
 msgid "or"
 msgstr "او"
 
 #: .\accounts\templates\registration\login.html:33
+#: .\accounts\templates\registration\signup.html:35
 msgid "Enter your email"
 msgstr "ادخل بريدك هاتفك"
 
 #: .\accounts\templates\registration\login.html:36
+#: .\accounts\templates\registration\signup.html:38
 msgid "Enter your password"
 msgstr "ادخل كلمة السر الخاصة بك"
 
@@ -301,6 +304,76 @@ msgstr "سجل هنا"
 #: .\accounts\templates\registration\login.html:53
 msgid "Copyright by"
 msgstr "حقوق الملكية لدى لدى"
+
+#: .\accounts\templates\registration\signup.html:16
+msgid "Join Now!"
+msgstr ""
+
+#: .\accounts\templates\registration\signup.html:17
+msgid "Setup A New Account In A Minute"
+msgstr ""
+
+#: .\accounts\templates\registration\signup.html:21
+#, fuzzy
+#| msgid "login with facebook"
+msgid "Join with facebook"
+msgstr "سجل دخولك بفيسبوك"
+
+#: .\accounts\templates\registration\signup.html:22
+#, fuzzy
+#| msgid "login with twitter"
+msgid "Join with twitter"
+msgstr "سجل دخولك بتوينر"
+
+#: .\accounts\templates\registration\signup.html:23
+#, fuzzy
+#| msgid "login with google"
+msgid "Join with google"
+msgstr "سجل دخولك بجوجل"
+
+#: .\accounts\templates\registration\signup.html:24
+#, fuzzy
+#| msgid "login with instagram"
+msgid "Join with instagram"
+msgstr "سجل دخولك بانستجرام"
+
+#: .\accounts\templates\registration\signup.html:32
+#, fuzzy
+#| msgid "Enter your number"
+msgid "Enter your name"
+msgstr "ادخل رقم هاتفك"
+
+#: .\accounts\templates\registration\signup.html:41
+#, fuzzy
+#| msgid "Enter your password"
+msgid "Enter repeat password"
+msgstr "ادخل كلمة السر الخاصة بك"
+
+#: .\accounts\templates\registration\signup.html:45
+msgid "Accept all the"
+msgstr ""
+
+#: .\accounts\templates\registration\signup.html:45
+#, fuzzy
+#| msgid "Terms and Conditions"
+msgid "Terms & Conditions"
+msgstr "الشروط والأحكام"
+
+#: .\accounts\templates\registration\signup.html:48
+#, fuzzy
+#| msgid "register here"
+msgid "register"
+msgstr "سجل هنا"
+
+#: .\accounts\templates\registration\signup.html:54
+msgid "Already Have An Account?"
+msgstr ""
+
+#: .\accounts\templates\registration\signup.html:54
+#, fuzzy
+#| msgid "join here"
+msgid "login here"
+msgstr "انضم هنا"
 
 #: .\home\models.py:7
 #, fuzzy
