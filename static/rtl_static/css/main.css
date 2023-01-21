@@ -4734,7 +4734,7 @@ tbody tr td:last-child {
 .cart-sidebar {
   position: fixed;
   top: 0px;
-  right: -450px;
+  left: -450px;
   width: 400px;
   height: 100vh;
   z-index: 5;
@@ -4749,7 +4749,7 @@ tbody tr td:last-child {
 }
 
 .cart-sidebar.active {
-  right: 0px;
+  left: 0px;
 }
 
 .cart-header {
@@ -4786,7 +4786,7 @@ tbody tr td:last-child {
 .cart-close {
   position: absolute;
   top: 50%;
-  left: -18px;
+  right: -18px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
@@ -4849,7 +4849,7 @@ tbody tr td:last-child {
 
 .cart-media {
   position: relative;
-  margin-right: 25px;
+  margin-left: 25px;
 }
 
 .cart-media a img {
@@ -5109,7 +5109,7 @@ tbody tr td:last-child {
 .category-sidebar {
   position: fixed;
   top: 0px;
-  left: -320px;
+  right: -320px;
   width: 280px;
   height: 100vh;
   z-index: 5;
@@ -5124,7 +5124,7 @@ tbody tr td:last-child {
 }
 
 .category-sidebar.active {
-  left: 0px;
+  right: 0px;
 }
 
 .category-header {
@@ -5157,13 +5157,13 @@ tbody tr td:last-child {
 }
 
 .category-title i {
-  margin-right: 8px;
+  margin-left: 8px;
 }
 
 .category-close {
   position: absolute;
   top: 50%;
-  right: -18px;
+  left: -18px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
@@ -5227,7 +5227,7 @@ tbody tr td:last-child {
 
 .category-link i {
   font-size: 25px;
-  margin-right: 15px;
+  margin-left: 15px;
   display: inline-block;
 }
 

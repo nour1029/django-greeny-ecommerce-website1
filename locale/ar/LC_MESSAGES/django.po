@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-21 21:12+0200\n"
+"POT-Creation-Date: 2023-01-21 21:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,7 +100,7 @@ msgid "choose type"
 msgstr "اختر النوع"
 
 #: .\accounts\templates\include\real-time\addresses_section.html:31
-#: .\accounts\templates\profile.html:124 .\templates\base.html:691
+#: .\accounts\templates\profile.html:124
 msgid "Home"
 msgstr "منزل"
 
@@ -887,19 +887,17 @@ msgstr "الأقسام"
 msgid "join here"
 msgstr "انضم هنا"
 
-#: .\templates\base.html:689
-#, fuzzy
-#| msgid "Home"
+#: .\templates\base.html:689 .\templates\base.html:691
 msgid "Home Page"
-msgstr "منزل"
+msgstr "الصفحة الرئيسية"
 
 #: .\templates\base.html:693
 msgid "Category List"
 msgstr "قائمة الأقسام"
 
 #: .\templates\base.html:695
-msgid "category"
-msgstr "القسم"
+msgid "categories"
+msgstr "الأقسام"
 
 #: .\templates\base.html:697
 msgid "Cart"
@@ -986,6 +984,9 @@ msgstr "اجمالي المنتجات"
 #: .\templates\include\cart_side.html:27
 msgid "Unit Price"
 msgstr "سعر القطعة"
+
+#~ msgid "category"
+#~ msgstr "القسم"
 
 #~ msgid "proced to checkout"
 #~ msgstr "تابع الى الدفع"
