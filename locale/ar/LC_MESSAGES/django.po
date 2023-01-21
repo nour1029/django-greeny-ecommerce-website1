@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-21 21:51+0200\n"
+"POT-Creation-Date: 2023-01-21 23:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -237,6 +237,70 @@ msgstr "اللقب"
 #: .\accounts\templates\profile.html:201
 msgid "save profile info"
 msgstr "حفظ معلومات الحساب"
+
+#: .\accounts\templates\registration\login.html:17
+msgid "welcome"
+msgstr ""
+
+#: .\accounts\templates\registration\login.html:18
+msgid "Use your credentials to access"
+msgstr ""
+
+#: .\accounts\templates\registration\login.html:22
+msgid "login with facebook"
+msgstr "سجل دخولك بفيسبوك"
+
+#: .\accounts\templates\registration\login.html:23
+msgid "login with twitter"
+msgstr "سجل دخولك بتوينر"
+
+#: .\accounts\templates\registration\login.html:24
+msgid "login with google"
+msgstr "سجل دخولك بجوجل"
+
+#: .\accounts\templates\registration\login.html:25
+msgid "login with instagram"
+msgstr "سجل دخولك بانستجرام"
+
+#: .\accounts\templates\registration\login.html:28
+msgid "or"
+msgstr "او"
+
+#: .\accounts\templates\registration\login.html:33
+msgid "Enter your email"
+msgstr "ادخل بريدك هاتفك"
+
+#: .\accounts\templates\registration\login.html:36
+msgid "Enter your password"
+msgstr "ادخل كلمة السر الخاصة بك"
+
+#: .\accounts\templates\registration\login.html:40
+msgid "Remember Me"
+msgstr "تذكرني"
+
+#: .\accounts\templates\registration\login.html:43
+msgid "login"
+msgstr "تسجيل الدخول"
+
+#: .\accounts\templates\registration\login.html:44
+msgid "Forgot your password?"
+msgstr "هل نسيت كلمة السر"
+
+#: .\accounts\templates\registration\login.html:44
+msgid "reset here"
+msgstr ""
+
+#: .\accounts\templates\registration\login.html:50
+msgid "Don't have any account?"
+msgstr "ليس لديك اي حساب؟"
+
+#: .\accounts\templates\registration\login.html:50
+msgid "register here"
+msgstr "سجل هنا"
+
+#: .\accounts\templates\registration\login.html:53
+msgid "Copyright by"
+msgstr "حقوق الملكية لدى لدى"
 
 #: .\home\models.py:7
 #, fuzzy
@@ -599,7 +663,7 @@ msgstr "مميز"
 msgid "SKU"
 msgstr "الكود"
 
-#: .\products\models.py:30 .\templates\base.html:326
+#: .\products\models.py:30 .\templates\base.html:327
 msgid "Brand"
 msgstr "العلامة التجارية"
 
@@ -843,11 +907,11 @@ msgstr "عروض"
 msgid "need help"
 msgstr "تحتاج مساعدة"
 
-#: .\templates\base.html:121 .\templates\base.html:838
+#: .\templates\base.html:121 .\templates\base.html:839
 msgid "contact us"
 msgstr "تواصل معنا"
 
-#: .\templates\base.html:149 .\templates\base.html:868
+#: .\templates\base.html:149 .\templates\base.html:869
 msgid "My Account"
 msgstr "حسابي"
 
@@ -863,7 +927,7 @@ msgstr "تسجيل الدخول"
 msgid "Search anything"
 msgstr "أبحث عن أي شيء"
 
-#: .\templates\base.html:165 .\templates\base.html:702
+#: .\templates\base.html:165 .\templates\base.html:703
 msgid "Wishlist"
 msgstr "قائمة المفضلة"
 
@@ -883,97 +947,97 @@ msgstr "المنتجات"
 msgid "Categories"
 msgstr "الأقسام"
 
-#: .\templates\base.html:520
+#: .\templates\base.html:521
 msgid "join here"
 msgstr "انضم هنا"
 
-#: .\templates\base.html:689 .\templates\base.html:691
+#: .\templates\base.html:690 .\templates\base.html:692
 msgid "Home Page"
 msgstr "الصفحة الرئيسية"
 
-#: .\templates\base.html:693
+#: .\templates\base.html:694
 msgid "Category List"
 msgstr "قائمة الأقسام"
 
-#: .\templates\base.html:695
+#: .\templates\base.html:696
 msgid "categories"
 msgstr "الأقسام"
 
-#: .\templates\base.html:697
+#: .\templates\base.html:698
 msgid "Cart"
 msgstr "السلة"
 
-#: .\templates\base.html:699
+#: .\templates\base.html:700
 msgid "cart"
 msgstr "السلة"
 
-#: .\templates\base.html:704
+#: .\templates\base.html:705
 msgid "wishlist"
 msgstr "قائمة المفضلة"
 
-#: .\templates\base.html:726
+#: .\templates\base.html:727
 #, fuzzy, python-format
 #| msgid "Get 20%% Discount for Subscriber"
 msgid "Get 20%% Discount for Subscriber"
 msgstr "الحصول على 20% خصم للمشتركين"
 
-#: .\templates\base.html:732
+#: .\templates\base.html:733
 msgid "Enter Your Email Address"
 msgstr "ادخل بريدك الالكتروني"
 
-#: .\templates\base.html:734
+#: .\templates\base.html:735
 msgid "Subscribe"
 msgstr "إشتراك"
 
-#: .\templates\base.html:757
+#: .\templates\base.html:758
 msgid "free home delivery"
 msgstr "توصيل مجاني للمنزل"
 
-#: .\templates\base.html:768
+#: .\templates\base.html:769
 msgid "instant return policy"
 msgstr "سياسة الإرجاع الفوري"
 
-#: .\templates\base.html:779
+#: .\templates\base.html:780
 msgid "quick support system"
 msgstr "نظام دعم سريع"
 
-#: .\templates\base.html:790
+#: .\templates\base.html:791
 msgid "secure payment way"
 msgstr "طريقة دفع آمنة"
 
-#: .\templates\base.html:865
+#: .\templates\base.html:866
 msgid "quick Links"
 msgstr "روابط سريعة"
 
-#: .\templates\base.html:869
+#: .\templates\base.html:870
 msgid "Order History"
 msgstr "سجل الطلبات"
 
-#: .\templates\base.html:870
+#: .\templates\base.html:871
 msgid "Order Tracking"
 msgstr "تتبع الطلب"
 
-#: .\templates\base.html:871
+#: .\templates\base.html:872
 msgid "Best Seller"
 msgstr "الأكثر مبيعا"
 
-#: .\templates\base.html:876
+#: .\templates\base.html:877
 msgid "Affiliates"
 msgstr "الشركات التابعة"
 
-#: .\templates\base.html:877
+#: .\templates\base.html:878
 msgid "Contact"
 msgstr "تواصل معنا"
 
-#: .\templates\base.html:878
+#: .\templates\base.html:879
 msgid "Faq"
 msgstr "التعليمات"
 
-#: .\templates\base.html:879
+#: .\templates\base.html:880
 msgid "Support"
 msgstr "الدعم"
 
-#: .\templates\base.html:889
+#: .\templates\base.html:890
 msgid "All Copyrights Reserved by"
 msgstr "جميع الحقوق محفوظة لدى"
 
@@ -984,6 +1048,18 @@ msgstr "اجمالي المنتجات"
 #: .\templates\include\cart_side.html:27
 msgid "Unit Price"
 msgstr "سعر القطعة"
+
+#~ msgid "facebook"
+#~ msgstr "فيسبوك"
+
+#~ msgid "twitter"
+#~ msgstr "تويتر"
+
+#~ msgid "google"
+#~ msgstr "جوجل"
+
+#~ msgid "instagram"
+#~ msgstr "انستجرام"
 
 #~ msgid "category"
 #~ msgstr "القسم"
