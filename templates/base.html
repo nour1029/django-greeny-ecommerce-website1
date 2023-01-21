@@ -689,7 +689,7 @@
         <i class="fas fa-home"></i>
         <span>{% trans "Home Page" %}</span>
       </a>
-      <a class="cate-btn" title="{% translate "Category List" %}">
+      <a class="cate-btn" href="{% url 'products:category_list' %}" title="{% translate "Category List" %}">
         <i class="fas fa-list"></i>
         <span>{% translate "categories" %}</span>
       </a>
