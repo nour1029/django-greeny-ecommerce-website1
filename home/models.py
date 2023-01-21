@@ -11,4 +11,4 @@ class Banner(models.Model):
     active = models.BooleanField(_("Active"), default=False)
 
     def __str__(self):
-        return self.title_eng
+        return self.title_en
