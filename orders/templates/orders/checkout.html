@@ -5,7 +5,11 @@
 
 
 {% block link %}
-    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+    {% if LANGUAGE_CODE == 'ar' %}
+        <link rel="stylesheet" href="{% static 'rtl_static/css/checkout.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+    {% endif %}
 {% endblock link %}
 
 
@@ -134,7 +138,7 @@
                             <label for="checkout-check">{% translate "By making this purchase you agree to our" %} <a href="#">{% translate "Terms and Conditions" %}</a>.</label>
                         </div>
                         <div class="checkout-proced">
-                            <a href="#" class="btn btn-inline">{% translate "proced to checkout" %}</a>
+                            <a href="#" class="btn btn-inline">{% translate "complete the purchase" %}</a>
                         </div>
                     </div>
                 </div>
