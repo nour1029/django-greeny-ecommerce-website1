@@ -947,7 +947,7 @@ msgstr "التعليمات"
 
 #: .\templates\base.html:894
 msgid "Support"
-msgstr ""
+msgstr "الدعم"
 
 #: .\templates\base.html:904
 msgid "All Copyrights Reserved by"
