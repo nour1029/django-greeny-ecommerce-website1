@@ -148,7 +148,6 @@
             /></a>
             <button class="header-src"><i class="fas fa-search"></i></button>
           </div>
-
           <a href="{% url 'home:home_page' %}" class="header-logo mylogo">
             Nour
           </a>
@@ -204,7 +203,7 @@
                     href="{% url 'products:product_list' %}">{% translate "Products" %} </a>
                 </li>
                 <li class="navbar-item dropdown-megamenu">
-                  <a class="navbar-link dropdown-arrow" href="#">{% translate "Category" %}</a>
+                  <a class="navbar-link dropdown-arrow" href="{% url 'products:category_list' %}">{% translate "Categories" %}</a>
                   <div class="megamenu">
                     <div class="container megamenu-scroll">
                       <div class="row row-cols-5">
@@ -333,22 +332,13 @@
                   </div>
                 </li>
                 <li class="navbar-item dropdown">
-                  <a class="navbar-link dropdown-arrow" href="#">{% translate "Brand" %} </a>
-                  <ul class="dropdown-position-list">
-                    {% for brand in brand_info %}
-                    <li>
-                      <a href="{% url 'products:brand_detail' brand.slug %}"
-                        >{{brand}}</a
-                      >
-                    </li>
-                    {% endfor %}
-                  </ul>
+                  <a class="navbar-link" href="{% url 'products:brand_list' %}">{% translate "Brand" %} </a>
                 </li>
-                <li class="navbar-item dropdown">
+                {% comment %} <li class="navbar-item dropdown">
                   <a class="navbar-link" href="{% url 'orders:order_list' %}"
                     >{% translate "Orders" %}</a
                   >
-                </li>
+                </li> {% endcomment %}
               </ul>
 
             </div>
