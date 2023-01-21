@@ -685,28 +685,23 @@
                     MOBILE-MENU PART START
         =======================================-->
     <div class="mobile-menu">
-      <a href="index.html" title="Home Page">
+      <a href="{% url 'home:home_page' %}" title="{% translate "Home Page" %}">
         <i class="fas fa-home"></i>
-        <span>Home</span>
+        <span>{% trans "Home" %}</span>
       </a>
-      <button class="cate-btn" title="Category List">
+      <button class="cate-btn" title="{% translate "Category List" %}">
         <i class="fas fa-list"></i>
-        <span>category</span>
+        <span>{% translate "category" %}</span>
       </button>
-      <button class="cart-btn" title="Cartlist">
+      <button class="cart-btn" title="{% translate "Cart" %}">
         <i class="fas fa-shopping-basket"></i>
-        <span>cartlist</span>
-        <sup>9+</sup>
+        <span>{% translate "cart" %}</span>
+        <sup id="cartCountMobile">{% if cart_detail|length <= 9 %} {{cart_detail|length}} {% else %}9+{% endif %}</sup>
       </button>
-      <a href="wishlist.html" title="Wishlist">
+      <a href="{% url 'accounts:wishlist' %}" title="{% translate "Wishlist" %}">
         <i class="fas fa-heart"></i>
-        <span>wishlist</span>
-        <sup>0</sup>
-      </a>
-      <a href="compare.html" title="Compare List">
-        <i class="fas fa-random"></i>
-        <span>compare</span>
-        <sup>0</sup>
+        <span>{% translate "wishlist" %}</span>
+        <sup id="favoritesCountMobile">{% if user.Profile.favorites.all|length <= 9 %}{{user.Profile.favorites.all|length}}{% else %}9+{% endif %}</sup>
       </a>
     </div>
     <!--=====================================
@@ -999,6 +994,7 @@
 
                       document.getElementById('cartTotal').textContent=response['total']
                       document.getElementById('cartCount').textContent=cartCount
+                      document.getElementById('cartCountMobile').textContent=cartCount
                   },
                   error:function(err){
                       console.log(err)

@@ -418,6 +418,7 @@
                       
                       let favoritesCount = response['favorites_count'] <= 9 ? response['favorites_count'] : '9+';
                       $('#favoritesCount').text(favoritesCount);
+                      $('#favoritesCountMobile').text(favoritesCount);
                   },
                   error : function(err){
                       console.log(err)

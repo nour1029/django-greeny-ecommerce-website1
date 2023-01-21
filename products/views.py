@@ -178,6 +178,8 @@ def remove_from_favorites(request):
     product = Product.objects.get(id=prodcut_id)
 
     request.user.Profile.favorites.remove(product)
+    
 
+    profile = Profile.objects.get(user=request.user)
     html = render_to_string('include/real-time/wishlist-tablelist.html', {}, request=request)
-    return JsonResponse({'result':html})
+    return JsonResponse({'result':html, 'favorites_count':profile.get_favorites_count()})
