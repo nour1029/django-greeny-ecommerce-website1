@@ -136,16 +136,12 @@
         <div class="header-content">
           <div class="header-media-group">
             <button class="header-user">
-              <img src="{{profile.image.url}}" alt="user" />
+              <img src="{{user.Profile.image.url}}" alt="user" />
             </button>
-            <a href="index.html"
-              ><img src="{{site_info.logo.url}}" alt="logo"
-            /></a>
+            <a href="{% url 'home:home_page' %}" class=" mylogo">Nour</a>
             <button class="header-src"><i class="fas fa-search"></i></button>
           </div>
-          <a href="{% url 'home:home_page' %}" class="header-logo mylogo">
-            Nour
-          </a>
+          <a href="{% url 'home:home_page' %}" class="header-logo mylogo">Nour</a>
           {% if user.is_authenticated %}
           <a
             href="{% url 'accounts:profile' %}"
