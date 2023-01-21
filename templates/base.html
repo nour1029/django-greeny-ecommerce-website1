@@ -188,14 +188,14 @@
           <div class="col-lg-12">
             <div class="navbar-content">
               <ul class="navbar-list">
-                <li class="navbar-item dropdown-megamenu">
+                <li class="navbar-item">
                   <a
                     class="navbar-link"
                     href="{% url 'products:product_list' %}">{% translate "Products" %} </a>
                 </li>
                 <li class="navbar-item dropdown-megamenu">
-                  <a class="navbar-link dropdown-arrow" href="{% url 'products:category_list' %}">{% translate "Categories" %}</a>
-                  <div class="megamenu">
+                  <a class="navbar-link " href="{% url 'products:category_list' %}">{% translate "Categories" %}</a>
+                  {% comment %} <div class="megamenu">
                     <div class="container megamenu-scroll">
                       <div class="row row-cols-5">
                         <div class="col">
@@ -320,7 +320,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> {% endcomment %}
                 </li>
                 <li class="navbar-item dropdown">
                   <a class="navbar-link" href="{% url 'products:brand_list' %}">{% translate "Brand" %} </a>
