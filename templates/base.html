@@ -21,13 +21,7 @@
     <meta name="email" content="mironcoder@gmail.com" />
     <meta name="profile" content="https://themeforest.net/user/mironcoder" />
 
-    <!-- TEMPLATE META -->
-    <meta name="name" content="Greeny" />
-    <meta name="title" content="Greeny - eCommerce HTML Template" />
-    <meta
-      name="keywords"
-      content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store"
-    />
+    
     <!--=====================================
                     META-TAG PART END
         =======================================-->
@@ -169,7 +163,7 @@
             <button class="header-widget header-cart" title="{% translate "Cartlist" %}">
               <i class="fas fa-shopping-basket"></i>
               <sup id="cartCount">{% if cart_detail|length <= 9 %} {{cart_detail|length}} {% else %}9+{% endif %}</sup>
-              <span>{% translate "total price" %}<small id="cartTotal">${{cart.get_total|floatformat:2}}</small></span>
+              <span>{% translate "total price" %}<small id="cartTotal">${% if cart.get_total %}{{cart.get_total|floatformat:2}}{% else %}0.00{% endif %}</small></span>
             </button>
           </div>
         </div>
