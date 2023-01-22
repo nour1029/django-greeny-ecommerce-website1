@@ -22,13 +22,13 @@
         <!--=====================================
                     BANNER PART START
         =======================================-->
-        <section class="single-banner" style="background: url(images/single-banner.jpg) no-repeat center;">
+        <section class="single-banner" style="background: url({% static 'images/single-banner.jpg' %}) no-repeat center;">
             <div class="container">
-                <h2>Brand Single</h2>
+                <h2>{% translate "brand products" %}</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="brand-list.html">brand-list</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">brand-single</li>
+                    <li class="breadcrumb-item"><a href="{% url 'home:home_page' %}">{% trans "home" %}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'products:brand_list' %}">{% translate "all brands" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% translate "brand page" %}</li>
                 </ol>
             </div>
         </section>

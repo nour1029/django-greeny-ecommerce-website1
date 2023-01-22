@@ -10,12 +10,12 @@
         <!--=====================================
                     BANNER PART START
         =======================================-->
-        <section class="inner-section single-banner" style="background: url(images/single-banner.jpg) no-repeat center;">
+        <section class="inner-section single-banner" style="background: url({% static 'images/single-banner.jpg' %}) no-repeat center;">
             <div class="container">
-                <h2>brand list</h2>
+                <h2>{% translate "all brands" %}</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">brand-list</li>
+                    <li class="breadcrumb-item"><a href="{% url 'home:home_page' %}">{% trans "home" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% translate "all brands" %}</li>
                 </ol>
             </div>
         </section>
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="brand-meta">
                                     <h4>{{brand}}</h4>
-                                    <p>({{brand.product_count}} items)</p>
+                                    <p>({{brand.product_count}} {% translate "items" %})</p>
                                 </div>
                             </div>
                         </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-22 19:44+0200\n"
+"POT-Creation-Date: 2023-01-22 22:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -197,8 +197,9 @@ msgid "add new contact"
 msgstr "إضافة رقم هاتف جديد"
 
 #: .\accounts\templates\profile.html:96
+#: .\products\templates\products\product_list.html:15
 msgid "home"
-msgstr "بيت"
+msgstr "الرئيسية"
 
 #: .\accounts\templates\profile.html:97
 msgid "bussiness"
@@ -1002,58 +1003,63 @@ msgstr "اضافة"
 msgid "related this items"
 msgstr "اصناف ذات صلة"
 
-#: .\products\templates\products\product_list.html:4 .\templates\base.html:188
+#: .\products\templates\products\product_list.html:5
+#: .\products\templates\products\product_list.html:13 .\templates\base.html:188
 msgid "Products"
 msgstr "المنتجات"
 
-#: .\products\templates\products\product_list.html:32
+#: .\products\templates\products\product_list.html:16
+msgid "products"
+msgstr "المنتجات"
+
+#: .\products\templates\products\product_list.html:33
 msgid "Filter by Price"
 msgstr "الفلترة بالسعر"
 
-#: .\products\templates\products\product_list.html:35
+#: .\products\templates\products\product_list.html:36
 msgid "Min"
 msgstr "أدنى"
 
-#: .\products\templates\products\product_list.html:36
+#: .\products\templates\products\product_list.html:37
 msgid "Max"
 msgstr "أقصى"
 
-#: .\products\templates\products\product_list.html:42
+#: .\products\templates\products\product_list.html:43
 msgid "search"
 msgstr "بحث"
 
-#: .\products\templates\products\product_list.html:46
+#: .\products\templates\products\product_list.html:47
 msgid "Filter by Rating"
 msgstr "الفلترة بالتقييم"
 
-#: .\products\templates\products\product_list.html:117
-#: .\products\templates\products\product_list.html:142
-#: .\products\templates\products\product_list.html:162
-#: .\products\templates\products\product_list.html:184
+#: .\products\templates\products\product_list.html:118
+#: .\products\templates\products\product_list.html:143
+#: .\products\templates\products\product_list.html:163
+#: .\products\templates\products\product_list.html:185
 msgid "clear filter"
 msgstr "ازالة الفلتر"
 
-#: .\products\templates\products\product_list.html:122
+#: .\products\templates\products\product_list.html:123
 msgid "Filter by Tag"
 msgstr "الفلترة بالكلمات المفتاحية"
 
-#: .\products\templates\products\product_list.html:128
+#: .\products\templates\products\product_list.html:129
 msgid "new items"
 msgstr "الأصناف جديدة"
 
-#: .\products\templates\products\product_list.html:135
+#: .\products\templates\products\product_list.html:136
 msgid "feature items"
 msgstr "الأصناف المميزة"
 
-#: .\products\templates\products\product_list.html:147
+#: .\products\templates\products\product_list.html:148
 msgid "Filter by Brand"
 msgstr "الفلترة بالعلامة التجارية"
 
-#: .\products\templates\products\product_list.html:167
+#: .\products\templates\products\product_list.html:168
 msgid "Filter by Category"
 msgstr "الفلترة بالقسم"
 
-#: .\products\templates\products\product_list.html:169
+#: .\products\templates\products\product_list.html:170
 msgid "Search"
 msgstr "بحث"
 
