@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import SignupForm, UserActivateForm, UserAdressForm
 from .models import Profile, UserAdress, UserPhoneNumber
+from .decorators import unauthenticated_user
 from settings.models import Country, City
 from django.conf import settings
 from django.core.mail import send_mail
@@ -9,7 +10,7 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 # Create your views here.
 
-
+@unauthenticated_user
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
