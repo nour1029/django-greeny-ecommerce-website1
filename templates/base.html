@@ -130,7 +130,7 @@
         <div class="header-content">
           <div class="header-media-group">
             <a class="header-user" href="{% url 'accounts:profile' %}">
-              <img src="{{user.Profile.image.url}}" alt="user" style="width: 40px; height: 40px;"/>
+              <img src="{% if user.Profile.image %}{{user.Profile.image.url}}{% else %}{% static 'images/user.png' %}{% endif %}" alt="user" style="width: 40px; height: 40px;"/>
             </a>
             <a href="{% url 'home:home_page' %}" class=" mylogo">Nour</a>
             <button class="header-src"><i class="fas fa-search"></i></button>
@@ -142,7 +142,7 @@
             class="header-widget"
             title="{% translate "My Account" %}"
           >
-            <img src="{{user.Profile.image.url}}" alt="user" />
+            <img src="{% if user.Profile.image %}{{user.Profile.image.url}}{% else %}{% static 'images/user.png' %}{% endif %}" alt="user" />
           </a>
           {% else %}
           <a href="{% url 'login' %}" class="header-widget" title="{% trans "Join" %}">

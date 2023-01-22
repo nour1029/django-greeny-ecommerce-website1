@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-22 22:40+0200\n"
+"POT-Creation-Date: 2023-01-22 23:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,7 +104,7 @@ msgid "choose type"
 msgstr "اختر النوع"
 
 #: .\accounts\templates\include\real-time\addresses_section.html:31
-#: .\accounts\templates\profile.html:125
+#: .\accounts\templates\profile.html:96 .\accounts\templates\profile.html:125
 msgid "Home"
 msgstr "منزل"
 
@@ -158,15 +158,33 @@ msgstr "ملاحظات"
 msgid "save address info"
 msgstr "حفظ العنوان"
 
-#: .\accounts\templates\include\real-time\profile_info_section.html:18
+#: .\accounts\templates\include\real-time\profile_info_section.html:19
 msgid "change pass."
 msgstr "تغيير الباس."
 
 #: .\accounts\templates\profile.html:14
-#, fuzzy
-#| msgid "Your Profile"
 msgid "Profile"
-msgstr "صفحتك الشخصية"
+msgstr "الصفحة الشخصية"
+
+#: .\accounts\templates\profile.html:22
+msgid "my profile"
+msgstr "صفحتي الشخصية"
+
+#: .\accounts\templates\profile.html:24 .\accounts\templates\wishlist.html:16
+#: .\orders\templates\orders\checkout.html:25
+#: .\orders\templates\orders\order_list.html:24
+#: .\products\templates\products\brand_detail.html:29
+#: .\products\templates\products\brand_list.html:17
+#: .\products\templates\products\category_list.html:16
+#: .\products\templates\products\product_detail.html:29
+#: .\products\templates\products\product_list.html:15
+#: .\settings\templates\contact_us.html:27
+msgid "home"
+msgstr "الرئيسية"
+
+#: .\accounts\templates\profile.html:25
+msgid "profile"
+msgstr "الصفحة الشخصية"
 
 #: .\accounts\templates\profile.html:42
 msgid "Your Profile"
@@ -195,11 +213,6 @@ msgstr "إضافة عنوان"
 #: .\accounts\templates\profile.html:90
 msgid "add new contact"
 msgstr "إضافة رقم هاتف جديد"
-
-#: .\accounts\templates\profile.html:96
-#: .\products\templates\products\product_list.html:15
-msgid "home"
-msgstr "الرئيسية"
 
 #: .\accounts\templates\profile.html:97
 msgid "bussiness"
@@ -512,9 +525,14 @@ msgstr "سجل"
 msgid "Already Have An Account?"
 msgstr "هل لديك حساب؟"
 
-#: .\accounts\templates\wishlist.html:5 .\templates\base.html:159
+#: .\accounts\templates\wishlist.html:6 .\templates\base.html:159
 #: .\templates\base.html:697
 msgid "Wishlist"
+msgstr "قائمة المفضلة"
+
+#: .\accounts\templates\wishlist.html:14 .\accounts\templates\wishlist.html:17
+#: .\templates\base.html:699
+msgid "wishlist"
 msgstr "قائمة المفضلة"
 
 #: .\home\models.py:7
@@ -539,7 +557,8 @@ msgstr "احصل على عرض"
 
 #: .\home\templates\home\index.html:69 .\home\templates\home\index.html:337
 #: .\products\templates\products\brand_detail.html:58
-#: .\products\templates\products\category_list.html:42
+#: .\products\templates\products\brand_list.html:48
+#: .\products\templates\products\category_list.html:43
 msgid "items"
 msgstr "اصناف"
 
@@ -780,8 +799,14 @@ msgid "discount"
 msgstr "خصم"
 
 #: .\orders\templates\orders\checkout.html:15
+#: .\orders\templates\orders\checkout.html:23
+#: .\orders\templates\orders\checkout.html:27
 msgid "Checkout"
 msgstr "الدفع"
+
+#: .\orders\templates\orders\checkout.html:26
+msgid "orders"
+msgstr "الطلبات"
 
 #: .\orders\templates\orders\checkout.html:47
 msgid "Your order"
@@ -833,9 +858,14 @@ msgstr "إتمام عملية الشراء"
 msgid "Invoice"
 msgstr "الفاتورة"
 
-#: .\orders\templates\orders\order_list.html:14 .\templates\base.html:864
+#: .\orders\templates\orders\order_list.html:14
+#: .\orders\templates\orders\order_list.html:22 .\templates\base.html:864
 msgid "Order History"
 msgstr "سجل الطلبات"
+
+#: .\orders\templates\orders\order_list.html:25
+msgid "Order list"
+msgstr "قائمة الطلبات"
 
 #: .\orders\templates\orders\order_list.html:42
 msgid "total order"
@@ -935,17 +965,45 @@ msgstr "التقييم"
 msgid "Created at"
 msgstr "انشئ في"
 
+#: .\products\templates\products\brand_detail.html:27
+msgid "brand products"
+msgstr "منتجات الشركة"
+
+#: .\products\templates\products\brand_detail.html:30
+#: .\products\templates\products\brand_list.html:15
+#: .\products\templates\products\brand_list.html:18
+msgid "all brands"
+msgstr "كل العلامات التجارية"
+
+#: .\products\templates\products\brand_detail.html:31
+msgid "brand page"
+msgstr "صفحة العلامة التجارية"
+
 #: .\products\templates\products\brand_detail.html:56
 msgid "rating"
-msgstr ""
+msgstr "تقييم"
 
 #: .\products\templates\products\brand_list.html:7
 msgid "Brands"
 msgstr "العلامات التجارية"
 
-#: .\products\templates\products\category_list.html:5 .\templates\base.html:191
+#: .\products\templates\products\category_list.html:6 .\templates\base.html:191
 msgid "Categories"
 msgstr "الأقسام"
+
+#: .\products\templates\products\category_list.html:14
+#: .\products\templates\products\category_list.html:17
+msgid "all categories"
+msgstr "كل الأقسام"
+
+#: .\products\templates\products\product_detail.html:30
+#: .\products\templates\products\product_list.html:16
+msgid "products"
+msgstr "المنتجات"
+
+#: .\products\templates\products\product_detail.html:31
+msgid "product page"
+msgstr "صفحة المنتج"
 
 #: .\products\templates\products\product_detail.html:70
 msgid "BRAND"
@@ -1008,10 +1066,6 @@ msgstr "اصناف ذات صلة"
 msgid "Products"
 msgstr "المنتجات"
 
-#: .\products\templates\products\product_list.html:16
-msgid "products"
-msgstr "المنتجات"
-
 #: .\products\templates\products\product_list.html:33
 msgid "Filter by Price"
 msgstr "الفلترة بالسعر"
@@ -1063,11 +1117,11 @@ msgstr "الفلترة بالقسم"
 msgid "Search"
 msgstr "بحث"
 
-#: .\project\settings.py:152
+#: .\project\settings.py:151
 msgid "Arabic"
 msgstr "العربية"
 
-#: .\project\settings.py:153
+#: .\project\settings.py:152
 msgid "English"
 msgstr "الانجليزية"
 
@@ -1133,6 +1187,12 @@ msgstr "ادخل بريدك الإلكتروني"
 msgid "Contact Us"
 msgstr "تواصل معنا"
 
+#: .\settings\templates\contact_us.html:25
+#: .\settings\templates\contact_us.html:28 .\templates\base.html:115
+#: .\templates\base.html:833
+msgid "contact us"
+msgstr "تواصل معنا"
+
 #: .\settings\templates\contact_us.html:46
 msgid "head office"
 msgstr "المكتب الرئيسي"
@@ -1185,10 +1245,6 @@ msgstr "عروض"
 msgid "need help"
 msgstr "تحتاج مساعدة"
 
-#: .\templates\base.html:115 .\templates\base.html:833
-msgid "contact us"
-msgstr "تواصل معنا"
-
 #: .\templates\base.html:143 .\templates\base.html:863
 msgid "My Account"
 msgstr "حسابي"
@@ -1232,10 +1288,6 @@ msgstr "السلة"
 #: .\templates\base.html:694
 msgid "cart"
 msgstr "السلة"
-
-#: .\templates\base.html:699
-msgid "wishlist"
-msgstr "قائمة المفضلة"
 
 #: .\templates\base.html:721
 #, fuzzy, python-format

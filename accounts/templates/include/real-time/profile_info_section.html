@@ -1,10 +1,11 @@
 {% load i18n %}
+{% load static %}
 
 <div class="account-content">
     <div class="row">
         <div class="col-lg-2">
             <div class="profile-image">
-                <a href="#"><img src="{{user.Profile.image.url}}" alt="user"></a>
+                <a href="#"><img src="{% if user.Profile.image %}{{user.Profile.image.url}}{% else %}{% static 'images/user.png' %}{% endif %}" alt="user"></a>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 mt-4">

@@ -5,7 +5,7 @@
         {% for address in user_adress %}
             <div class="col-md-6 col-lg-4 alert fade show">
                 <div class="profile-card address  {% if address.active %}active{% endif %}" data-id='{{address.id}}'>
-                    <h6>{{address.type}}</h6>
+                    <h6>{% translate address.type %}</h6>
                     <p>{{address.country}}, {{address.city}}, {{address.state}}. {{address.region}}, {{address.street}}</p>
                     <ul class="user-action">
                         <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit-{{address.id}}"></button></li>
