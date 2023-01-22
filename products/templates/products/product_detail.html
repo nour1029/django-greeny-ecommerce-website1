@@ -4,14 +4,17 @@
 
 
 
-{% block title %}
-    <title>{{product.name}}</title>
-{% endblock title %}
+{% block title %}{{product.name}}{% endblock title %}
 
 
 
 {% block link %}
-    <link rel="stylesheet" href="{% static 'css/product-details.css' %}">
+    
+    {% if LANGUAGE_CODE == 'ar' %}
+        <link rel="stylesheet" href="{% static 'rtl_static/css/product-details.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/product-details.css' %}">
+{% endif %}
 {% endblock link %}
 
 {% block body %}
@@ -256,6 +259,7 @@
                         
                         let favoritesCount = response['favorites_count'] <= 9 ? response['favorites_count'] : '9+';
                         $('#favoritesCount').text(favoritesCount);
+                        $('#favoritesCountMobile').text(favoritesCount);
                     },
                     error : function(err){
                         console.log(err);
@@ -278,6 +282,7 @@
 
                         document.getElementById('cartTotal').textContent=response['total']
                         document.getElementById('cartCount').textContent=cartCount
+                        document.getElementById('cartCountMobile').textContent=cartCount
                     },
                     error:function(err){
                         console.log(err)

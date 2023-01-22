@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
+
+{% block title %}{% translate "Wishlist" %}{% endblock title %}
+
 {% block body %}
     <!--=====================================
                 BANNER PART START
@@ -57,7 +60,6 @@
         $(document).ready(function(e){
             $('#tableList').on('click', '.remove-from-wishlist', function(e){
                 e.preventDefault()
-                console.log('clicked')
                 const productId = $(this).data('id');
                 const csrftoken = getCookie('csrftoken');
 
@@ -69,6 +71,10 @@
                     dataType: 'json',
                     success:function(response){
                         $('#tableList').html(response['result'])
+
+                        let favoritesCount = response['favorites_count'] <= 9 ? response['favorites_count'] : '9+';
+                        $('#favoritesCount').text(favoritesCount);
+                        $('#favoritesCountMobile').text(favoritesCount);
                     },
                     error:function(err){
                         console.log(err)

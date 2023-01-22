@@ -413,6 +413,7 @@
   position: relative;
 }
 
+.details-action-group button,
 .details-action-group a {
   padding: 10px 0px;
   border-radius: 8px;
@@ -434,15 +435,18 @@
   -o-transition: all linear .3s;
 }
 
+.details-action-group button:hover,
 .details-action-group a:hover {
   color: var(--primary);
 }
 
+.details-action-group button i,
 .details-action-group a i {
   font-size: 16px;
   margin-left: 8px;
 }
 
+.details-action-group button span,
 .details-action-group a span {
   font-size: 14px;
   font-weight: 500;

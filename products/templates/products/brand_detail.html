@@ -3,6 +3,9 @@
 {% load i18n %}
 
 
+
+{% block title %}{% translate "Brand" %} - {{brand.name}}{% endblock title %}
+
 {% block link %}
     {% if LANGUAGE_CODE == 'ar' %}
         <link rel="stylesheet" href="{% static 'rtl_static/css/brand-single.css' %}" />

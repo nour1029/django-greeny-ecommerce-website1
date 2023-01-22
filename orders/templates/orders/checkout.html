@@ -5,10 +5,14 @@
 
 
 {% block link %}
-    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+    {% if LANGUAGE_CODE == 'ar' %}
+        <link rel="stylesheet" href="{% static 'rtl_static/css/checkout.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+    {% endif %}
 {% endblock link %}
 
-
+{% block title %}{% translate "Checkout" %}{% endblock title %}
 
 {% block body %}
     <!--=====================================
@@ -43,36 +47,8 @@
                             <h4>{% translate "Your order" %}</h4>
                         </div>
                         <div class="account-content">
-                            <div class="table-scroll">
-                                <table class="table-list">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">{% translate "Serial" %}</th>
-                                            <th scope="col">{% trans "Product" %}</th>
-                                            <th scope="col">{% translate "Name" %}</th>
-                                            <th scope="col">{% translate "Price" %}</th>
-                                            <th scope="col">{% translate "brand" %}</th>
-                                            <th scope="col">{% translate "quantity" %}</th>
-                                            <th scope="col">{% translate "action" %}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for item in cart_detail %}
-                                            <tr>
-                                                <td class="table-serial"><h6>{{forloop.counter}}</h6></td>
-                                                <td class="table-image"><img src="{{item.product.image.url}}" alt="product"></td>
-                                                <td class="table-name"><h6>{{item.product}}</h6></td>
-                                                <td class="table-price"><h6>${{item.product.price}}</h6></td>
-                                                <td class="table-brand"><h6>{{item.product.brand}}</h6></td>
-                                                <td class="table-quantity"><h6>{{item.quantity}}</h6></td>
-                                                <td class="table-action">
-                                                    <a class="view" href="{{item.product.get_absolute_url}}" title="Quick View"><i class="fas fa-eye"></i></a>
-                                                    <a class="trash" href="#" title="{% translate "Remove From Cart" %}"><i class="icofont-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
+                            <div id='checkoutProductsSection' class="table-scroll">
+                                {% include 'include/real-time/checkout_products_section.html' %}
                             </div>
                             <div class="chekout-coupon">
                                 <button class="coupon-btn">{% translate "Do you have a coupon code?" %}</button>
@@ -134,7 +110,7 @@
                             <label for="checkout-check">{% translate "By making this purchase you agree to our" %} <a href="#">{% translate "Terms and Conditions" %}</a>.</label>
                         </div>
                         <div class="checkout-proced">
-                            <a href="#" class="btn btn-inline">{% translate "proced to checkout" %}</a>
+                            <a href="{% url 'coming_soon' %}" class="btn btn-inline">{% translate "complete the purchase" %}</a>
                         </div>
                     </div>
                 </div>
@@ -213,6 +189,32 @@
                 }
             })
         });
+
+
+        $(document).on('click', '.product-delete-checkout', function(e){
+            e.preventDefault()
+            const csrftoken = getCookie('csrftoken');
+            const cartDetailId =  $(this).data('id');
+            $.ajax({
+                type:'post',
+                url: `/orders/checkout/product/delete/`,
+                data: {'order_id':cartDetailId} ,
+                headers:{"X-CSRFToken": csrftoken }, // HERE: add it to the request header
+                dataType: 'json',
+                success:function(response){
+                    $('#cartSidebar').html(response['cartside'])
+                    $('#checkoutProductsSection').html(response['checkout'])
+
+                    let cartCount = response['count'] <= 9 ? response['count'] : '9+';
+
+                    document.getElementById('cartTotal').textContent=response['total']
+                    document.getElementById('cartCount').textContent=cartCount
+                },
+                error:function(err){
+                    console.log(err)
+                }
+            })
+        })
     </script>
 
 {% endblock body %}

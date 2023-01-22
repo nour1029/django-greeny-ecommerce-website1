@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
+{% block title %}{% translate "Products" %}{% endblock title %}
+
 {% block body %}
     <!--=====================================
                 BANNER PART START
@@ -269,6 +271,7 @@
                         
                         let favoritesCount = response['favorites_count'] <= 9 ? response['favorites_count'] : '9+';
                         $('#favoritesCount').text(favoritesCount);
+                        $('#favoritesCountMobile').text(favoritesCount);
                     },
                     error : function(err){
                         console.log(err)
@@ -291,6 +294,7 @@
 
                         document.getElementById('cartTotal').textContent=response['total']
                         document.getElementById('cartCount').textContent=cartCount
+                        document.getElementById('cartCountMobile').textContent=cartCount
                     },
                     error:function(err){
                         console.log(err)

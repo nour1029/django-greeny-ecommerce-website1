@@ -57,29 +57,29 @@ $('.nav-link').on('click', function(){
 //========================================
 //        CATEGORY SIDEBAR FUNCTION
 //========================================
-$('.header-cate, .cate-btn').on('click', function(){
-    $('body').css('overflow', 'hidden');
-    $('.category-sidebar').addClass('active');
-    $('.category-close').on('click', function(){
-        $('body').css('overflow', 'inherit');
-        $('.category-sidebar').removeClass('active');
-        $('.backdrop').fadeOut();
-    });
-});
+// $('.header-cate, .cate-btn').on('click', function(){
+//     $('body').css('overflow', 'hidden');
+//     $('.category-sidebar').addClass('active');
+//     $('.category-close').on('click', function(){
+//         $('body').css('overflow', 'inherit');
+//         $('.category-sidebar').removeClass('active');
+//         $('.backdrop').fadeOut();
+//     });
+// });
 
 
 //========================================
 //         NAV SIDEBAR FUNCTION
 //========================================
-$('.header-user').on('click', function(){
-    $('body').css('overflow', 'hidden');
-    $('.nav-sidebar').addClass('active');
-    $('.nav-close').on('click', function(){
-        $('body').css('overflow', 'inherit');
-        $('.nav-sidebar').removeClass('active');
-        $('.backdrop').fadeOut();
-    });
-});
+// $('.header-user').on('click', function(){
+//     $('body').css('overflow', 'hidden');
+//     $('.nav-sidebar').addClass('active');
+//     $('.nav-close').on('click', function(){
+//         $('body').css('overflow', 'inherit');
+//         $('.nav-sidebar').removeClass('active');
+//         $('.backdrop').fadeOut();
+//     });
+// });
 
 
 //========================================
@@ -99,17 +99,17 @@ $('.header-cart, .cart-btn').on('click', function(){
 //========================================
 //       BACKDROP SIDEBAR FUNCTION
 //========================================
-$('.header-user, .header-cart, .header-cate, .cart-btn, .cate-btn').on('click', function(){
-    $('.backdrop').fadeIn();
+// $('.header-user, .header-cart, .header-cate, .cart-btn, .cate-btn').on('click', function(){
+//     $('.backdrop').fadeIn();
 
-    $('.backdrop').on('click', function(){
-        $(this).fadeOut();
-        $('body').css('overflow', 'inherit');
-        $('.nav-sidebar').removeClass('active');
-        $('.cart-sidebar').removeClass('active');
-        $('.category-sidebar').removeClass('active');
-    });
-});
+//     $('.backdrop').on('click', function(){
+//         $(this).fadeOut();
+//         $('body').css('overflow', 'inherit');
+//         $('.nav-sidebar').removeClass('active');
+//         $('.cart-sidebar').removeClass('active');
+//         $('.category-sidebar').removeClass('active');
+//     });
+// });
 
 
 //========================================

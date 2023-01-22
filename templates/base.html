@@ -17,25 +17,19 @@
     />
 
     <!-- AUTHOR META -->
-    <meta name="author" content="mironcoder" />
-    <meta name="email" content="mironcoder@gmail.com" />
-    <meta name="profile" content="https://themeforest.net/user/mironcoder" />
+      <meta name="author" content="nour mohamed">
+      <meta name="email" content="nourdevelop60@gmail.com">
+      <meta name="profile" content="https://www.nourmohamed.com">
 
-    <!-- TEMPLATE META -->
-    <meta name="name" content="Greeny" />
-    <meta name="title" content="Greeny - eCommerce HTML Template" />
-    <meta
-      name="keywords"
-      content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, webshop, farm, grocery, natural, online store"
-    />
+    
     <!--=====================================
                     META-TAG PART END
         =======================================-->
 
     <!-- WEBPAGE TITLE -->
-    {% block title %}
-      <title>Index Home - Greeny</title>
-    {% endblock title %}
+    
+      <title>{% block title %}{% translate "Index Home" %} | Nour{% endblock title %}</title>
+    
     <!--=====================================
                     CSS LINK PART START
         =======================================-->
@@ -73,7 +67,7 @@
     {% endblock link %}
 
     
-    <link rel="stylesheet" href="{% static 'css/user-auth.css' %}" />
+    
 
 
     <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
@@ -101,20 +95,15 @@
             <div class="header-top-select">
               <div class="header-select">
                 <i class="icofont-world"></i>
-                {% comment %} {% if LANGUAGE_CODE == 'ar' %}{% endif %} {% endcomment %}
-
                 <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                     <input name="next" type="hidden" value="{{ redirect_to }}">
-                    <select name="language" class="select">
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                                {{ language.name_local }} ({{ language.code }})
-                            </option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" value="Go">
+                    {% if LANGUAGE_CODE == 'ar' %}
+                      <input type="hidden" name="language" value="en">
+                      <input type="submit" style="font-size: 14px; color: white;" value='English'>
+                    {% else %}
+                    <input type="hidden" name="language" value="ar">
+                      <input type="submit" style="font-size: 14px; color: white;" value='عربي'>
+                    {% endif %}
                 </form>
               </div>
             </div>
@@ -122,7 +111,7 @@
           <div class="col-md-7 col-lg-4">
             <ul class="header-top-list">
               <li><a href="#">{% translate "offers" %}</a></li>
-              <li><a href="nourmohamed.com">{% translate "need help" %}</a></li>
+              <li><a href="https://www.nourmohamed.com">{% translate "need help" %}</a></li>
               <li><a href="{% url 'info:contact_us' %}">{% translate "contact us" %}</a></li>
             </ul>
           </div>
@@ -140,18 +129,13 @@
       <div class="container">
         <div class="header-content">
           <div class="header-media-group">
-            <button class="header-user">
-              <img src="{{profile.image.url}}" alt="user" />
-            </button>
-            <a href="index.html"
-              ><img src="{{site_info.logo.url}}" alt="logo"
-            /></a>
+            <a class="header-user" href="{% url 'accounts:profile' %}">
+              <img src="{{user.Profile.image.url}}" alt="user" style="width: 40px; height: 40px;"/>
+            </a>
+            <a href="{% url 'home:home_page' %}" class=" mylogo">Nour</a>
             <button class="header-src"><i class="fas fa-search"></i></button>
           </div>
-
-          <a href="{% url 'home:home_page' %}" class="header-logo mylogo">
-            Nour
-          </a>
+          <a href="{% url 'home:home_page' %}" class="header-logo mylogo">Nour</a>
           {% if user.is_authenticated %}
           <a
             href="{% url 'accounts:profile' %}"
@@ -179,7 +163,7 @@
             <button class="header-widget header-cart" title="{% translate "Cartlist" %}">
               <i class="fas fa-shopping-basket"></i>
               <sup id="cartCount">{% if cart_detail|length <= 9 %} {{cart_detail|length}} {% else %}9+{% endif %}</sup>
-              <span>{% translate "total price" %}<small id="cartTotal">${{cart.get_total|floatformat:2}}</small></span>
+              <span>{% translate "total price" %}<small id="cartTotal">${% if cart.get_total %}{{cart.get_total|floatformat:2}}{% else %}0.00{% endif %}</small></span>
             </button>
           </div>
         </div>
@@ -198,14 +182,14 @@
           <div class="col-lg-12">
             <div class="navbar-content">
               <ul class="navbar-list">
-                <li class="navbar-item dropdown-megamenu">
+                <li class="navbar-item">
                   <a
                     class="navbar-link"
                     href="{% url 'products:product_list' %}">{% translate "Products" %} </a>
                 </li>
                 <li class="navbar-item dropdown-megamenu">
-                  <a class="navbar-link dropdown-arrow" href="#">{% translate "Category" %}</a>
-                  <div class="megamenu">
+                  <a class="navbar-link " href="{% url 'products:category_list' %}">{% translate "Categories" %}</a>
+                  {% comment %} <div class="megamenu">
                     <div class="container megamenu-scroll">
                       <div class="row row-cols-5">
                         <div class="col">
@@ -330,25 +314,16 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> {% endcomment %}
                 </li>
                 <li class="navbar-item dropdown">
-                  <a class="navbar-link dropdown-arrow" href="#">{% translate "Brand" %} </a>
-                  <ul class="dropdown-position-list">
-                    {% for brand in brand_info %}
-                    <li>
-                      <a href="{% url 'products:brand_detail' brand.slug %}"
-                        >{{brand}}</a
-                      >
-                    </li>
-                    {% endfor %}
-                  </ul>
+                  <a class="navbar-link" href="{% url 'products:brand_list' %}">{% translate "Brand" %} </a>
                 </li>
-                <li class="navbar-item dropdown">
+                {% comment %} <li class="navbar-item dropdown">
                   <a class="navbar-link" href="{% url 'orders:order_list' %}"
                     >{% translate "Orders" %}</a
                   >
-                </li>
+                </li> {% endcomment %}
               </ul>
 
             </div>
@@ -704,28 +679,23 @@
                     MOBILE-MENU PART START
         =======================================-->
     <div class="mobile-menu">
-      <a href="index.html" title="Home Page">
+      <a href="{% url 'home:home_page' %}" title="{% translate "Home Page" %}">
         <i class="fas fa-home"></i>
-        <span>Home</span>
+        <span>{% trans "Home Page" %}</span>
       </a>
-      <button class="cate-btn" title="Category List">
+      <a class="cate-btn" href="{% url 'products:category_list' %}" title="{% translate "Category List" %}">
         <i class="fas fa-list"></i>
-        <span>category</span>
-      </button>
-      <button class="cart-btn" title="Cartlist">
-        <i class="fas fa-shopping-basket"></i>
-        <span>cartlist</span>
-        <sup>9+</sup>
-      </button>
-      <a href="wishlist.html" title="Wishlist">
-        <i class="fas fa-heart"></i>
-        <span>wishlist</span>
-        <sup>0</sup>
+        <span>{% translate "categories" %}</span>
       </a>
-      <a href="compare.html" title="Compare List">
-        <i class="fas fa-random"></i>
-        <span>compare</span>
-        <sup>0</sup>
+      <button class="cart-btn" title="{% translate "Cart" %}">
+        <i class="fas fa-shopping-basket"></i>
+        <span>{% translate "cart" %}</span>
+        <sup id="cartCountMobile">{% if cart_detail|length <= 9 %} {{cart_detail|length}} {% else %}9+{% endif %}</sup>
+      </button>
+      <a href="{% url 'accounts:wishlist' %}" title="{% translate "Wishlist" %}">
+        <i class="fas fa-heart"></i>
+        <span>{% translate "wishlist" %}</span>
+        <sup id="favoritesCountMobile">{% if user.Profile.favorites.all|length <= 9 %}{{user.Profile.favorites.all|length}}{% else %}9+{% endif %}</sup>
       </a>
     </div>
     <!--=====================================
@@ -896,7 +866,7 @@
                   <li><a href="#">{% translate "Affiliates" %}</a></li>
                   <li><a href="{% url 'settings:contact_us' %}">{% translate "Contact" %}</a></li>
                   <li><a href="#">{% translate "Faq" %}</a></li>
-                  <li><a href="nourmohamed.com">{% translate "Support" %}</a></li>
+                  <li><a href="https://www.nourmohamed.com">{% translate "Support" %}</a></li>
                 </ul>
               </div>
             </div>
@@ -1018,6 +988,7 @@
 
                       document.getElementById('cartTotal').textContent=response['total']
                       document.getElementById('cartCount').textContent=cartCount
+                      document.getElementById('cartCountMobile').textContent=cartCount
                   },
                   error:function(err){
                       console.log(err)
