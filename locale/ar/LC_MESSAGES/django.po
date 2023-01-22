@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-22 19:13+0200\n"
+"POT-Creation-Date: 2023-01-22 19:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,10 +81,6 @@ msgstr "الشارع"
 #: .\accounts\models.py:68
 msgid "Notes"
 msgstr "ملاحظات"
-
-#: .\accounts\templates\auth_base.html:30
-msgid "Index Home"
-msgstr "الصفحة الرئيسية"
 
 #: .\accounts\templates\auth_base.html:88
 msgid "Copyright by"
@@ -582,14 +578,17 @@ msgid "special discount offer for vegetable items"
 msgstr "خصم خاص على الخضروات"
 
 #: .\home\templates\home\index.html:201
+#: .\settings\templates\coming_soon.html:77
 msgid "days"
 msgstr "أيام"
 
 #: .\home\templates\home\index.html:204
+#: .\settings\templates\coming_soon.html:78
 msgid "hours"
 msgstr "ساعات"
 
 #: .\home\templates\home\index.html:207
+#: .\settings\templates\coming_soon.html:79
 msgid "minutes"
 msgstr "دقائق"
 
@@ -1098,41 +1097,75 @@ msgstr "العنوان"
 msgid "Google Maps Adress URL"
 msgstr "رابط العنوان خرائط جوجل"
 
-#: .\settings\templates\contact_us.html:42
+#: .\settings\templates\coming_soon.html:25
+msgid "Coming Soon"
+msgstr "قريبا"
+
+#: .\settings\templates\coming_soon.html:75
+msgid "coming soon"
+msgstr "قريبا"
+
+#: .\settings\templates\coming_soon.html:80
+msgid "seconds"
+msgstr "ثواني"
+
+#: .\settings\templates\coming_soon.html:82
+msgid ""
+"We are currently working on an awesome new thing. Subscribe to our "
+"newsletter to stay updated."
+msgstr ""
+"نحن نعمل حاليا على شيء جديد رائع. اشترك في النشرة الإخبارية لدينا لتبقى على "
+"اطلاع."
+
+#: .\settings\templates\coming_soon.html:84
+msgid "enter your email"
+msgstr "ادخل بريدك الإلكتروني"
+
+#: .\settings\templates\contact_us.html:15
+#, fuzzy
+#| msgid "Contact"
+msgid "Contact Us"
+msgstr "تواصل معنا"
+
+#: .\settings\templates\contact_us.html:46
 msgid "head office"
 msgstr "المكتب الرئيسي"
 
-#: .\settings\templates\contact_us.html:49
+#: .\settings\templates\contact_us.html:53
 msgid "phone number"
 msgstr "رقم التليفون"
 
-#: .\settings\templates\contact_us.html:58
+#: .\settings\templates\contact_us.html:62
 msgid "Support mail"
 msgstr "ايميل للدعم"
 
-#: .\settings\templates\contact_us.html:73
+#: .\settings\templates\contact_us.html:77
 msgid "Drop Your Thoughts"
 msgstr "أرسل أفكارك"
 
-#: .\settings\templates\contact_us.html:76
+#: .\settings\templates\contact_us.html:80
 msgid "Your Name"
 msgstr "إسمك"
 
-#: .\settings\templates\contact_us.html:82
+#: .\settings\templates\contact_us.html:86
 msgid "Your Email"
 msgstr "بريدك الألكتروني"
 
-#: .\settings\templates\contact_us.html:88
+#: .\settings\templates\contact_us.html:92
 msgid "Subject"
 msgstr "العنوان"
 
-#: .\settings\templates\contact_us.html:94
+#: .\settings\templates\contact_us.html:98
 msgid "Your Message"
 msgstr "رسالتك"
 
-#: .\settings\templates\contact_us.html:100
+#: .\settings\templates\contact_us.html:104
 msgid "send message"
 msgstr "إرسال الرسالة"
+
+#: .\templates\base.html:31
+msgid "Index Home"
+msgstr "الصفحة الرئيسية"
 
 #: .\templates\base.html:91
 msgid "Welcome to Your Dream Online Store!"

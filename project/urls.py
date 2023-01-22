@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import TemplateView
 
 
 urlpatterns = [
@@ -28,6 +29,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('orders/', include('orders.urls')),
     path('info/', include('settings.urls', namespace='info')),
+    path('coming-soon/', TemplateView.as_view(template_name='coming_soon.html'), name='coming_soon'),
 
     path('summernote/', include('django_summernote.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
