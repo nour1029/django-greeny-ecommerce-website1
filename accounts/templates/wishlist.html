@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load static %}
 
 
 {% block title %}{% translate "Wishlist" %}{% endblock title %}
@@ -8,13 +9,12 @@
     <!--=====================================
                 BANNER PART START
     =======================================-->
-    <section class="inner-section single-banner" style="background: url(images/single-banner.jpg) no-repeat center;">
+    <section class="inner-section single-banner" style="background: url({% static 'images/single-banner.jpg' %}) no-repeat center;">
         <div class="container">
-            <h2>wishlist</h2>
+            <h2>{% translate "wishlist" %}</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="shop-4column.html">shop grid</a></li>
-                <li class="breadcrumb-item active" aria-current="page">wishlist</li>
+                <li class="breadcrumb-item"><a href="{% url 'home:home_page' %}">{% trans "home" %}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{% translate "wishlist" %}</li>
             </ol>
         </div>
     </section>

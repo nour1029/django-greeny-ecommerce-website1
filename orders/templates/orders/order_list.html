@@ -17,12 +17,12 @@
     <!--=====================================
                 BANNER PART START
     =======================================-->
-    <section class="inner-section single-banner" style="background: url(images/single-banner.jpg) no-repeat center;">
+    <section class="inner-section single-banner" style="background: url({% static 'images/single-banner.jpg' %}) no-repeat center;">
         <div class="container">
-            <h2>Order History</h2>
+            <h2>{% translate "Order History" %}</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Orderlist</li>
+                <li class="breadcrumb-item"><a href="{% url 'home:home_page' %}">{% trans "home" %}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{% translate "Order list" %}</li>
             </ol>
         </div>
     </section>
