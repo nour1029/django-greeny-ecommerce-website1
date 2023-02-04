@@ -29,7 +29,7 @@
             <a href="{{product.get_absolute_url}}#reviews-section">({{product.product_review.all|length}})</a>
         </div>
         <h6 class="product-name">
-            <a href="{% url 'products:product_detail' product.slug %}">{{product.name}}-{{product.category}}-{{product.brand}}</a>
+            <a href="{% url 'products:product_detail' product.slug %}">{{product.name}}</a>
         </h6>
         <h6 class="product-price">
             {% if product.price_before_discount %}
