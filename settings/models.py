@@ -37,7 +37,8 @@ class Company(models.Model):
     ins_link = models.URLField(_("Instagram Link"), null=True, blank=True)
     email = models.EmailField(_("Email"), max_length=30)
     phone_number = models.CharField(_("Phone Number"), max_length=20)
-    adress = models.CharField(_("Adress"), max_length=100)
+    address = models.CharField(_("Address"), max_length=100)
+    address_googlemaps = models.URLField(_("Google Maps Adress URL"), max_length=250, null=True, blank=True)
 
     def __str__(self):
         return self.name

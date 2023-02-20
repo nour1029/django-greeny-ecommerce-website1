@@ -1,0 +1,57 @@
+{% load i18n %}
+
+<div class="product-card">
+    <div class="product-media">
+        <div class="product-label">
+            <label class="label-text {% if product.flag == "New" %}new{% elif  product.flag == "Featured" %}feat{% endif %}">{% translate product.flag %}</label>
+        </div>
+        <form id="addToFavForm" data-form-id="{{product.id}}">
+            <button class="product-wish wish {% if product in user.Profile.favorites.all %}active{% endif %}" id="favorite-{{product.id}}">
+                <i class="fas fa-heart"></i>
+            </button>
+        </form>
+        <a class="product-image" href="{{product.get_absolute_url}}">
+            <img src="{{product.image.url}}" alt="product">
+        </a>
+        <div class="product-widget">
+            {% if product.video_url %}
+                <a title="Product Video" href="{{product.video_url}}" class="venobox fas fa-play" data-autoplay="true" data-vbtype="video"></a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="product-content">
+        <div class="product-rating">
+            <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "1" %} active {% endif %} icofont-star"></i>
+            <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "2" %} active {% endif %} icofont-star"></i>
+            <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "3" %} active {% endif %} icofont-star"></i>
+            <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "4" %} active {% endif %} icofont-star"></i>
+            <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "5" %} active {% endif %} icofont-star"></i>
+            <a href="{{product.get_absolute_url}}#reviews-section">({{product.product_review.all|length}})</a>
+        </div>
+        <h6 class="product-name">
+            <a href="{% url 'products:product_detail' product.slug %}">{{product.name}}-{{product.category}}-{{product.brand}}</a>
+        </h6>
+        <h6 class="product-price">
+            {% if product.price_before_discount %}
+                <del>${{product.price_before_discount}}</del>
+            {% endif %}
+            <span>${{product.price}}</span>
+        </h6>
+        <form method="post" id="addToCartForm" action="{% url 'orders:add_to_cart' %}">
+            {% csrf_token %}
+            <input type='hidden' name="quantity" value="1">
+            <input type="hidden" name="productid" value="{{product.id}}">
+            <button class="product-add product-add-to-cart" title="{% translate "Add to Cart" %}">
+                <i class="fas fa-shopping-basket"></i>
+                <span>{% translate "add" %}</span>
+            </button>
+
+            <div class="checkout-action">
+                <a class="product-add" href="{% url 'orders:checkout' %}" title="{% translate "Add to Cart" %}">
+                    <span>{% translate "Proceed to Checkout" %}</span>
+                </a>
+            </div>
+        </form>
+
+    </div>
+</div>

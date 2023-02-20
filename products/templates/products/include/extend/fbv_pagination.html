@@ -1,0 +1,35 @@
+{% if product_list.has_other_pages %}
+    <div class="pagination-area mb-30 wow fadeInUp animated">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-start">
+                {% if product_list.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ product_list.previous_page_number }}">
+                            <i class="fas fa-long-arrow-alt-left"></i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="fas fa-long-arrow-alt-left disabled"></li>
+                {% endif %}
+                
+                {% for i in product_list.paginator.page_range %} 
+                    {% if product_list.number == i %}
+                        <li class="page-item"><a class="page-link active" href="#">{{ i }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if product_list.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ product_list.next_page_number }}">
+                            <i class="fas fa-long-arrow-alt-right"></i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="fas fa-long-arrow-alt-right disabled"></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endif %}

@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 
-{% block title %}
-    <title>{{product.name}}</title>
-{% endblock title %}
+{% block title %}{{product.name}}{% endblock title %}
 
 
 
 {% block link %}
-    <link rel="stylesheet" href="{% static 'css/product-details.css' %}">
+    
+    {% if LANGUAGE_CODE == 'ar' %}
+        <link rel="stylesheet" href="{% static 'rtl_static/css/product-details.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/product-details.css' %}">
+{% endif %}
 {% endblock link %}
 
 {% block body %}
@@ -18,13 +22,13 @@
     <!--=====================================
                 BANNER PART START
     =======================================-->
-    <section class="single-banner inner-section" style="background: url(images/single-banner.jpg) no-repeat center;">
+    <section class="single-banner inner-section" style="background: url({% static 'images/single-banner.jpg' %}) no-repeat center;">
         <div class="container">
-            <h2>product simple</h2>
+            <h2>{{product.name}}</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="shop-4column.html">shop-4column</a></li>
-                <li class="breadcrumb-item active" aria-current="page">product-simple</li>
+                <li class="breadcrumb-item"><a href="{% url 'home:home_page' %}">{% trans "home" %}</a></li>
+                <li class="breadcrumb-item active"><a href="{% url 'products:product_list' %}">{% trans "products" %}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{% translate "product page" %}</li>
             </ol>
         </div>
     </section>
@@ -42,8 +46,8 @@
                 <div class="col-lg-6">
                     <div class="details-gallery">
                         <div class="details-label-group">
-                            <label class="details-label {% if product.flag == "New" %}new{% elif  product.flag == "Featured" %}feat{% endif %}">{{product.flag}}</label>
-                            <label class="details-label off">-10%</label>
+                            <label class="details-label {% if product.flag == "New" %}new{% elif  product.flag == "Featured" %}feat{% endif %}">{% translate product.flag %}</label>
+                            {% comment %} <label class="details-label off">-10%</label> {% endcomment %}
                         </div>
                         <ul class="details-preview"> 
                             {% for object in images %}
@@ -58,33 +62,11 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <ul class="product-navigation">
-                        <li class="product-nav-prev">
-                            <a href="#">
-                                <i class="icofont-arrow-left"></i>
-                                prev product
-                                <span class="product-nav-popup">
-                                    <img src="images/product/02.jpg" alt="product">
-                                    <small>green chilis</small>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="product-nav-next">
-                            <a href="#">
-                                next product
-                                <i class="icofont-arrow-right"></i>
-                                <span class="product-nav-popup">
-                                    <img src="images/product/03.jpg" alt="product">
-                                    <small>green chilis</small>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
                     <div class="details-content">
                         <h3 class="details-name"><a href="#">{{product}}</a></h3>
                         <div class="details-meta">
-                            <p>SKU:<span>{{product.sku}}</span></p>
-                            <p>BRAND:<a href="#">{{product.brand}}</a></p>
+                            <p>{% translate "SKU" %}:<span>{{product.sku}}</span></p>
+                            <p>{% trans "BRAND" %}:<a href="#">{{product.brand}}</a></p>
                         </div>
                         <div class="details-rating">
                             <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "1" %} active {% endif %} icofont-star"></i>
@@ -92,15 +74,17 @@
                             <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "3" %} active {% endif %} icofont-star"></i>
                             <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" >= "4" %} active {% endif %} icofont-star"></i>
                             <i class="{% if product.get_avg_reviews.myavg|floatformat:"0" == "5" %} active {% endif %}icofont-star"></i>
-                            <a href="#">({{product.product_review.all|length}} reviews)</a>
+                            <a href="#reviews-section">(<span id="reviewsCount">{{product.product_review.all|length}}</span> {% translate "reviews" %})</a>
                         </div>
                         <h3 class="details-price">
-                            <del>$38.00</del>
-                            <span>${{product.price}}<small>/per kilo</small></span>
+                            {% if product.price_before_discount %}
+                                <del>${{product.price_before_discount}}</del>
+                            {% endif %}
+                            <span>${{product.price}}</span>
                         </h3>
                         {% comment %} <p class="details-desc">{{product.desc|safe|truncatewords:20}}</p> {% endcomment %}
                         <div class="details-list-group">
-                            <label class="details-list-title">tags:</label>
+                            <label class="details-list-title">{% translate "tags" %}:</label>
                             <ul class="details-tag-list">
                                 {% for tag in product.tags.all %}
                                     <li><a href="#">{{tag}}</a></li>
@@ -108,7 +92,7 @@
                             </ul>
                         </div>
                         <div class="details-list-group">
-                            <label class="details-list-title">Share:</label>
+                            <label class="details-list-title">{% translate "Share" %}:</label>
                             <ul class="details-share-list">
                                 <li><a href="#" class="icofont-facebook" title="Facebook"></a></li>
                                 <li><a href="#" class="icofont-twitter" title="Twitter"></a></li>
@@ -116,27 +100,34 @@
                                 <li><a href="#" class="icofont-instagram" title="Instagram"></a></li>
                             </ul>
                         </div>
+
                         <div class="details-add-group">
                             <form method="post" id="addToCartForm" action="{% url 'orders:add_to_cart' %}">
                                 {% csrf_token %}
-                                <input class="action-input myinput" title="Quantity Number" type="text" name="quantity" value="1">
+                                <!-- <input class="action-input myinput" title="Quantity Number" type="text" name="quantity" value="1"> -->
                                 <input type="hidden" value="{{product.id}}" name="productid">
-                                <button class="product-add myinput" title="Add to Cart">
-                                    <i class="fas fa-shopping-basket"></i>
-                                    <span>add to cart</span>
-                                </button>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class="product-add myinput" title="{% translate "Add to Cart" %}">
+                                            <i class="fas fa-shopping-basket"></i>
+                                            <span>{% translate "add to cart" %}</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="product-action" style="display: flex;">
+                                            <button class="action-minus" title="{% translate "Quantity Minus" %}"><i class="icofont-minus"></i></button>
+                                            <input class="action-input" title="{% translate "Quantity Number" %}" type="text" name="quantity" value="1">
+                                            <button class="action-plus" title="{% translate "Quantity Plus" %}"><i class="icofont-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                         <div class="details-action-group">
-                            <form action="{% url 'products:add_to_favorites' %}" method="post">
-                                {% csrf_token %}
-                                <input type="submit" class="details-wish wish" title="Add Your Wishlist" value="add to wish">
-                                <input type="hidden" value="{{product.id}}" name="productid">
-                            </form>
-                            <a class="details-compare" href="compare.html" title="Compare This Item">
-                                <i class="fas fa-random"></i>
-                                <span>Compare This</span>
-                            </a>
+                            <button id="addToFavBtn" class="details-wish wish {% if product in user.Profile.favorites.all %}active{% endif %}" data-id="{{product.id}}" title="{% translate "Add Your Wishlist" %}">
+                                <i class="icofont-heart"></i>
+                                <span>{% translate "add to wish" %}</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -156,33 +147,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="product-details-frame">
-                        <h3 class="frame-title">Description</h3>
+                        <h3 class="frame-title">{% translate "Description" %}</h3>
                         <div class="tab-descrip">
                             <p>{{product.desc|safe}}</p>
                         </div>
-                    </div>
-                    <div class="product-details-frame">
-                        <h3 class="frame-title">Spacification</h3>
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Product code</th>
-                                    <td>SKU: {{product.sku}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Weight</th>
-                                    <td>1kg, 2kg</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Styles</th>
-                                    <td>@Girly</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Properties</th>
-                                    <td>Short Dress</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                     <div class="product-details-frame">
                         <div id="review-div">
@@ -190,7 +158,7 @@
                         </div>
                     </div>
                     <div class="product-details-frame">
-                        <h3 class="frame-title">add your review</h3>
+                        <h3 class="frame-title">{% translate "add your review" %}</h3>
                         <form class="review-form" id="review-form" method="post" action="{% url 'products:add_review' product.slug %}">
                             {% csrf_token %}
                             <div class="row">
@@ -205,13 +173,13 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="review" placeholder="Describe"></textarea>
+                                        <textarea class="form-control" name="review" placeholder="{% translate "descripe your review" %}"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <button class="btn btn-inline" type="submit">
                                         <i class="icofont-water-drop"></i>
-                                        <span>drop your review</span>
+                                        <span>{% translate "drop your review" %}</span>
                                     </button>
                                 </div>
                             </div>
@@ -234,69 +202,16 @@
             <div class="row">
                 <div class="col">
                     <div class="section-heading">
-                        <h2>related this items</h2>
+                        <h2>{% translate "related this items" %}</h2>
                     </div>
                 </div>
             </div>
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
                 {% for product in related %}
                     <div class="col">
-                        <div class="product-card  {% if product.quantity == 0 %} product-disable {% endif %}">
-                            <div class="product-media">
-                                <div class="product-label">
-                                    <label class="label-text sale">{{product.flag}}</label>
-                                </div>
-                                <button class="product-wish wish">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <a class="product-image" href="{% url 'products:product_detail' product.slug %}">
-                                    <img src="{{product.image.url}}" alt="product">
-                                </a>
-                                <div class="product-widget">
-                                    <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
-                                    <a title="Product Video" href="https://youtu.be/9xzcVxSBbG8" class="venobox fas fa-play" data-autoplay="true" data-vbtype="video"></a>
-                                    <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <div class="product-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3)</a>
-                                </div>
-                                <h6 class="product-name">
-                                    <a href="product-video.html">{{product}}</a>
-                                </h6>
-                                <h6 class="product-price">
-                                    <del>$34</del>
-                                    <span>${{product.price}}<small>/piece</small></span>
-                                </h6>
-                                <button class="product-add" title="Add to Cart">
-                                    <i class="fas fa-shopping-basket"></i>
-                                    <span>add</span>
-                                </button>
-                                <div class="product-action">
-                                    <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                    <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
-                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
+                        {% include 'products/include/extend/product_card.html' %}
                     </div>
                 {% endfor %}
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-btn-25">
-                        <a href="shop-4column.html" class="btn btn-outline">
-                            <i class="fas fa-eye"></i>
-                            <span>view all related</span>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -317,13 +232,42 @@
                     data:$(this).serialize() ,
                     dataType:'json' ,
                     success:function(response){
-                        $('#review-div').html(response['result'])
+                        $('#review-div').html(response['result']);
+                        $('#reviewsCount').text(response['reviews_count']);
                     },
                     error:function(err){
                         console.log(err)
                     }
                 })
             })
+
+            $(document).on('click', '#addToFavBtn', function(e){
+                const productId = $(this).data('id');
+                const clickedBtn = $(this);
+
+                $.ajax({
+                    method : 'POST' ,
+                    url : '/products/add_to_wish/' ,
+                    data : {'productid':productId , 'csrfmiddlewaretoken': "{{csrf_token}}"},
+                    dataType :'json',
+                    success : function(response){
+                        if (response['result']) {
+                            $(clickedBtn).addClass('active');
+                        } else {
+                            $(clickedBtn).removeClass('active');
+                        }
+                        
+                        let favoritesCount = response['favorites_count'] <= 9 ? response['favorites_count'] : '9+';
+                        $('#favoritesCount').text(favoritesCount);
+                        $('#favoritesCountMobile').text(favoritesCount);
+                    },
+                    error : function(err){
+                        console.log(err);
+                    }
+                })
+            })
+
+
             $(document).on('submit', '#addToCartForm', function(e){
                 e.preventDefault();
                 $.ajax({
@@ -333,7 +277,12 @@
                     dataType:'json' ,
                     success:function(response){
                         $('#cartSidebar').html(response['result'])
+
+                        let cartCount = response['count'] <= 9 ? response['count'] : '9+';
+
                         document.getElementById('cartTotal').textContent=response['total']
+                        document.getElementById('cartCount').textContent=cartCount
+                        document.getElementById('cartCountMobile').textContent=cartCount
                     },
                     error:function(err){
                         console.log(err)

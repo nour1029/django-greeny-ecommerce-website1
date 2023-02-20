@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}{% translate "Categories" %}{% endblock title %}
 
 {% block body %}
         <!--=====================================
                     BANNER PART START
         =======================================-->
-        <section class="inner-section single-banner" style="background: url(images/single-banner.jpg) no-repeat center;">
+        <section class="inner-section single-banner" style="background: url({% static 'images/single-banner.jpg' %}) no-repeat center;">
             <div class="container">
-                <h2>all category</h2>
+                <h2>{% translate "all categories" %}</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">all-category</li>
+                    <li class="breadcrumb-item"><a href="{% url 'home:home_page' %}">{% trans "home" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% translate "all categories" %}</li>
                 </ol>
             </div>
         </section>
@@ -23,29 +28,6 @@
         =======================================-->
         <section class="inner-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="top-filter">
-                            <div class="filter-show">
-                                <label class="filter-label">Show :</label>
-                                <select class="form-select filter-select">
-                                    <option value="1">12</option>
-                                    <option value="2">24</option>
-                                    <option value="3">36</option>
-                                </select>
-                            </div>
-                            <div class="filter-short">
-                                <label class="filter-label">Short by :</label>
-                                <select class="form-select filter-select">
-                                    <option selected>default</option>
-                                    <option value="3">trending</option>
-                                    <option value="1">featured</option>
-                                    <option value="2">recommend</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-center">
                     {% for category in category_list %}
                         <div class="col">
@@ -58,49 +40,13 @@
                                 </div>
                                 <div class="category-meta">
                                     <h4>{{category}}</h4>
-                                    <p>({{category.product_count}} items)</p>
+                                    <p>({{category.product_count}} {% translate "items" %})</p>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-                {% if is_paginated %}
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="bottom-paginate">
-                                <p class="page-info">Showing 12 of 60 Results</p>
-                                <ul class="pagination">
-                                    {% if page_obj.has_previous %}
-                                        <li class="page-item">
-                                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
-                                                <i class="fas fa-long-arrow-alt-left"></i>
-                                            </a>
-                                        </li>
-                                    {% else %}
-                                        <li class="fas fa-long-arrow-alt-left disabled"></li>
-                                    {% endif %}
-                                    {% for i in paginator.page_range %}
-                                        {% if page_obj.number == i %}
-                                            <li class="page-item"><a class="page-link active" href="#">{{ i }}</a></li>
-                                        {% else %}
-                                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                                        {% endif %}
-                                    {% endfor %}
-
-                                    {% if page_obj.has_next %}
-                                        <li class="page-item">
-                                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
-                                                <i class="fas fa-long-arrow-alt-right"></i>
-                                            </a>
-                                        </li>
-                                    {% else %}
-                                        <li class="fas fa-long-arrow-alt-right disabled"></li>
-                                    {% endif %}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
+                {% include 'products/include/extend/cbv_pagination.html' %}
             </div>
         </section>
         <!--=====================================

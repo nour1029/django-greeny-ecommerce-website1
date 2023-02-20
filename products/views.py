@@ -1,36 +1,83 @@
-from itertools import product
-from msilib.schema import ListView
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.urls import reverse
 from products.forms import ReviewForm
 from .models import Brand, Category, Product, ProductImages, Review
-from django.db.models import Count
+from accounts.models import Profile
+from django.db.models import Count, Avg, F, Q
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 # Creat your views here.
 
 
 class ProductList(ListView):
     model = Product
-    paginate_by = 50
-
-    def get_queryset(self):
-        try:
-            min_price = self.request.GET['min-price']
-            max_price = self.request.GET['max-price']
-            queryset = Product.objects.filter(price__gt=min_price, price__lt=max_price)
-            html = render_to_string('products/include/product_list_div.html', {'product_list':queryset, self.request:self.request})
-            return JsonResponse({'result':html})
-        except:
-            queryset = super().get_queryset()
-        
-
-        return queryset
+    paginate_by = 12
 
 def product_list(request):
-    product = Product.objects.all()
+    products = Product.objects.all()
+    # Pagination
+    paginator = Paginator(products, 12)
+    page = request.GET.get('page')
+    try:
+        product_list = paginator.page(page)
+    except PageNotAnInteger:
+        product_list = paginator.page(1)
+    except EmptyPage:  
+        product_list = paginator.page(paginator.num_pages)
+
+    context = {'product_list':product_list, 'page':page}
+    return render(request, 'products/product_list.html', context)
+
+def product_filter(request):
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+    rating = request.GET.getlist('rating[]')
+    flag = request.GET.getlist('flag[]')
+    brand = request.GET.getlist('brand[]')
+    category = request.GET.getlist('category[]')
+
+    products = Product.objects.all()
+    
+    if min_price:
+        products = products.filter(price__gte=min_price)
+    if max_price:
+        products = products.filter(price__lte=max_price)
+    if rating:
+        query_list = []
+        for rate in rating:
+            rate = int(rate)
+            rate_min = rate-0.5
+            rate_max = rate+0.5
+            query_list.append(f'Q(rate_avg__gte={rate_min}, rate_avg__lt={rate_max})')
+        query_string = '|'.join(query_list)
+        queryset = eval(query_string)
+        products = products.annotate(rate_avg=Avg('product_review__rate')).filter(queryset)
+    if flag:
+        products = products.filter(flag__in=flag)
+    if brand:
+        products = products.filter(brand__in=brand)
+    if category:
+        products = products.filter(category__in=category)
+        
+
+    # Pagination
+    paginator = Paginator(products, 12)
+    page = request.GET.get('page')
+    try:
+        product_list = paginator.page(page)
+    except PageNotAnInteger:
+        product_list = paginator.page(1)
+    except EmptyPage:  
+        product_list = paginator.page(paginator.num_pages)
+
+
+    html = render_to_string('products/include/product_list_div.html', {'product_list':product_list, 'page':page, 'value':'True'}, request=request)  # 'request=request' is for basic context_processors like 'user'
+    return JsonResponse({'result':html})
+
 
 class ProductDetail(DetailView):
     model = Product
@@ -40,8 +87,8 @@ class ProductDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context["images"] = ProductImages.objects.filter(product=myproduct)
         context["reviews"] = Review.objects.filter(product=myproduct)
-        context['related'] = Product.objects.filter(
-            category=myproduct.category)[:10]
+        # context['related'] = Product.objects.filter(category=myproduct.category)[:10]
+        context['related'] = myproduct.tags.similar_objects()[:10]
         return context
 
 
@@ -54,12 +101,6 @@ class CategoryList(ListView):
             product_count=Count('product_category'))
         return queryset
     
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context["category_list"] = Category.objects.all().annotate(
-    #         product_count=Count('product_category'))
-    #     return context
 
 
 class BrandList(ListView):
@@ -77,27 +118,24 @@ class BrandDetail(ListView):
     model = Product
     template_name = 'products/brand_detail.html'
     paginate_by = 12
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     brand = self.get_object()
-    #     #context["brands"] = Brand.objects.annotate(product_count=Count('product_brand'))
-    #     context["brand_products"] = Product.objects.filter(brand=brand)
-    #     return context
 
     def get_queryset(self):
         self.brand_slug = self.kwargs['slug']
         queryset = Product.objects.filter(brand__slug=self.brand_slug)
+        # print(queryset['count'], '#'*50)
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["brand"] = Brand.objects.get(slug=self.brand_slug)
+        context["rating_count"] = Product.objects.filter(brand__slug=self.brand_slug).aggregate(count=Count('product_review'))['count']
+        context["rating_avg"] = Product.objects.filter(brand__slug=self.brand_slug).aggregate(avg=Avg('product_review__rate'))['avg']
         return context
     
 
     
 
-
+@login_required
 def add_review(request,slug):
     product = Product.objects.get(slug=slug)
     if request.method == 'POST':
@@ -110,9 +148,10 @@ def add_review(request,slug):
             myform.save()
 
             reviews = Review.objects.filter(product=product)
-    
-            html = render_to_string('products/include/reviews.html', {'reviews':reviews, request:request}) # Render context data on page and returns html text
-            return JsonResponse({'result' : html})
+            reviews_count = reviews.count()
+
+            html = render_to_string('products/include/reviews.html', {'reviews':reviews}) # Render context data on page and returns html text
+            return JsonResponse({'result' : html, 'reviews_count':reviews_count})
 
 
 @login_required
@@ -127,6 +166,20 @@ def add_to_favorites(request):
     else:
         liked = True
         request.user.Profile.favorites.add(product)
+    
+    profile = Profile.objects.get(user=request.user)
+
+    return JsonResponse({'result':liked, 'favorites_count':profile.get_favorites_count()})
 
 
-    return JsonResponse({'result':liked})
+@login_required
+def remove_from_favorites(request):
+    prodcut_id = request.POST['productId']
+    product = Product.objects.get(id=prodcut_id)
+
+    request.user.Profile.favorites.remove(product)
+    
+
+    profile = Profile.objects.get(user=request.user)
+    html = render_to_string('include/real-time/wishlist-tablelist.html', {}, request=request)
+    return JsonResponse({'result':html, 'favorites_count':profile.get_favorites_count()})

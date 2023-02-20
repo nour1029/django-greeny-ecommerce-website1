@@ -1,0 +1,19 @@
+{% load i18n %}
+
+
+<div class="account-content">
+    <div class="row">
+        {% for number in numbers %}
+            <div class="col-md-6 col-lg-4 alert fade show">
+                <div class="profile-card contact {% if number.active %}active{% endif %}" data-id='{{number.id}}'>
+                    <h6 id="phoneType">{% translate number.type %}</h6>
+                    <p id="phoneNumber">{{number.phone_number}}</p>
+                    <ul>
+                        <li><button class="edit icofont-edit edit-btn" id="contactEditBtn" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit"></button></li>
+                        <li><button class="trash icofont-ui-delete delete-btn" title="Remove This" data-bs-dismiss="alert"></button></li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

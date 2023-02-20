@@ -9,7 +9,7 @@ from django.db.models import Count
 
 def home(request):
     banners = Banner.objects.filter(active=True)
-    categories = Category.objects.all()
+    categories = Category.objects.all().annotate(product_count=Count('product_category'))
     featured = Product.objects.filter(flag='Featured')[:6]
     new = Product.objects.filter(flag='New')[:6]
     brands = Brand.objects.all().annotate(product_count=Count('product_brand'))[:6]

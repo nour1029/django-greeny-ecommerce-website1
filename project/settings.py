@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from telnetlib import AUTHENTICATION
 
 from django.utils.translation import gettext_lazy as _
 
@@ -28,7 +27,7 @@ SECRET_KEY = 'django-insecure-^=)ec6oyq#2(orzi(zfho(jrqwr-+ftef+y)oee9*eg+@q699y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -139,11 +138,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-LANGUAGES = [
-    ('ar', _('Arabic')),
-    ('en', _('English')),
-]
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -152,6 +146,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+LANGUAGES = [
+    ('ar', _('Arabic')),
+    ('en', _('English')),
+]
 
 LOCALE_PATHS = BASE_DIR / "locale",
 
@@ -162,6 +161,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"

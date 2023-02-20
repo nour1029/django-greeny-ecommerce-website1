@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block link %}
+    {% if LANGUAGE_CODE == 'ar' %}
+        <link rel="stylesheet" href="{% static 'rtl_static/css/contact.css' %}" />
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/contact.css' %}" />
+    {% endif %}
+{% endblock link %}
+
+
+<title>{% block title %}{% translate "Contact Us" %}{% endblock title %} | Nour</title>
+    
+
+{% block body %}
+
+        <!--=====================================
+                    BANNER PART START
+        =======================================-->
+        <section class="inner-section single-banner" style="background: url({% static 'images/get_in_touch.jpg' %}) no-repeat center;">
+            <div class="container">
+                <h2>{% translate "contact us" %}</h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home:home_page' %}">{% trans "home" %}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{% translate "contact us" %}</li>
+                </ol>
+            </div>
+        </section>
+        <!--=====================================
+                    BANNER PART END
+        =======================================-->
+
+
+        <!--=====================================
+                    CONTACT PART START
+        =======================================-->
+        <section class="inner-section contact-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card">
+                            <i class="icofont-location-pin"></i>
+                            <h4>{% translate "head office" %}</h4>
+                            <p>{{site_info.address}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card active">
+                            <i class="icofont-phone"></i>
+                            <h4>{% translate "phone number" %}</h4>
+                            <p>
+                                <a href="#">{{site_info.phone_number}}</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card">
+                            <i class="icofont-email"></i>
+                            <h4>{% translate "Support mail" %}</h4>
+                            <p>
+                                <a href="#">{{site_info.email}}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="contact-map">
+                            <iframe src="{{site_info.address_googlemaps}}" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <form class="contact-form">
+                            <h4>{% translate "Drop Your Thoughts" %}</h4>
+                            <div class="form-group">
+                                <div class="form-input-group">
+                                    <input class="form-control" type="text" placeholder="{% translate "Your Name" %}">
+                                    <i class="icofont-user-alt-3"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input-group">
+                                    <input class="form-control" type="text" placeholder="{% translate "Your Email" %}">
+                                    <i class="icofont-email"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input-group">
+                                    <input class="form-control" type="text" placeholder="{% translate "Subject" %}">
+                                    <i class="icofont-book-mark"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input-group">
+                                    <textarea class="form-control" placeholder="{% translate "Your Message" %}"></textarea>
+                                    <i class="icofont-paragraph"></i>
+                                </div>
+                            </div>
+                            <button type="submit" class="form-btn-group">
+                                <i class="fas fa-envelope"></i>
+                                <span>{% translate "send message" %}</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=====================================
+                    CONTACT PART END
+        =======================================-->
+{% endblock body %}

@@ -54,7 +54,7 @@
     <input type="text" placeholder="Enter your coupon code" />
     <button type="submit"><span>{% translate "apply" %}</span></button>
 </form>
-<a class="cart-checkout-btn" href="checkout.html">
+<a class="cart-checkout-btn" href="{% url 'orders:checkout' %}">
     <span class="checkout-label">{% translate "Proceed to Checkout" %}</span>
     <span class="checkout-price">${{cart.get_total|floatformat:2}}</span>
 </a>

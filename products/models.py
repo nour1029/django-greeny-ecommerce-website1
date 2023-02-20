@@ -6,14 +6,22 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
 from django.db.models import Avg
+from django.urls import reverse
 # Create your models here.
 
 
 FLAG_TYPE = (
-    ('New', 'New'),
-    ('Featured', 'Featured')
+    ('New', _('New')),
+    ('Featured', _('Featured')),
 )
 
+
+class PollManager(models.Manager):
+    def rate_avg(self, rate):
+        rate = int(rate)
+        rate_min = rate-0.5
+        rate_max = rate+0.5
+        return self.annotate(rate_avg=Avg('product_review__rate')).filter(rate_avg__gte=rate_min, rate_avg__lt=rate_max)
 
 class Product(models.Model):
     name = models.CharField(_("Name"), max_length=100)
@@ -21,22 +29,30 @@ class Product(models.Model):
     brand = models.ForeignKey("Brand", verbose_name=_(
         "Brand"), related_name='product_brand', on_delete=models.SET_NULL, null=True, blank=True)
     price = models.FloatField(_("Price"))
+    price_before_discount = models.IntegerField(_("Before Discount Price"), default=0)
     desc = models.TextField(_("Description"), max_length=10000)
     tags = TaggableManager(blank=True)
     flag = models.CharField(_("Flag"), choices=FLAG_TYPE, max_length=15)
     category = models.ForeignKey("Category", verbose_name=_(
         "Category"), related_name='product_category', on_delete=models.SET_NULL, null=True)
     image = models.ImageField(_("Image"), upload_to='products/')
+    video_url = models.URLField(_("Video URL"), max_length=200, null=True, blank=True)
     quantity = models.IntegerField(_("Quantiy"), default=0)
     slug = models.SlugField(_("Slug"), null=True, blank=True)
 
+    objects = PollManager()
+
     class Meta:
         ordering = ('-pk',)
-
-
+        
     def get_avg_reviews(self):
         avg = self.product_review.aggregate(myavg=Avg('rate'))
         return avg
+
+    def get_absolute_url(self):
+        return reverse("products:product_detail", kwargs={"slug":self.slug})
+
+
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -57,9 +73,11 @@ class ProductImages(models.Model):
 
 class Brand(models.Model):
     name = models.CharField(_("Name"), max_length=50)
-    image = models.ImageField(
-        _("Image"), upload_to='brand/', null=True, blank=True)
+    image = models.ImageField(_("Image"), upload_to='brand/', null=True, blank=True)
     slug = models.SlugField(_("Slug"), blank=True)
+
+    def get_absolute_url(self):
+        return reverse("products:brand_detail", kwargs={"slug":self.slug})
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -72,6 +90,9 @@ class Brand(models.Model):
 class Category(models.Model):
     name = models.CharField(_("Name"), max_length=50)
     image = models.ImageField(_("Image"), upload_to='category')
+
+    def get_absolute_url(self):
+        return reverse("products:category_detail", kwargs={"slug":self.slug})
 
     def __str__(self):
         return self.name

@@ -1,0 +1,23 @@
+{% load i18n %}
+{% load static %}
+
+<div class="account-content">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="profile-image">
+                <a href="#"><img src="{% if user.Profile.image %}{{user.Profile.image.url}}{% else %}{% static 'images/user.png' %}{% endif %}" alt="user"></a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mt-4">
+            <!-- <label for="">Name:</label> -->
+            <h4>{{user.Profile.first_name}} {{user.Profile.last_name}}</h4>
+        </div>
+        <div class="col-md-6 col-lg-4">
+        </div>
+        <div class="col-lg-2">
+            <div class="profile-btn">
+                <a href="change-password.html">{% translate "change pass." %}</a>
+            </div>
+        </div>
+    </div>
+</div>
