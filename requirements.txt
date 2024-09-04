@@ -3,7 +3,7 @@ async-timeout==4.0.2
 bleach==5.0.1
 Deprecated==1.2.13
 dj-rest-auth==2.2.5
-Django==3.2
+Django==3.2.25
 django-debug-toolbar==3.4.0
 django-filter==22.1
 django-redis==5.2.0
